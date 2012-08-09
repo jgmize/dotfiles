@@ -1,0 +1,9 @@
+#!/bin/sh
+dotfiles=".bash_aliases .bashrc .gitconfig .hgrc .synergy.conf .vim .vimrc"
+cd $HOME
+for f in $dotfiles; do
+    if [ "$f" != ".git" ]; then
+        echo "ln -sf dotfiles/$f";
+        ln -sf dotfiles/$f;
+    fi;
+done;

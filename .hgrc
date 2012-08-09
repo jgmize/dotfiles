@@ -1,0 +1,24 @@
+[ui]
+username = Josh Mize <jmize@consumeraffairs.com>
+editor = vim
+
+[extensions]
+hgext.bookmarks =
+hgext.fetch =
+hgext.graphlog = 
+#hggit =  # broken as of version 2.0.1
+mq =
+#hgshelve = /home/jgmize/python/hgshelve/hgshelve.py
+color =
+pager =
+rebase =
+#prompt = /home/jgmize/python/hg-prompt/prompt.py
+
+[merge-tools]
+kdiff3.executable = kdiff3
+kdiff3.args = $base $local $other -o $output
+kdiff3.priority = 1
+
+[trusted]
+users = root, jgmize
+groups = www-data
