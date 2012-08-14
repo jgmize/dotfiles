@@ -5,7 +5,7 @@
 ....() { cd ../../..; }
 .....() { cd ../../../..; }
 ......() { cd ../../../../..; }
-du1() { du --max-depth=1; }
+du1() { du -h --max-depth=1; }
 du1g() { du1 | grep G; }
 du1m() { du1 | grep M; }
 du1gs() { du1g | sort -n; }
@@ -25,15 +25,21 @@ man() { screen -t man\ $1 man $1; }
 sping() { screen -t "ping $1" ping $1; }
 svi() { screen -t $1 sudo vim $1; }
 svs() { screen vim -S; }
-vi() { 
-    VIMSERVER=`vim --serverlist`
-    if [ "$VIMSERVER" == "GVIM" ]; then
-        gvim --remote-tab $1
-    elif [ -n "${VIMSERVER:+x}" ]; then
-        vim --remote-tab $1
-    else
-        screen vim --servername vim $1 
-    fi
-}
+if [ -n "$DISPLAY" ]; then
+    vi() { 
+        VIMSERVER=`vim --serverlist`
+        if [ "$VIMSERVER" == "GVIM" ]; then
+            gvim --remote-tab $1
+        elif [ -n "${VIMSERVER:+x}" ]; then
+            vim --remote-tab $1
+        else
+            screen vim --servername vim $1 
+        fi
+    }
+else
+    vi() {
+        screen -t $1 vim $1 $2 $3 $4 $5 $6
+    }
+fi
 hgstvi() { for f in `hg st -qn`; do vi $f; done; }
 root() { screen -t root sudo bash -l; }
