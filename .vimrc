@@ -5,10 +5,11 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'git://git.wincent.com/command-t.git'
+"Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'drichard/vim-brunch'
 Bundle 'taglist-plus'
 Bundle 'vcscommand.vim'
+Bundle 'SuperTab-continued.'
 filetype plugin indent on
 
 syntax on
