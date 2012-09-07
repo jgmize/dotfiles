@@ -2,8 +2,6 @@
 dotfiles=".bash_aliases .bashrc .gitconfig .hgrc .synergy.conf .vimrc"
 cd $HOME
 for f in $dotfiles; do
-    if [ "$f" != ".git" ]; then
-        echo "ln -sf dotfiles/$f";
-        ln -sf dotfiles/$f;
-    fi;
+    ln -sf dotfiles/$f;
 done;
+vim +BundleInstall +qall &>/dev/null
