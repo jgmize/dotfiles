@@ -11,6 +11,7 @@ Bundle 'taglist-plus'
 Bundle 'vcscommand.vim'
 Bundle 'SuperTab-continued.'
 Bundle 'nginx.vim'
+Bundle 'iptables'
 filetype plugin on
 
 syntax on
