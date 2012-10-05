@@ -12,6 +12,9 @@ Bundle 'vcscommand.vim'
 Bundle 'SuperTab-continued.'
 Bundle 'nginx.vim'
 Bundle 'iptables'
+Bundle 'Gundo'
+Bundle 'Jinja'
+Bundle 'vim-stylus'
 filetype plugin on
 
 syntax on
