@@ -16,6 +16,7 @@ Bundle 'Gundo'
 Bundle 'Jinja'
 Bundle 'vim-stylus'
 Bundle 'vimwiki'
+Bundle 'SudoEdit.vim'
 filetype plugin on
 
 syntax on
