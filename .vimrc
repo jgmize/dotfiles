@@ -15,6 +15,7 @@ Bundle 'iptables'
 Bundle 'Gundo'
 Bundle 'Jinja'
 Bundle 'vim-stylus'
+Bundle 'vimwiki'
 filetype plugin on
 
 syntax on
