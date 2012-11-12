@@ -4,4 +4,5 @@ cd $HOME
 for f in $dotfiles; do
     ln -sf dotfiles/$f;
 done;
-vim +BundleInstall +qall &>/dev/null
+# the command below will sometime lock up during automated deployments
+#vim +BundleInstall +qall &>/dev/null
