@@ -18,6 +18,7 @@ Bundle 'vim-stylus'
 Bundle 'vimwiki'
 Bundle 'SudoEdit.vim'
 Bundle 'ack.vim'
+Bundle 'bufexplorer.zip'
 filetype plugin on
 
 syntax on
