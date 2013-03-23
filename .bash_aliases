@@ -21,25 +21,46 @@ sdr() { screen -D -RR; }
 sx() { screen -x || screen -q; }
 rscp() { rsync --progress -r --rsh=ssh $1 $2; }
 gdr() { sudo killall -SIGHUP gunicorn_django; }
-man() { screen -t man\ $1 man $1; }
-sping() { screen -t "ping $1" ping $1; }
-svi() { screen -t $1 sudo vim $1; }
-svs() { screen vim -S; }
-if [ -n "$DISPLAY" ]; then
-    vi() { 
-        VIMSERVER=`vim --serverlist`
-        if [ "$VIMSERVER" == "GVIM" ]; then
-            gvim --remote-tab $1
-        elif [ -n "${VIMSERVER:+x}" ]; then
-            vim --remote-tab $1
-        else
-            screen vim --servername vim $1 
-        fi
-    }
-else
-    vi() {
-        screen -t $1 vim $1 $2 $3 $4 $5 $6
-    }
+if [ "$STY" != "" ]; then
+    man() { screen -t man\ $1 man $1; }
+    sping() { screen -t "ping $1" ping $1; }
+    svi() { screen -t $1 sudo vim $1; }
+    svs() { screen vim -S; }
+    root() { screen -t root sudo bash -l; }
+elif [ -n $TMUX ]; then
+    man() { tmux new-window -n "man $1" "man $1"; }
+    root() { tmux new-window -n root "sudo bash -l"; }
+fi
+if [ "$STY" != "" ]; then
+    if [ -n "$DISPLAY" ]; then
+        vi() { 
+            VIMSERVER=`vim --serverlist`
+            if [ "$VIMSERVER" == "GVIM" ]; then
+                gvim --remote-tab $1
+            elif [ -n "${VIMSERVER:+x}" ]; then
+                vim --remote-tab $1
+            else
+                screen vim --servername vim $1 
+            fi
+        }
+    else
+        vi() { screen vim $1 $2 $3 $4 $5 $6; }
+    fi
+elif [ -n $TMUX ]; then
+    if [ -n "$DISPLAY" ]; then
+        vi() { 
+            VIMSERVER=`vim --serverlist`
+            if [ "$VIMSERVER" == "GVIM" ]; then
+                gvim --remote-tab $1
+            elif [ -n "${VIMSERVER:+x}" ]; then
+                vim --remote-tab $1
+                tmux select-window -t vim
+            else
+                tmux new-window -n vim "vim --servername vim $1 $2 $3"
+            fi
+        }
+    else
+        vi() { tmux new-window -n vim "vim $1 $2 $3 $4 $5 $6"; }
+    fi
 fi
 hgstvi() { for f in `hg st -qn`; do vi $f; done; }
-root() { screen -t root sudo bash -l; }
