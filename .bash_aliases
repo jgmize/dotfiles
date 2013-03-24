@@ -19,6 +19,7 @@ q() { exit; }
 ZZ() { exit; }
 sdr() { screen -D -RR; }
 sx() { screen -x || screen -q; }
+ta() { tmux attach || tmux; }
 rscp() { rsync --progress -r --rsh=ssh $1 $2; }
 gdr() { sudo killall -SIGHUP gunicorn_django; }
 if [ "$STY" != "" ]; then
