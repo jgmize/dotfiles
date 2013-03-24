@@ -27,11 +27,6 @@ if [ "$STY" != "" ]; then
     svi() { screen -t $1 sudo vim $1; }
     svs() { screen vim -S; }
     root() { screen -t root sudo bash -l; }
-elif [ -n $TMUX ]; then
-    man() { tmux new-window -n "man $1" "man $1"; }
-    root() { tmux new-window -n root "sudo bash -l"; }
-fi
-if [ "$STY" != "" ]; then
     if [ -n "$DISPLAY" ]; then
         vi() { 
             VIMSERVER=`vim --serverlist`
@@ -47,6 +42,9 @@ if [ "$STY" != "" ]; then
         vi() { screen vim $1 $2 $3 $4 $5 $6; }
     fi
 elif [ -n $TMUX ]; then
+    man() { tmux new-window -n "man $1" "man $1"; }
+    root() { tmux new-window -n root "sudo bash -l"; }
+    svi() { tmux new-window -n $1 "sudo vim $1"; }
     if [ -n "$DISPLAY" ]; then
         vi() { 
             VIMSERVER=`vim --serverlist`
