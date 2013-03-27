@@ -23,6 +23,7 @@ Bundle 'bufexplorer.zip'
 filetype plugin on
 
 syntax on
+set bg=dark
 set autoindent
 set tabstop=4
 set softtabstop=4
