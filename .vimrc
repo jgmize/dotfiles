@@ -19,6 +19,7 @@ Bundle 'vimwiki'
 Bundle 'SudoEdit.vim'
 Bundle 'ack.vim'
 Bundle 'saltstack/salt-vim'
+Bundle 'bufexplorer.zip'
 filetype plugin on
 
 syntax on
