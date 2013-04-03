@@ -42,7 +42,7 @@ if [ "$STY" != "" ]; then
     else
         vi() { screen vim $1 $2 $3 $4 $5 $6; }
     fi
-elif [ -n $TMUX ]; then
+elif [ "$TMUX" ]; then
     man() { tmux new-window -n "man $1" "man $1"; }
     root() { tmux new-window -n root "sudo bash -l"; }
     svi() { tmux new-window -n $1 "sudo vim $1"; }
