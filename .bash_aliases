@@ -46,20 +46,28 @@ elif [ "$TMUX" ]; then
     man() { tmux new-window -n "man $1" "man $1"; }
     root() { tmux new-window -n root "sudo bash -l"; }
     svi() { tmux new-window -n $1 "sudo vim $1"; }
-    if [ -n "$DISPLAY" ]; then
-        vi() { 
+    vi() { 
+        if [ "$DISPLAY" == "" ]; then
+            if [ "`ps ax | grep -c /usr/bin/X`" == "2" ]; then
+                export DISPLAY=:0
+                tmux set-environment DISPLAY :0
+            fi
+        fi
+        if [ "$DISPLAY" ]; then
             VIMSERVER=`vim --serverlist`
             if [ "$VIMSERVER" == "GVIM" ]; then
                 gvim --remote-tab $1
-            elif [ -n "${VIMSERVER:+x}" ]; then
+            elif [ "$VIMSERVER" ]; then
+                echo $VIMSERVER
                 vim --remote-tab $1
                 tmux select-window -t vim
             else
-                tmux new-window -n vim "vim --servername vim $1 $2 $3"
+                echo "Starting new vimserver"
+                tmux new-window -n vim "DISPLAY=$DISPLAY; vim --servername vim $1 $2 $3"
             fi
-        }
-    else
-        vi() { tmux new-window -n vim "vim $1 $2 $3 $4 $5 $6"; }
-    fi
+        else
+            tmux new-window -n vim "vim $1 $2 $3 $4 $5 $6"
+        fi
+    }
 fi
 hgstvi() { for f in `hg st -qn`; do vi $f; done; }
