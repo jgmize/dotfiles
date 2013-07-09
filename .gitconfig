@@ -3,10 +3,13 @@
 	email = jgmize@gmail.com
 
 [alias]
-  st = status
-  ci = commit
-  br = branch
-  co = checkout
-  df = diff
-  lg = log -p
-  lsd = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    df = diff
+    lg = log -p
+    lsd = log --graph --decorate --pretty=oneline --abbrev-commit --all
+
+[core]
+	excludesfile = /home/jgmize/.gitignore_global

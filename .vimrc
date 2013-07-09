@@ -5,7 +5,6 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'kchmck/vim-coffee-script'
-"Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'drichard/vim-brunch'
 Bundle 'taglist-plus'
 Bundle 'vcscommand.vim'
@@ -18,10 +17,18 @@ Bundle 'vim-stylus'
 Bundle 'vimwiki'
 Bundle 'SudoEdit.vim'
 Bundle 'ack.vim'
+Bundle 'jgmize/salt-vim'
 Bundle 'bufexplorer.zip'
+Bundle 'vim-scripts/Rename'
+Bundle 'minibufexpl.vim'
+
+"unmet ruby dependency
+"Bundle 'git://git.wincent.com/command-t.git'
+
 filetype plugin on
 
 syntax on
+set bg=dark
 set autoindent
 set tabstop=4
 set softtabstop=4
@@ -30,6 +37,7 @@ set expandtab
 set smarttab
 set laststatus=2
 set wildchar=<Tab>
+set wildmenu
 set whichwrap=h,l
 set formatoptions=l
 set lbr
