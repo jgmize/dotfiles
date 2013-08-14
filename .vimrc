@@ -21,6 +21,7 @@ Bundle 'jgmize/salt-vim'
 Bundle 'bufexplorer.zip'
 Bundle 'vim-scripts/Rename'
 Bundle 'minibufexpl.vim'
+Bundle 'fugitive.vim'
 
 "unmet ruby dependency
 "Bundle 'git://git.wincent.com/command-t.git'
