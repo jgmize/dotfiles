@@ -32,6 +32,16 @@ if [ "$STY" != "" ]; then
         vi() { 
             VIMSERVER=`vim --serverlist`
             if [ "$VIMSERVER" == "GVIM" ]; then
+                gvim --remote $1
+            elif [ -n "${VIMSERVER:+x}" ]; then
+                vim --remote $1
+            else
+                screen vim --servername vim $1 
+            fi
+        }
+        vit() { 
+            VIMSERVER=`vim --serverlist`
+            if [ "$VIMSERVER" == "GVIM" ]; then
                 gvim --remote-tab $1
             elif [ -n "${VIMSERVER:+x}" ]; then
                 vim --remote-tab $1
@@ -56,10 +66,10 @@ elif [ "$TMUX" ]; then
         if [ "$DISPLAY" ]; then
             VIMSERVER=`vim --serverlist`
             if [ "$VIMSERVER" == "GVIM" ]; then
-                gvim --remote-tab $1
+                gvim --remote $1
             elif [ "$VIMSERVER" ]; then
                 echo $VIMSERVER
-                vim --remote-tab $1
+                vim --remote $1
                 tmux select-window -t vim
             else
                 echo "Starting new vimserver"
