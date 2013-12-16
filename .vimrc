@@ -20,11 +20,11 @@ Bundle 'ack.vim'
 Bundle 'jgmize/salt-vim'
 Bundle 'bufexplorer.zip'
 Bundle 'vim-scripts/Rename'
-Bundle 'minibufexpl.vim'
 Bundle 'fugitive.vim'
-
-"unmet ruby dependency
-"Bundle 'git://git.wincent.com/command-t.git'
+Bundle 'tpope/vim-fireplace'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'guns/vim-clojure-static'
+Bundle 'slimv.vim'
 
 filetype plugin on
 
@@ -51,26 +51,27 @@ set clipboard=unnamedplus
 set incsearch
 set mouse=a
 set ttymouse=xterm2
-au BufRead,BufNewFile *.tac set filetype=python
+
+" Enable rainbow parentheses for all buffers
+augroup rainbow_parentheses
+  au!
+  au VimEnter * RainbowParenthesesActivate
+  au BufEnter * RainbowParenthesesLoadRound
+  au BufEnter * RainbowParenthesesLoadSquare
+  au BufEnter * RainbowParenthesesLoadBraces
+augroup END
+ 
 
 if version > 700
     autocmd FileType python set omnifunc=pythoncomplete#Complete
 "    autocmd FileType python let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 endif
 
-" not necessary with filetype plugin indent on
-"im :<CR> :<CR><TAB>
-
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
 autocmd BufRead *.py set foldmethod=indent
 autocmd BufRead *.py set foldlevel=99
 autocmd BufRead *.py map <s-c-D> Oimport ipdb; ipdb.set_trace()<esc>
 autocmd BufRead *.py map! <s-c-D> iimport ipdb; ipdb.set_trace()
-" vim-coffee should do this for us
-"autocmd BufRead *.coffee set filetype=coffee
-
-" don't want to do this when using brunch
-"autocmd BufWritePost *.coffee CoffeeMake
 
 set tags +=$HOME/.vim/tags/python.ctags
 
@@ -95,7 +96,9 @@ function <SID>PythonGrep(tool)
   set grepformat&vim
   set grepformat&vim
   let &grepformat = '%f:%l:%m'
-  if a:tool == "pep8"
+  if a:tool == "flake8"
+    let &grepprg = 'flake8'
+  elseif a:tool == "pep8"
     let &grepprg = 'pep8 -r'
   elseif a:tool == "pylint"
     let &grepprg = 'pylint --output-format=parseable --reports=n'
@@ -161,31 +164,15 @@ nnoremap <silent> <F2> :TlistToggle<CR>
 "nnoremap <silent> <F3> :NERDTreeToggle<CR>
 "let g:netrw_list_hide=".*\.pyc$"
 
-if ( !hasmapto('<SID>PythonGrep(pyflakes)') && (maparg('<F4>') == '') )
-  map <F4> :call <SID>PythonGrep('pyflakes')<CR>
-  map! <F4> :call <SID>PythonGrep('pyflakes')<CR>
+if ( !hasmapto('<SID>PythonGrep(flake8)') && (maparg('<F8>') == '') )
+  map <F8> :call <SID>PythonGrep('flake8')<CR>
+  map! <F8> :call <SID>PythonGrep('flake8')<CR>
 else
   if ( !has("gui_running") || has("win32") )
-    echo "Python Pyflakes Error: No Key mapped.\n".
-          \ "<F4> is taken and a replacement was not assigned."
-  endif
-endif
-
-nnoremap <silent> <F5> :Shell hg fetch<CR>
-nnoremap <silent> <F6> :Shell hg st<CR>
-nnoremap <silent> <F7> :Shell hg glog<CR>
-
-if ( !hasmapto('<SID>PythonGrep(pep8)') && (maparg('<F8>') == '') )
-  map <F8> :call <SID>PythonGrep('pep8')<CR>
-  map! <F8> :call <SID>PythonGrep('pep8')<CR>
-else
-  if ( !has("gui_running") || has("win32") )
-    echo "Python pep8 Error: No Key mapped.\n".
+    echo "Python flake8 Error: No Key mapped.\n".
           \ "<F8> is taken and a replacement was not assigned."
   endif
 endif
-
-nnoremap <silent> <F9> :Shell hg push<CR>
 
 " based on:
 "    http://vim.1045645.n5.nabble.com/editing-Python-files-how-to-keep-track-of-class-membership-td1189290.html
