@@ -25,6 +25,7 @@ Bundle 'tpope/vim-fireplace'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'guns/vim-clojure-static'
 Bundle 'slimv.vim'
+Bundle 'hylang/vim-hy'
 
 filetype plugin on
 
