@@ -68,9 +68,14 @@ elif [ "$TMUX" ]; then
             if [ "$VIMSERVER" == "GVIM" ]; then
                 gvim --remote $1
             elif [ "$VIMSERVER" ]; then
-                echo $VIMSERVER
-                vim --remote $1
-                tmux select-window -t vim
+                TMUXWINDOW=`tmux display-message -p '#W'`
+                if [ $TMUXWINDOW != "bash" -a \
+                        `vim --serverlist | grep -i $TMUXWINDOW` ]; then
+                    vim --servername $TMUXWINDOW --remote $1
+                else
+                    vim --remote $1
+                    tmux select-window -t vim
+                fi
             else
                 echo "Starting new vimserver"
                 tmux new-window -n vim "DISPLAY=$DISPLAY; vim --servername vim $1 $2 $3"
