@@ -69,8 +69,8 @@ elif [ "$TMUX" ]; then
                 gvim --remote $1
             elif [ "$VIMSERVER" ]; then
                 TMUXWINDOW=`tmux display-message -p '#W'`
-                if [ $TMUXWINDOW != "bash" -a \
-                        `vim --serverlist | grep -i $TMUXWINDOW` ]; then
+                #if [ $TMUXWINDOW != "bash" -a `vim --serverlist | grep -i $TMUXWINDOW` ]; then
+                if [ `vim --serverlist | grep -i $TMUXWINDOW` ]; then
                     vim --servername $TMUXWINDOW --remote $1
                 else
                     vim --remote $1
@@ -83,6 +83,9 @@ elif [ "$TMUX" ]; then
         else
             tmux new-window -n vim "vim $1 $2 $3 $4 $5 $6"
         fi
+    }
+    vis() {
+        tmux split-window "vim --servername `tmux display-message -p '#W'` $1"
     }
 fi
 hgstvi() { for f in `hg st -qn`; do vi $f; done; }
