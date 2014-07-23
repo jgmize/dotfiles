@@ -26,6 +26,7 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'guns/vim-clojure-static'
 Bundle 'slimv.vim'
 Bundle 'hylang/vim-hy'
+Bundle 'ivanov/vim-ipython'
 
 filetype plugin on
 
@@ -68,7 +69,14 @@ if version > 700
 "    autocmd FileType python let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 endif
 
+autocmd BufRead *.js set tabstop=2
+autocmd BufRead *.js set softtabstop=2
+autocmd BufRead *.js set shiftwidth=2
+
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
+autocmd BufRead *.py set tabstop=4
+autocmd BufRead *.py set softtabstop=4
+autocmd BufRead *.py set shiftwidth=4
 autocmd BufRead *.py set foldmethod=indent
 autocmd BufRead *.py set foldlevel=99
 autocmd BufRead *.py map <s-c-D> Oimport ipdb; ipdb.set_trace()<esc>
