@@ -22,6 +22,8 @@ sx() { screen -x || screen -q; }
 ta() { tmux attach || tmux; }
 rscp() { rsync --progress -r --rsh=ssh $1 $2; }
 gdr() { sudo killall -SIGHUP gunicorn_django; }
+caps2esc() { echo keycode 58 = Escape | sudo loadkeys -; }
+caps2escx() { xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'; }
 if [ "$STY" != "" ]; then
     man() { screen -t man\ $1 man $1; }
     sping() { screen -t "ping $1" ping $1; }
