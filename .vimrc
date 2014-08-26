@@ -27,6 +27,7 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'slimv.vim'
 Bundle 'hylang/vim-hy'
 Bundle 'ivanov/vim-ipython'
+Bundle 'vim-scripts/vim-less'
 
 filetype plugin on
 
