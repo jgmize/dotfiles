@@ -4,7 +4,14 @@ cd $HOME
 for f in $dotfiles; do
     ln -sf dotfiles/$f;
 done;
+
 mkdir -p .emacs.d
 ln -s $HOME/dotfiles/.emacs.d/init.el .emacs.d/
+
+mkdir -p .vim/bundle
+cd .vim/bundle
+if [ ! -e vundle ]; then
+    git clone https://github.com/gmarik/vundle.git
+fi
 # the command below will sometime lock up during automated deployments
 #vim +BundleInstall +qall &>/dev/null
