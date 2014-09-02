@@ -4,5 +4,7 @@ cd $HOME
 for f in $dotfiles; do
     ln -sf dotfiles/$f;
 done;
+mkdir -p .emacs.d
+ln -s $HOME/dotfiles/.emacs.d/init.el .emacs.d/
 # the command below will sometime lock up during automated deployments
 #vim +BundleInstall +qall &>/dev/null
