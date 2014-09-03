@@ -11,3 +11,5 @@
   (package-install 'evil))
 
 (evil-mode)
+(menu-bar-mode -1)
+(server-start)
