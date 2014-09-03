@@ -1,5 +1,5 @@
 #!/bin/sh
-dotfiles=".ackrc .bash_aliases .bashrc .gitconfig .hgrc .profile .synergy.conf .tmux.conf .vimrc"
+dotfiles=".gitconfig .tmux.conf .vimrc"
 cd $HOME
 for f in $dotfiles; do
     ln -sf dotfiles/$f;
@@ -13,5 +13,4 @@ cd .vim/bundle
 if [ ! -e vundle ]; then
     git clone https://github.com/gmarik/vundle.git
 fi
-# the command below will sometime lock up during automated deployments
-#vim +BundleInstall +qall &>/dev/null
+vim +BundleInstall +qall
