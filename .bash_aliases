@@ -24,6 +24,7 @@ rscp() { rsync --progress -r --rsh=ssh $1 $2; }
 gdr() { sudo killall -SIGHUP gunicorn_django; }
 caps2esc() { echo keycode 58 = Escape | sudo loadkeys -; }
 caps2escx() { xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'; }
+e() { emacsclient --no-wait $@ 2>/dev/null || emacs -nw $@; }
 if [ "$STY" != "" ]; then
     man() { screen -t man\ $1 man $1; }
     sping() { screen -t "ping $1" ping $1; }
