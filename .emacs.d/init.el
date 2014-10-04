@@ -39,5 +39,6 @@
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(setq column-number-mode t)
 (global-rainbow-delimiters-mode)
 (server-start)
