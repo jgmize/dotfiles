@@ -14,7 +14,6 @@
     evil
     evil-tabs
     jsx-mode
-    magit
     markdown-mode
     paredit
     rainbow-delimiters
