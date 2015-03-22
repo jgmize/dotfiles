@@ -10,7 +10,12 @@
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers '(clojure dockerfile git markdown python)
+   dotspacemacs-configuration-layers '(clojure
+                                       dockerfile
+                                       git
+                                       javascript
+                                       markdown
+                                       python)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-terminal-cursor-changer)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
