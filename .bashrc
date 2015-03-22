@@ -108,7 +108,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-export EDITOR=vim
+export EDITOR="emacs -nw"
 
 # added by Anaconda3 2.0.0 installer
 export PATH="/home/jgmize/anaconda3/bin:$PATH"

@@ -1,12 +1,13 @@
 #!/bin/sh
-dotfiles=".ackrc .bash_aliases .bashrc .gitconfig .hgrc .profile .synergy.conf .tmux.conf .vimrc"
+dotfiles=".ackrc .bash_aliases .bashrc .gitconfig .hgrc .profile .spacemacs .synergy.conf .tmux.conf .vimrc"
 cd $HOME
 for f in $dotfiles; do
     ln -sf dotfiles/$f;
 done;
 
-mkdir -p .emacs.d
-ln -s $HOME/dotfiles/.emacs.d/init.el .emacs.d/
+if [ ! -e ~/.emacs.d ]
+    git clone --recursive http://github.com/syl20bnr/spacemacs ~/.emacs.d
+fi
 
 mkdir -p .vim/bundle
 cd .vim/bundle

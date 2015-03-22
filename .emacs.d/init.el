@@ -1,3 +1,6 @@
+;;; This file is no longer used; in progress of converting
+;;; to spacemacs -- see ~/.spacemacs
+
 (require 'package)
 
 (setq package-archives
