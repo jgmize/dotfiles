@@ -41,14 +41,6 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
-if [ -f $HOME/powerline-shell.py ]; then
-    function _update_ps1() {
-        export PS1="$(~/powerline-shell.py $? 2> /dev/null)"
-    }
-
-    export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
-
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
