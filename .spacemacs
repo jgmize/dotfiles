@@ -15,9 +15,11 @@
                                        git
                                        javascript
                                        markdown
+                                       org-repo-todo
                                        python)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(evil-terminal-cursor-changer)
+   dotspacemacs-excluded-packages '(evil-terminal-cursor-changer
+                                    flyspell)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
@@ -114,6 +116,7 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
   (global-hl-line-mode -1)
+  (add-to-list 'warning-suppress-types '(undo discard-info))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
