@@ -117,6 +117,17 @@ before layers configuration."
 layers configuration."
   (global-hl-line-mode -1)
   (add-to-list 'warning-suppress-types '(undo discard-info))
+  (eval-after-load 'org
+    '(progn
+       (org-babel-do-load-languages
+        'org-babel-load-languages
+        '((emacs-lisp . t)
+          (dot . t)
+          (js . t)
+          (python . t)
+          (sh . t)
+          (clojure . t)
+                  ))))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
