@@ -127,7 +127,17 @@ layers configuration."
           (python . t)
           (sh . t)
           (clojure . t)
-                  ))))
+          ))
+       (add-to-list 'org-structure-template-alist
+                    '("S" "#+BEGIN_SRC sh :exports both :results output org\n?\n#+END_SRC"))
+       ;; fontify source code
+       (setq org-src-fontify-natively t)
+       ;; Use current window when switch to source block
+       (setq org-src-window-setup 'current-window)
+       ;; Disable prompting to evaluate babel blocks
+       (setq org-confirm-babel-evaluate nil)
+       (setq org-export-with-drawers t)
+     ))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
