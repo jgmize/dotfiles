@@ -139,6 +139,7 @@ layers configuration."
        (setq org-export-with-drawers t)
        (setq org-export-with-section-numbers nil)
        (setq org-export-with-sub-superscripts nil)
+       (setq org-export-babel-evaluate nil)
      ))
 )
 
