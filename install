@@ -5,7 +5,7 @@ for f in $dotfiles; do
     ln -sf dotfiles/$f;
 done;
 
-if [ ! -e ~/.emacs.d ]
+if [ ! -e ~/.emacs.d ]; then
     git clone --recursive http://github.com/syl20bnr/spacemacs ~/.emacs.d
 fi
 
