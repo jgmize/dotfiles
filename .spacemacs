@@ -15,6 +15,7 @@
                                        git
                                        javascript
                                        markdown
+                                       org
                                        org-repo-todo
                                        python)
    ;; A list of packages and/or extensions that will not be install and loaded.
