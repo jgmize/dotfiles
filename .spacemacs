@@ -10,14 +10,25 @@
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers '(clojure
+   dotspacemacs-configuration-layers '(auto-completion
+                                       better-defaults
+                                       clojure
                                        dockerfile
-                                       git
+                                       emacs-lisp
+                                       (git :variables
+                                            git-gutter-use-fringe t)
                                        javascript
                                        markdown
                                        org
                                        org-repo-todo
+                                       shell
+                                       syntax-checking
                                        python)
+   ;; List of additional packages that will be installed wihout being
+   ;; wrapped in a layer. If you need some configuration for these
+   ;; packages then consider to create a layer, you can also put the
+   ;; configuration in `dotspacemacs/config'.
+   dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-terminal-cursor-changer
                                     flyspell)
@@ -40,6 +51,9 @@ before layers configuration."
    ;; If the value is nil then no banner is displayed.
    ;; dotspacemacs-startup-banner 'official
    dotspacemacs-startup-banner 'official
+   ;; List of items to show in the startup buffer. If nil it is disabled.
+   ;; Possible values are: `recents' `bookmarks' `projects'."
+   dotspacemacs-startup-lists '(recents projects)
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
@@ -59,9 +73,13 @@ before layers configuration."
                                :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
+   ;; The leader key accessible in `emacs state' and `insert state'
+   dotspacemacs-emacs-leader-key "M-m"
    ;; Major mode leader key is a shortcut key which is the equivalent of
    ;; pressing `<leader> m`. Set it to `nil` to disable it.
    dotspacemacs-major-mode-leader-key ","
+   ;; Major mode leader key accessible in `emacs state' and `insert state'
+   dotspacemacs-major-mode-emacs-leader-key "C-M-m"
    ;; The command key used for Evil commands (ex-commands) and
    ;; Emacs commands (M-x).
    ;; By default the command key is `:' so ex-commands are executed like in Vim
@@ -79,7 +97,7 @@ before layers configuration."
    dotspacemacs-loading-progress-bar nil
    ;; If non nil the frame is fullscreen when Emacs starts up.
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup nil
+   dotspacemacs-fullscreen-at-startup t
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX."
    dotspacemacs-fullscreen-use-non-native nil
@@ -118,6 +136,7 @@ before layers configuration."
 layers configuration."
   (global-hl-line-mode -1)
   (add-to-list 'warning-suppress-types '(undo discard-info))
+  (setq shell-default-shell 'eshell)
   (eval-after-load 'org
     '(progn
        (org-babel-do-load-languages
