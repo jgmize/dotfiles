@@ -16,3 +16,5 @@
 
 [core]
     excludesfile = /home/jgmize/.gitignore_global
+[push]
+	default = current
