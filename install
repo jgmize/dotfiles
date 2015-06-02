@@ -5,14 +5,17 @@ for f in $dotfiles; do
     ln -sf dotfiles/$f;
 done;
 
-if [ ! -e ~/.emacs.d ]; then
-    git clone --recursive http://github.com/syl20bnr/spacemacs ~/.emacs.d
+if [ "$(which emacs)" ]; then
+    if [ ! -e ~/.emacs.d ]; then
+        git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
+    fi
 fi
 
-mkdir -p .vim/bundle
-cd .vim/bundle
-if [ ! -e vundle ]; then
-    git clone https://github.com/gmarik/vundle.git
+if [ "$(which vim)" ]; then
+    mkdir -p .vim/bundle
+    cd .vim/bundle
+    if [ ! -e vundle ]; then
+        git clone https://github.com/gmarik/vundle.git
+    fi
+    #vim +BundleInstall +qall &>/dev/null
 fi
-# the command below will sometime lock up during automated deployments
-#vim +BundleInstall +qall &>/dev/null
