@@ -160,6 +160,7 @@ layers configuration."
        (setq org-export-with-section-numbers nil)
        (setq org-export-with-sub-superscripts nil)
        (setq org-export-babel-evaluate nil)
+       (setq org-export-backends (quote (ascii beamer html icalendar latex md odt)))
      ))
 )
 
