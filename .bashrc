@@ -115,4 +115,6 @@ if [ -d $HOME/google-cloud-sdk ]; then
     source $HOME/google-cloud-sdk/completion.bash.inc
 fi
 
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if [ "$(which pyenv 2> /dev/null)" ]; then
+    eval "$(pyenv init -)"
+fi
