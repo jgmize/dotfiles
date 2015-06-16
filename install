@@ -9,11 +9,14 @@ if [ "$(which emacs)" ]; then
     if [ ! -e ~/.emacs.d ]; then
         git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
     fi
+    DIR=.emacs.d/.cache/eshell
+    mkdir -p ~/$DIR
+    ln -sf ~/dotfiles/$DIR/alias ~/$DIR/alias
 fi
 
 if [ "$(which vim)" ]; then
-    mkdir -p .vim/bundle
-    cd .vim/bundle
+    mkdir -p ~/.vim/bundle
+    cd ~/.vim/bundle
     if [ ! -e vundle ]; then
         git clone https://github.com/gmarik/vundle.git
     fi
