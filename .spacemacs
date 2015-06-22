@@ -21,9 +21,9 @@
                                        markdown
                                        org
                                        org-repo-todo
+                                       python
                                        shell
-                                       syntax-checking
-                                       python)
+                                       syntax-checking)
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
