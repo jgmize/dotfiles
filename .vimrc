@@ -6,9 +6,9 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'drichard/vim-brunch'
-Bundle 'taglist-plus'
+"Bundle 'taglist-plus' "uncomment if exuberant-ctags installed
 Bundle 'vcscommand.vim'
-Bundle 'SuperTab-continued.'
+Bundle 'SuperTab'
 Bundle 'nginx.vim'
 Bundle 'iptables'
 Bundle 'Gundo'

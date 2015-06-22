@@ -93,3 +93,4 @@ elif [ "$TMUX" ]; then
 fi
 hgstvi() { for f in `hg st -qn`; do vi $f; done; }
 nse() { docker exec -it $1 bash; }
+b2dsi() { eval $(boot2docker shellinit); }
