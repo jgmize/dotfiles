@@ -18,6 +18,7 @@
                                        emacs-lisp
                                        git
                                        github
+                                       ipython-notebook
                                        javascript
                                        markdown
                                        org
@@ -168,3 +169,24 @@ layers configuration."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ahs-case-fold-search nil)
+ '(ahs-default-range (quote ahs-range-whole-buffer))
+ '(ahs-idle-interval 0.25)
+ '(ahs-idle-timer 0 t)
+ '(ahs-inhibit-face-list nil)
+ '(package-selected-packages
+   (quote
+    (ein websocket auto-complete avy names eval-sexp-fu edn cider paredit queue clojure-mode peg anaconda-mode f json-rpc dash-functional tern company anzu iedit smartparens highlight flx flycheck gh logito pcache popup pos-tip guide-key popwin request gitignore-mode projectile helm async parent-mode yasnippet multiple-cursors js2-mode json-snatcher json-reformat markdown-mode s pkg-info epl evil-leader evil bind-key dash window-numbering web-beautify volatile-highlights vi-tilde-fringe toc-org smooth-scrolling smeargle shell-pop rfringe rainbow-delimiters pyvenv pytest pyenv-mode powerline pony-mode pip-requirements pcre2el paradox page-break-lines org-repo-todo org-present magit company-quickhelp magit-popup git-commit with-editor spinner use-package org-bullets open-junk-file neotree multi-term move-text mmm-mode markdown-toc macrostep linum-relative leuven-theme json-mode js2-refactor js-doc info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-anything highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flyspell helm-descbinds helm-c-yasnippet helm-ag guide-key-tip google-translate golden-ratio github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gist gh-md fringe-helper flycheck-pos-tip flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-jumper evil-indent-textobject evil-iedit-state evil-exchange evil-escape evil-args evil-anzu elisp-slime-nav dockerfile-mode cython-mode company-tern company-statistics company-anaconda coffee-mode clj-refactor clean-aindent-mode cider-eval-sexp-fu buffer-move auto-yasnippet auto-highlight-symbol auto-dictionary align-cljlet aggressive-indent adaptive-wrap ace-window ace-link ace-jump-mode ac-ispell)))
+ '(ring-bell-function (quote ignore)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
