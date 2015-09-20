@@ -21,6 +21,13 @@ sdr() { screen -D -RR; }
 sx() { screen -x || screen -q; }
 ta() { tmux attach || tmux; }
 rscp() { rsync --progress -r --rsh=ssh $1 $2; }
+rsshtun() {
+    REMOTE_PORT="${2:-2222}"
+    autossh -R $REMOTE_PORT:localhost:22 $1 "
+        while true;
+           do nc -zv localhost $REMOTE_PORT;
+           sleep 2;
+        done"; }
 gdr() { sudo killall -SIGHUP gunicorn_django; }
 caps2esc() { echo keycode 58 = Escape | sudo loadkeys -; }
 caps2escx() { xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'; }
