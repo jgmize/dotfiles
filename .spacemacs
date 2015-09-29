@@ -23,7 +23,7 @@
                                        markdown
                                        org
                                        python
-                                       shell
+                                       (shell :variables shell-default-shell 'eshell)
                                        syntax-checking
                                        version-control)
    ;; List of additional packages that will be installed wihout being
@@ -142,7 +142,6 @@ before layers configuration."
 layers configuration."
   (global-hl-line-mode -1)
   (add-to-list 'warning-suppress-types '(undo discard-info))
-  (setq shell-default-shell 'eshell)
   (eval-after-load 'org
     '(progn
        (org-babel-do-load-languages
