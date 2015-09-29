@@ -13,6 +13,7 @@
    dotspacemacs-configuration-layers '(auto-completion
                                        better-defaults
                                        clojure
+                                       django
                                        dockerfile
                                        emacs-lisp
                                        git
@@ -21,9 +22,8 @@
                                        javascript
                                        markdown
                                        org
-                                       org-repo-todo
                                        python
-                                       shell
+                                       (shell :variables shell-default-shell 'eshell)
                                        syntax-checking
                                        version-control)
    ;; List of additional packages that will be installed wihout being
@@ -47,6 +47,9 @@ before layers configuration."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
+   ;; Either `vim' or `emacs'. Evil is always enabled but if the variable
+   ;; is `emacs' then the `holy-mode' is enabled at startup.
+   dotspacemacs-editing-style 'vim
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
    ;; banner, `random' chooses a random text banner in `core/banners'
@@ -139,7 +142,6 @@ before layers configuration."
 layers configuration."
   (global-hl-line-mode -1)
   (add-to-list 'warning-suppress-types '(undo discard-info))
-  (setq shell-default-shell 'eshell)
   (eval-after-load 'org
     '(progn
        (org-babel-do-load-languages
