@@ -101,3 +101,5 @@ fi
 hgstvi() { for f in `hg st -qn`; do vi $f; done; }
 nse() { docker exec -it $1 bash; }
 b2dsi() { eval $(boot2docker shellinit); }
+deis-usw() { DEIS_PROFILE=usw deis "$@"; }
+deis-euw() { DEIS_PROFILE=euw deis "$@"; }
