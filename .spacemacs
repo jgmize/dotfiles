@@ -18,6 +18,7 @@
                                        emacs-lisp
                                        git
                                        github
+                                       go
                                        ipython-notebook
                                        javascript
                                        markdown
