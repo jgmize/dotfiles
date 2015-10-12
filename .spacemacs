@@ -64,13 +64,13 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(solarized-light
-                         spacemacs-light
+   dotspacemacs-themes '(spacemacs-dark
                          solarized-dark
-                         spacemacs-dark
-                         leuven
                          monokai
-                         zenburn)
+                         zenburn
+                         solarized-light
+                         spacemacs-light
+                         leuven)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
