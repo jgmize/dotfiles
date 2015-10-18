@@ -16,6 +16,7 @@
                                        django
                                        dockerfile
                                        emacs-lisp
+                                       evernote
                                        git
                                        github
                                        go
