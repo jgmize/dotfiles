@@ -103,3 +103,9 @@ nse() { docker exec -it $1 bash; }
 b2dsi() { eval $(boot2docker shellinit); }
 deis-usw() { DEIS_PROFILE=usw deis "$@"; }
 deis-euw() { DEIS_PROFILE=euw deis "$@"; }
+synair() {
+    killall -9 synergys
+    sleep 1
+    synergys
+    autossh -R 24800:localhost:24800 air.local 'killall synergyc; sleep 1; /usr/local/bin/synergyc -f localhost'
+}
