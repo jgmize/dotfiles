@@ -6,6 +6,7 @@
     st = status -sb
     ci = commit
     br = branch
+	  ab = rev-parse --abbrev-ref HEAD
     co = checkout
     df = diff
     lg = log -p
