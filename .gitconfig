@@ -14,6 +14,7 @@
     pullify = config --add remote.$1.fetch '+refs/pull/*/head:refs/remotes/origin/pr/*'
     pr = "!f() { git fetch origin refs/pull/$1/head:pr/$1; } ; f"
     subup = !git submodule sync && git submodule update --init --recursive
+	  sha = rev-parse HEAD
 
 [core]
     excludesfile = /home/jgmize/.gitignore_global
