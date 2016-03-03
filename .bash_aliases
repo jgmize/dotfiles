@@ -109,3 +109,6 @@ synair() {
     synergys
     autossh -R 24800:localhost:24800 air.local 'killall synergyc; sleep 1; /usr/local/bin/synergyc -f localhost'
 }
+synx1c() {
+    ssh -R 24800:localhost:24800 x1c.local 'killall synergyc; sleep 1; synergyc -f localhost'
+}
