@@ -124,4 +124,4 @@ if [ -d $HOME/go ]; then
     export GOROOT=$HOME/go
     export PATH=$PATH:$GOROOT/bin
     export GOPATH=$HOME
-if
+fi
