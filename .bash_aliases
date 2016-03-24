@@ -101,6 +101,7 @@ hgstvi() { for f in `hg st -qn`; do vi $f; done; }
 nse() { docker exec -it $1 bash; }
 deis-usw() { DEIS_PROFILE=usw deis "$@"; }
 deis-euw() { DEIS_PROFILE=euw deis "$@"; }
+deis-euw-dev() { DEIS_PROFILE=euw-dev deis "$@"; }
 synair() {
     killall -9 synergys
     sleep 1
