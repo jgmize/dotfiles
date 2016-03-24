@@ -28,7 +28,6 @@ rsshtun() {
            do nc -zv localhost $REMOTE_PORT;
            sleep 2;
         done"; }
-gdr() { sudo killall -SIGHUP gunicorn_django; }
 caps2esc() { echo keycode 58 = Escape | sudo loadkeys -; }
 caps2escx() { xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'; }
 e() { emacsclient --no-wait $@ 2>/dev/null || emacs -nw $@; }
@@ -100,12 +99,15 @@ elif [ "$TMUX" ]; then
 fi
 hgstvi() { for f in `hg st -qn`; do vi $f; done; }
 nse() { docker exec -it $1 bash; }
-b2dsi() { eval $(boot2docker shellinit); }
 deis-usw() { DEIS_PROFILE=usw deis "$@"; }
 deis-euw() { DEIS_PROFILE=euw deis "$@"; }
+deis-euw-dev() { DEIS_PROFILE=euw-dev deis "$@"; }
 synair() {
     killall -9 synergys
     sleep 1
     synergys
     autossh -R 24800:localhost:24800 air.local 'killall synergyc; sleep 1; /usr/local/bin/synergyc -f localhost'
+}
+synx1c() {
+    ssh -R 24800:localhost:24800 x1c.local 'killall synergyc; sleep 1; synergyc -f localhost'
 }

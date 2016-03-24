@@ -1,6 +1,0 @@
-alias la ls -a
-alias e find-file-other-window $1
-alias ... cd ../..
-alias .. cd ..
-alias .... cd ../../..
-alias ..... cd ../../../..
