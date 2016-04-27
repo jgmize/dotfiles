@@ -13,6 +13,7 @@
   lsd = log --graph --decorate --pretty=oneline --abbrev-commit --all
   pullify = config --add remote.$1.fetch '+refs/pull/*/head:refs/remotes/origin/pr/*'
   pr = "!f() { git fetch origin refs/pull/$1/head:pr/$1; } ; f"
+	rb = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
   subup = !git submodule sync && git submodule update --init --recursive
   sha = rev-parse HEAD
 
