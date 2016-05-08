@@ -31,6 +31,11 @@ rsshtun() {
 caps2esc() { echo keycode 58 = Escape | sudo loadkeys -; }
 caps2escx() { xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'; }
 e() { emacsclient --no-wait $@ 2>/dev/null || emacs -nw $@; }
+ed() { docker run -it \
+    -v $(pwd):/home/spacemacs/src \
+    -v $HOME/.ssh:/home/spacemacs/.ssh \
+    -v $HOME/.gitconfig:/home/spacemacs/.gitconfig \
+    quay.io/jgmize/spacemacs-tmux $@; }
 if [ "$STY" != "" ]; then
     man() { screen -t man\ $1 man $1; }
     sping() { screen -t "ping $1" ping $1; }
