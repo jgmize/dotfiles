@@ -116,3 +116,4 @@ synair() {
 synx1c() {
     ssh -R 24800:localhost:24800 x1c.local 'killall synergyc; sleep 1; synergyc -f localhost'
 }
+moby() { screen $HOME/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty; }
