@@ -125,7 +125,12 @@ if [ -d $HOME/go ]; then
 elif [ -d /usr/local/go ]; then
     export GOROOT=/usr/local/go
 fi
+
 if [ ! -z "$GOROOT" ]; then
     export PATH=$PATH:$GOROOT/bin
     export GOPATH=$HOME
+fi
+
+if [ -f "/google/devshell/bashrc.google" ]; then
+    source "/google/devshell/bashrc.google"
 fi
