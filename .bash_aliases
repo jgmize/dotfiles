@@ -238,7 +238,8 @@ dev_k8s(){
 
     # Grab the official dns yaml file
     wget http://kubernetes.io/docs/getting-started-guides/docker-multinode/skydns.yaml.in -O skydns.yaml.in
-    sed -e "s//${DNS_REPLICAS}/g;s//${DNS_DOMAIN}/g;s//${DNS_SERVER_IP}/g" skydns.yaml.in > ./skydns.yaml
+    sed -e "s/{{ pillar\['dns_replicas'\] }}/${DNS_REPLICAS}/g;s/{{ pillar\['dns_domain'\] }}/${DNS_DOMAIN}/g;s/{{ pillar\['dns_server'\] }}/${DNS_SERVER_IP}/g" skydns.yaml.in > ./skydns.yaml
+
 
     # Because of https://github.com/kubernetes/kubernetes/issues/23474
     #dns="\ \ \ \ \ \ \ \ - -nameservers=8.8.8.8:53"
