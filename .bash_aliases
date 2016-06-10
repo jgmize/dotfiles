@@ -36,6 +36,7 @@ ed() { docker run -it \
     -v $HOME/.ssh:/home/spacemacs/.ssh \
     -v $HOME/.gitconfig:/home/spacemacs/.gitconfig \
     quay.io/jgmize/spacemacs-tmux $@; }
+dstop() { docker ps --format={{.ID}} | xargs docker stop; }
 if [ "$STY" != "" ]; then
     man() { screen -t man\ $1 man $1; }
     sping() { screen -t "ping $1" ping $1; }
