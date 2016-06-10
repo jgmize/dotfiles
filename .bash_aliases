@@ -122,15 +122,15 @@ moby() { screen $HOME/Library/Containers/com.docker.docker/Data/com.docker.drive
 # from http://www.charliedrage.com/kubernetes-dev-in-one-command
 dev_k8s(){
   local choice=$1
-  K8S_VERSION=1.2.0
+  K8S_VERSION=1.2.4
 
-  if [ ! -f /usr/bin/kubectl ] && [ ! -f /usr/local/bin/kubectl ]; then
+  if [ -z "$(which kubectl)" ]; then
     echo "No kubectl bin exists! Install the bin to continue :)."
     return 1
   fi
 
   if [[ $choice == "up" ]]; then
-    echo "\n-----Launching local k8s cluster-----\n"
+    echo "-----Launching local k8s cluster-----"
     docker run \
       --volume=/:/rootfs:ro \
       --volume=/sys:/sys:ro \
@@ -153,33 +153,33 @@ dev_k8s(){
       --cluster-domain=cluster.local \
       --allow-privileged=true --v=2
 
-    echo "\n-----Waiting for k8s to initialize-----\n"
+    echo "-----Waiting for k8s to initialize-----"
     until curl 127.0.0.1:8080 &>/dev/null;
     do
       echo ...
       sleep 1
     done
-    echo "\n-----Launched!-----\n"
+    echo "-----Launched!-----"
 
-    echo "\n-----Setting local dev variables-----\n"
+    echo "-----Setting local dev variables-----"
     kubectl config set-cluster dev --server=http://localhost:8080
     kubectl config set-context dev --cluster=dev --user=default
     kubectl config use-context dev
     kubectl config set-credentials default --token=foobar
 
-    echo "\n-----Create the kube-system namespace-----\n"
+    echo "-----Create the kube-system namespace-----"
     kubectl create namespace kube-system
 
-    echo "\n-----Ready for development!-----\n"
+    echo "-----Ready for development!-----"
 
   elif [[ $choice == "down" ]]; then
-    echo "\n-----Removing all namespaces-----\n"
+    echo "-----Removing all namespaces-----"
     kubectl delete --all namespaces
 
-    echo "\n-----Remove EVERYTHINGGGG-----\n"
+    echo "-----Remove EVERYTHINGGGG-----"
     kubectl get pvc,pv,svc,rc,po --all-namespaces | grep -v 'k8s-\|NAME\|CONTROLLER\|kubernetes' | awk '{print $2}' | xargs --no-run-if-empty kubectl delete pvc,pv,svc,rc,po 2>/dev/null
 
-    echo "\n-----Waiting for everything to terminate-----\n"
+    echo "-----Waiting for everything to terminate-----"
     kubectl get po,svc,rc --all-namespaces
     sleep 3 # give kubectl chance to catch up to api call
     while [ 1 ]
@@ -195,7 +195,7 @@ dev_k8s(){
     done
 
     # Run twice due to issue with aufs debian driver
-    echo "\n-----Removing all k8s containers-----\n"
+    echo "-----Removing all k8s containers-----"
 
     # Remove the initial kubelet
     docker rm -f kubelet
@@ -209,17 +209,16 @@ dev_k8s(){
     rm ~/.kube/config
 
   elif [[ $choice == "clean" ]]; then
-    echo "\n-----Cleaning / removing all pods and containers from default namespace-----\n"
+    echo "-----Cleaning / removing all pods and containers from default namespace-----"
     kubectl get pvc,pv,svc,rc,po | grep -v 'k8s-\|NAME\|CONTROLLER\|kubernetes' | awk '{print $1}' | xargs --no-run-if-empty kubectl delete pvc,pv,svc,rc,po 2>/dev/null
 
-    echo "\n-----Waiting for everything to terminate-----\n"
+    echo "-----Waiting for everything to terminate-----"
     kubectl get po,svc,rc
     sleep 3 # give kubectl chance to catch up to api call
-    while [ 1 ]
+    while [ 1 ];
     do
       k8s=`kubectl get po,svc,rc | grep Terminating`
-      if [[ $k8s == "" ]]
-      then
+      if [[ $k8s == "" ]]; then
         break
       else
         echo "..."
@@ -273,9 +272,9 @@ EOF
 
   else
     echo "Kubernetes dev environment"
-    echo "\nUsage: "
+    echo "Usage: "
     echo " dev_k8s {up|down|restart|clean|gui|dns|pv}"
-    echo "\nMethods: "
+    echo "Methods: "
     echo " up"
     echo " down"
     echo " restart"
