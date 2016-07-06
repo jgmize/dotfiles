@@ -25,9 +25,10 @@
                                        markdown
                                        org
                                        python
-                                       (shell :variables shell-default-shell 'eshell)
+                                       (shell :variables shell-default-shell 'multi-term)
                                        syntax-checking
-                                       version-control)
+                                       version-control
+                                       yaml)
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
