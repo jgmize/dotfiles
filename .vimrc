@@ -85,15 +85,6 @@ autocmd BufRead *.py map! <s-c-D> iimport ipdb; ipdb.set_trace()
 
 set tags +=$HOME/.vim/tags/python.ctags
 
-:py << EOF
-import os
-import sys
-import vim
-for p in sys.path:
-    if os.path.isdir(p):
-        vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
-EOF
-
 " reopening a file
 "au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
