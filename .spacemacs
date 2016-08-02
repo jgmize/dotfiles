@@ -12,7 +12,7 @@
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers '(auto-completion
                                        better-defaults
-                                       clojure
+                                       (clojure :variables clojure-enable-fancify-symbols t)
                                        django
                                        dockerfile
                                        emacs-lisp
