@@ -162,6 +162,7 @@ layers configuration."
           (python . t)
           (sh . t)
           (clojure . t)
+          (sqlite . t)
           ))
        (add-to-list 'org-structure-template-alist
                     '("S" "#+BEGIN_SRC sh :exports both :results output org\n?\n#+END_SRC"))
