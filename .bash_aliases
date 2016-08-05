@@ -109,6 +109,12 @@ deis-usw() { DEIS_PROFILE=usw deis "$@"; }
 deis-use() { DEIS_PROFILE=use deis2 "$@"; }
 deis-euw() { DEIS_PROFILE=euw deis "$@"; }
 deis-euw-dev() { DEIS_PROFILE=euw-dev deis "$@"; }
+deis-both() {
+    for profile in usw euw; do
+        echo $profile
+        DEIS_PROFILE=$profile deis "$@";
+    done
+}
 synair() {
     killall -9 synergys
     sleep 1
