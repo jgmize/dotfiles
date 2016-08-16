@@ -120,7 +120,7 @@ synair() {
     killall -9 synergys
     sleep 1
     synergys -a localhost:24801
-    ssh -R 24801:localhost:24801 air.local 'killall synergyc; sleep 1; /usr/local/bin/synergyc -f -a localhost:24801'
+    ssh -R 24801:localhost:24801 air.local 'killall synergyc; sleep 1; /usr/local/bin/synergyc -f localhost:24801'
 }
 synx1c() {
     ssh -R 24800:localhost:24800 x1c.local 'killall synergyc; sleep 1; synergyc -f localhost'
