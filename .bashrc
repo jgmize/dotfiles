@@ -129,6 +129,9 @@ fi
 if [ ! -z "$GOROOT" ]; then
     export PATH=$PATH:$GOROOT/bin
     export GOPATH=$HOME
+elif [ -d /data/data/com.termux/files/usr/lib/go ]; then
+    export GOROOT=/data/data/com.termux/files/usr/lib/go
+    export GOPATH=$HOME
 fi
 
 if [ -f "/google/devshell/bashrc.google" ]; then
