@@ -178,6 +178,7 @@ layers configuration."
        (setq org-export-babel-evaluate nil)
        (setq org-export-backends (quote (ascii beamer html icalendar latex md odt rst)))
      ))
+  (setq org-agenda-files '("~/gtd"))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
