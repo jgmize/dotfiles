@@ -126,6 +126,7 @@ synx1c() {
     ssh -R 24800:localhost:24800 x1c.local 'killall synergyc; sleep 1; synergyc -f localhost'
 }
 moby() { screen $HOME/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty; }
+mosha() { mosh --server=/usr/local/bin/mosh-server air.local; }
 
 # from http://www.charliedrage.com/kubernetes-dev-in-one-command
 dev_k8s(){
