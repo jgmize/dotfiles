@@ -37,7 +37,14 @@ ed() { docker run -it \
     -v $HOME/.ssh:/home/spacemacs/.ssh \
     -v $HOME/.gitconfig:/home/spacemacs/.gitconfig \
     quay.io/jgmize/spacemacs-tmux $@; }
-dstop() { docker ps --format={{.ID}} | xargs docker stop; }
+
+docker-container-ids() { docker ps --format={{.ID}} "$@"; }
+docker-latest-container-id() { docker-container-ids -al; }
+docker-stop-all() { docker-container-ids | xargs docker stop; }
+docker-commit-latest() { docker commit $(docker-latest-container-id) "$@"; }
+docker-image-ids() {  docker images --format {{.ID}} "$@"; }
+docker-latest-image-id() { docker-image-ids | head -1; }
+
 if [ "$STY" != "" ]; then
     man() { screen -t man\ $1 man $1; }
     sping() { screen -t "ping $1" ping $1; }
