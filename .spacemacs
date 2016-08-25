@@ -177,8 +177,9 @@ layers configuration."
        (setq org-export-with-sub-superscripts nil)
        (setq org-export-babel-evaluate nil)
        (setq org-export-backends (quote (ascii beamer html icalendar latex md odt rst)))
+       (setq org-agenda-files '("~/gtd"))
+       (setq org-hide-emphasis-markers t)
      ))
-  (setq org-agenda-files '("~/gtd"))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
