@@ -46,12 +46,12 @@ ed() { docker run -it \
     -v $HOME/.gitconfig:/home/spacemacs/.gitconfig \
     quay.io/jgmize/spacemacs-tmux $@; }
 
-docker-container-ids() { docker ps --format={{.ID}} "$@"; }
-docker-latest-container-id() { docker-container-ids -al; }
-docker-stop-all() { docker-container-ids | xargs docker stop; }
-docker-commit-latest() { docker commit $(docker-latest-container-id) "$@"; }
-docker-image-ids() {  docker images --format {{.ID}} "$@"; }
-docker-latest-image-id() { docker-image-ids | head -1; }
+docker-stop-all() { docker ps -q | xargs docker stop; }
+docker-commit-latest() { docker commit $(docker ps -ql) "$@"; }
+docker-latest-image-id() { docker images -q | head -1; }
+docker-latest-shell() {
+    docker-commit-latest;
+    docker run -it $(docker-latest-image-id) bash; }
 
 if [ "$STY" != "" ]; then
     man() { screen -t man\ $1 man $1; }
