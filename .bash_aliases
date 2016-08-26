@@ -22,6 +22,7 @@ sdr() { screen -D -RR; }
 sx() { screen -x || screen -q; }
 ta() { tmux attach || tmux; }
 rscp() { rsync --progress -r --rsh=ssh $1 $2; }
+
 rsshtun() {
     REMOTE_PORT="${2:-2222}"
     autossh -R $REMOTE_PORT:localhost:22 $1 "
@@ -29,6 +30,13 @@ rsshtun() {
            do nc -zv localhost $REMOTE_PORT;
            sleep 2;
         done"; }
+rsshtunair() {
+    REMOTE_PORT="${2:-2224}"
+    BASTION="${1:-ssh.us-west.moz.works}"
+    while true; do
+    ssh -R $REMOTE_PORT:localhost:22 $BASTION \
+        "while true; do nc -zv localhost $REMOTE_PORT; sleep 2; done";
+    done; }
 caps2esc() { echo keycode 58 = Escape | sudo loadkeys -; }
 caps2escx() { xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'; }
 e() { emacsclient --no-wait $@ 2>/dev/null || emacs -nw $@; }
