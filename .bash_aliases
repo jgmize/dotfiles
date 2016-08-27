@@ -39,12 +39,13 @@ rsshtunair() {
     done; }
 caps2esc() { echo keycode 58 = Escape | sudo loadkeys -; }
 caps2escx() { xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'; }
-e() { emacsclient --no-wait $@ 2>/dev/null || emacs -nw $@; }
+e() { emacsclient --no-wait "$@" 2>/dev/null || emacs -nw "$@"; }
+et() { emacsclient -t "$@" || emacs -nw "$@"; }
 ed() { docker run -it \
     -v $(pwd):/home/spacemacs/src \
     -v $HOME/.ssh:/home/spacemacs/.ssh \
     -v $HOME/.gitconfig:/home/spacemacs/.gitconfig \
-    quay.io/jgmize/spacemacs-tmux $@; }
+    quay.io/jgmize/spacemacs-tmux "$@"; }
 
 docker-stop-all() { docker ps -q | xargs docker stop; }
 docker-commit-latest() { docker commit $(docker ps -ql) "$@"; }
