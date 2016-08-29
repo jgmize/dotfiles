@@ -22,6 +22,16 @@ sdr() { screen -D -RR; }
 sx() { screen -x || screen -q; }
 ta() { tmux attach || tmux; }
 rscp() { rsync --progress -r --rsh=ssh $1 $2; }
+gtdsync() {
+    HOST=${1:-x1c.usw}
+    RSYNC_ARGS="-av --delete . ${HOST}:gtd/"
+    cd ~/gtd;
+    echo "syncing gtd to ${HOST} (dry run):";
+    rsync -n ${RSYNC_ARGS};
+    echo "enter to proceed, Ctrl-c to break";
+    read;
+    rsync ${RSYNC_ARGS};
+}
 
 rsshtun() {
     REMOTE_PORT="${2:-2222}"
