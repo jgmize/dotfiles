@@ -1,0 +1,7 @@
+#!/bin/bash
+
+du1() { du -h --max-depth=1; }
+du1g() { du1 | grep G; }
+du1m() { du1 | grep M; }
+du1gs() { du1g | sort -n; }
+du1ms() { du1m | sort -n; }

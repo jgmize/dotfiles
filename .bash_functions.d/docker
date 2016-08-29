@@ -1,0 +1,16 @@
+#!/bin/bash
+
+ed() { docker run -it \
+    -v $(pwd):/home/spacemacs/src \
+    -v $HOME/.ssh:/home/spacemacs/.ssh \
+    -v $HOME/.gitconfig:/home/spacemacs/.gitconfig \
+    quay.io/jgmize/spacemacs-tmux "$@"; }
+
+docker-stop-all() { docker ps -q | xargs docker stop; }
+docker-commit-latest() { docker commit $(docker ps -ql) "$@"; }
+docker-latest-image-id() { docker images -q | head -1; }
+docker-latest-shell() {
+    docker-commit-latest;
+    docker run -it $(docker-latest-image-id) bash; }
+nse() { docker exec -it $1 bash; }
+moby() { screen $HOME/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty; }
