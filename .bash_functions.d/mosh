@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mosha() { mosh --server=/usr/local/bin/mosh-server air.local; }

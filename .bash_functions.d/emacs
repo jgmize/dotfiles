@@ -1,0 +1,4 @@
+#!/bin/bash
+
+e() { emacsclient --no-wait "$@" 2>/dev/null || emacs -nw "$@"; }
+et() { emacsclient -t "$@" || emacs -nw "$@"; }

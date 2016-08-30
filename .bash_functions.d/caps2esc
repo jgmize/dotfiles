@@ -1,0 +1,4 @@
+#!/bin/bash
+
+caps2esc() { echo keycode 58 = Escape | sudo loadkeys -; }
+caps2escx() { xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'; }
