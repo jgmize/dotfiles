@@ -1,7 +1,0 @@
-#!/bin/bash
-
-mosha() {
-    for a in air{,.local}; do
-        mosh --server=/usr/local/bin/mosh-server $a;
-    done;
-}
