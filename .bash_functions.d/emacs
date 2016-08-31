@@ -1,4 +1,14 @@
 #!/bin/bash
 
-e() { emacsclient --no-wait "$@" 2>/dev/null || emacs -nw "$@"; }
-et() { emacsclient -t "$@" || emacs -nw "$@"; }
+edt() {
+    if ! (emacsclient -s tty --eval "t" 2>&1 > /dev/null); then
+        emacs --daemon=tty;
+    fi;
+}
+
+et() { edt && emacsclient -t -s tty "$@"; }
+etk() { emacsclient -t -s tty --eval "(save-buffers-kill-emacs)"; }
+e() {
+    emacsclient --no-wait "$@" 2>/dev/null || edt && \
+            emacsclient -s tty --no-wait "$@" 2>/dev/null;
+}
