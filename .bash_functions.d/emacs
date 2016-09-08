@@ -6,7 +6,7 @@ edt() {
     fi;
 }
 
-et() { edt && emacsclient -t -s tty "$@"; }
+et() { edt && TERM=xterm-256color emacsclient -t -s tty "$@"; }
 etk() { emacsclient -t -s tty --eval "(save-buffers-kill-emacs)"; }
 e() {
     emacsclient --no-wait "$@" 2>/dev/null || edt && \
