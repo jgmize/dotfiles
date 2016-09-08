@@ -34,6 +34,7 @@
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(org-ehtml
+                                      org-journal
                                       ox-rst
                                       web-server)
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -177,7 +178,8 @@ layers configuration."
        (setq org-export-with-sub-superscripts nil)
        (setq org-export-babel-evaluate nil)
        (setq org-export-backends (quote (ascii beamer html icalendar latex md odt rst)))
-       (setq org-agenda-files '("~/gtd"))
+       ;; TODO consolidate agenda files or switch to recursion
+       (setq org-agenda-files '("~/gtd" "~/gtd/devrel" "~/gtd/mdn" "~/gtd/status.mozmar"))
        (setq org-hide-emphasis-markers t)
      ))
 )
