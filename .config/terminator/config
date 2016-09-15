@@ -3,6 +3,7 @@
   handle_size = 1
   tab_position = hidden
   window_state = fullscreen
+  scrollbar_position = disabled
 [keybindings]
   switch_to_tab_1 = <Super>1
   switch_to_tab_2 = <Super>2
