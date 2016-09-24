@@ -3,7 +3,7 @@
 rsshtun() {
     BASTION="${1:-ssh.us-west.moz.works}"
     REMOTE_PORT="${2:-2222}"
-    ssh $BASTION "ps x | grep sleep | awk '{print \$1}' | xargs kill;"
+    ssh $BASTION "ps x | grep \"nc -zv localhost $REMOTE_PORT\" | awk '{print \$1}' | xargs kill;"
     autossh -R $REMOTE_PORT:localhost:22 $BASTION "
         while true;
            sleep 2;
@@ -22,7 +22,7 @@ rsshtun-air() {
     REMOTE_PORT="${2:-2224}"
     #autossh installed on air does not supprt port forwarding
     while true; do
-        ssh $BASTION "ps x | grep sleep | awk '{print \$1}' | xargs kill;"
+        ssh $BASTION "ps x | grep \"nc -zv localhost $REMOTE_PORT\" | awk '{print \$1}' | xargs kill;"
         ssh -R $REMOTE_PORT:localhost:22 $BASTION "
         while true;
             sleep 2;
