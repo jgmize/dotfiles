@@ -33,7 +33,8 @@
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(org-ehtml
+   dotspacemacs-additional-packages '(groovy-mode
+                                      org-ehtml
                                       org-journal
                                       ox-rst
                                       web-server)
@@ -153,6 +154,7 @@ before layers configuration."
 layers configuration."
   (global-hl-line-mode -1)
   (add-to-list 'warning-suppress-types '(undo discard-info))
+  (add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
   (eval-after-load 'org
     '(progn
        (org-babel-do-load-languages
