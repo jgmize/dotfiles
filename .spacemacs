@@ -143,7 +143,11 @@ before layers configuration."
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
    ;; Not used for now.
-   dotspacemacs-default-package-repository nil)
+   dotspacemacs-default-package-repository nil
+   ;; this should default to disabled, but is somehow enabled and giving an
+   ;; undefined symbol for evil-paste-after
+   ;; see https://github.com/syl20bnr/spacemacs/issues/6251#issuecomment-231294281
+   dotspacemacs-enable-paste-transient-state nil)
   ;; User initialization goes here
   ;; workaround for helm+tramp issue https://github.com/emacs-helm/helm/issues/1000#issuecomment-119487649
   (setq tramp-ssh-controlmaster-options
