@@ -14,7 +14,7 @@
                                        better-defaults
                                        (clojure :variables clojure-enable-fancify-symbols t)
                                        django
-                                       dockerfile
+                                       docker
                                        emacs-lisp
                                        evernote
                                        git
@@ -23,7 +23,9 @@
                                        ipython-notebook
                                        javascript
                                        markdown
-                                       org
+                                       nginx
+                                       (org :variables
+                                            org-enable-org-journal-support t)
                                        python
                                        (shell :variables shell-default-shell 'multi-term)
                                        syntax-checking
