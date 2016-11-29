@@ -25,7 +25,9 @@
                                        markdown
                                        nginx
                                        (org :variables
-                                            org-enable-org-journal-support t)
+                                            org-enable-org-journal-support t
+                                            org-journal-dir "~/org/journal/"
+                                            org-journal-file-format "%Y-%m-%d")
                                        python
                                        (shell :variables shell-default-shell 'multi-term)
                                        syntax-checking
