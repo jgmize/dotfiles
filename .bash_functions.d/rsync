@@ -1,13 +1,28 @@
 #!/bin/bash
 
 rscp() { rsync --progress -r --rsh=ssh $1 $2; }
-gtdsync() {
-    HOST=${1:-x1c.usw}
-    RSYNC_ARGS="-av --delete . ${HOST}:gtd/"
-    cd ~/gtd;
-    echo "syncing gtd to ${HOST} (dry run):";
+rsync-here() {
+    METHOD=${1:-push}
+    HOST=${2:-x1c}
+    HERE=$(pwd | sed -e "s|$HOME/||")
+    if [[ "${METHOD}" == "push" ]]; then
+        echo "syncing ${HERE} to ${HOST} (dry run):";
+        RSYNC_ARGS="-av --delete . ${HOST}:${HERE}/"
+    elif [[ "${METHOD}" == "pull" ]]; then
+        echo "syncing ${HERE} from ${HOST} (dry run):";
+        RSYNC_ARGS="-av --delete ${HOST}:${HERE}/ ."
+    else
+        echo "usage: rsync-here [push|pull] [host]"
+        return
+    fi
     rsync -n ${RSYNC_ARGS};
     echo "enter to proceed, Ctrl-c to break";
     read;
     rsync ${RSYNC_ARGS};
+}
+rsync-push() {
+    rsync-here push $1
+}
+rsync-pull() {
+    rsync-here pull $1
 }
