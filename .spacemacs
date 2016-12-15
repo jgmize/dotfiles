@@ -43,7 +43,7 @@ values."
       go
       helm
       ipython-notebook
-      javascript
+      ;; javascript ; requires manual install of tern
       markdown
       nginx
       (org :variables
