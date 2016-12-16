@@ -1,4 +1,4 @@
-;; -*- mode: dotspacemacs -*-
+;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -61,7 +61,6 @@ values."
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(groovy-mode
                                       org-ehtml
-                                      org-journal
                                       ox-rst
                                       web-server)
    ;; A list of packages that cannot be updated.
