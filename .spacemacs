@@ -352,7 +352,7 @@ you should place your code here."
        (setq org-export-babel-evaluate nil)
        (setq org-export-backends (quote (ascii beamer html icalendar latex md odt rst)))
        ;; TODO consolidate agenda files or switch to recursion
-       (setq org-agenda-files '("~/gtd" "~/gtd/devrel" "~/gtd/mdn" "~/gtd/status.mozmar"))
+       (setq org-agenda-files '("~/org/gtd" "~/org/gtd/devrel" "~/org/gtd/mdn" "~/org/gtd/status.mozmar"))
        (setq org-hide-emphasis-markers t)
      ))
 )
