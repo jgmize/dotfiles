@@ -61,6 +61,7 @@ values."
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(groovy-mode
                                       org-ehtml
+                                      org-trello
                                       ox-rst
                                       web-server)
    ;; A list of packages that cannot be updated.
@@ -354,6 +355,7 @@ you should place your code here."
        ;; TODO consolidate agenda files or switch to recursion
        (setq org-agenda-files '("~/org/gtd" "~/org/gtd/devrel" "~/org/gtd/mdn" "~/org/gtd/status.mozmar"))
        (setq org-hide-emphasis-markers t)
+       (setq org-trello-files '("~/org/gtd/mozmar-infra-trello.org"))
      ))
 )
 
