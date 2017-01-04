@@ -120,20 +120,6 @@ if [ "$(which pyenv 2> /dev/null)" ]; then
     eval "$(pyenv init -)"
 fi
 
-if [ -d $HOME/go ]; then
-    export GOROOT=$HOME/go
-elif [ -d /usr/local/go ]; then
-    export GOROOT=/usr/local/go
-fi
-
-if [ ! -z "$GOROOT" ]; then
-    export PATH=$PATH:$GOROOT/bin
-    export GOPATH=$HOME
-elif [ -d /data/data/com.termux/files/usr/lib/go ]; then
-    export GOROOT=/data/data/com.termux/files/usr/lib/go
-    export GOPATH=$HOME
-fi
-
 if [ -f "/google/devshell/bashrc.google" ]; then
     source "/google/devshell/bashrc.google"
 fi
