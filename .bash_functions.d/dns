@@ -1,0 +1,4 @@
+# more details than "dig +short", same number of lines
+digs() {
+    dig +noquestion +nostats +nocomments +nocmd "$@";
+}
