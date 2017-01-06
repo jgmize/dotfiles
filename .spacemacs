@@ -53,6 +53,7 @@ values."
       python
       (shell :variables shell-default-shell 'multi-term)
       syntax-checking
+      terraform
       version-control
       yaml)
    ;; List of additional packages that will be installed wihout being
