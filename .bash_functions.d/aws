@@ -1,0 +1,33 @@
+#!/bin/bash
+
+aws-regions() {
+    aws ec2 describe-regions --output text --query 'Regions[*].[RegionName]' | sort;
+}
+
+aws-azs() {
+    for region in ${*:-$(aws-regions)}; do
+        aws ec2 describe-availability-zones --region $region --query 'AvailabilityZones[*].[ZoneName]' --output text | sort;
+    done;
+}
+
+aws-instance-types() {
+    for region in ${*:-$(aws-regions)}; do
+        aws ec2 describe-reserved-instances-offerings --query "ReservedInstancesOfferings[?AvailabilityZone=='$az'] [InstanceType]" --output text --region $region | sort -u;
+    done;
+}
+
+aws-asgs(){
+    aws autoscaling describe-auto-scaling-groups --query AutoScalingGroups[].AutoScalingGroupName --output text;
+}
+
+aws-asg-instance-ids() {
+    for ASG in ${*:-$(aws-asgs)}; do
+        aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $ASG --query AutoScalingGroups[].Instances[].InstanceId --output text;
+    done;
+}
+
+aws-instances() {
+    (for region in ${*:-$(aws-regions)}; do
+        aws ec2 describe-instances --query Reservations[].Instances[].[PublicIpAddress,PrivateIpAddress,Placement.AvailabilityZone,State.Name,InstanceType,InstanceId] --output text --region $region | sort -k 2;
+    done) | column -t;
+}
