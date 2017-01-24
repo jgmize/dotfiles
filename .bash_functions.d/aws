@@ -16,13 +16,18 @@ aws-instance-types() {
     done;
 }
 
-aws-asgs(){
-    aws autoscaling describe-auto-scaling-groups --query AutoScalingGroups[].AutoScalingGroupName --output text;
+aws-asgs() {
+    for region in ${*:-$(aws-regions)}; do
+        aws autoscaling describe-auto-scaling-groups --query AutoScalingGroups[].AutoScalingGroupName --output text --region $region;
+    done;
 }
 
 aws-asg-instance-ids() {
-    for ASG in ${*:-$(aws-asgs)}; do
-        aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $ASG --query AutoScalingGroups[].Instances[].InstanceId --output text;
+    for region in ${*:-$(aws-regions)}; do
+        for asg in $(aws-asgs $region); do
+            echo $region $asg
+            aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $asg --query AutoScalingGroups[].Instances[].InstanceId --output text --region $region;
+        done;
     done;
 }
 
