@@ -32,7 +32,11 @@ aws-asg-instance-ids() {
 }
 
 aws-asg-attach-elbs() {
-    aws autoscaling attach-load-balancers --region $1 --auto-scaling-group-name $2 --load-balancer-names ${*:3}
+    aws autoscaling attach-load-balancers --region $1 --auto-scaling-group-name $2 --load-balancer-names ${*:3};
+}
+
+aws-asg-detach-elbs() {
+    aws autoscaling detach-load-balancers --region $1 --auto-scaling-group-name $2 --load-balancer-names ${*:3};
 }
 
 aws-instances() {
