@@ -9,3 +9,7 @@ synair() {
 synx1c() {
     ssh -R 24800:localhost:24800 x1c 'killall synergyc; sleep 1; synergyc -f localhost'
 }
+
+synx250() {
+    ssh -R 24800:localhost:24800 x250 'killall synergyc; sleep 1; DISPLAY=:0 synergyc -f localhost'
+}
