@@ -1,5 +1,16 @@
 #!/bin/bash
 
+k8s-masters() {
+    kubectl get nodes -l kubernetes.io/role=master $*;
+}
+k8s-master-ips() {
+    k8s-masters -o jsonpath='{.items[*].status.addresses[?(@.type=="ExternalIP")].address}';
+}
+
+k8s-master-labels() {
+    k8s-masters -o jsonpath='{.items[*].metadata.labels}';
+}
+
 # from http://www.charliedrage.com/kubernetes-dev-in-one-command
 dev_k8s(){
   local choice=$1
