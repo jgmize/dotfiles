@@ -43,7 +43,6 @@ values."
       go
       helm
       html
-      htmlauto-completion
       ipython-notebook
       ;; javascript ; requires manual install of tern
       markdown
