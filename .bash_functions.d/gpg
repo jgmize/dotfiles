@@ -1,0 +1,7 @@
+aes() {
+  gpg --symmetric --cipher AES256 $1
+}
+
+decrypt-grep() {
+  gpg -o - $1 | grep $2
+}
