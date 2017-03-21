@@ -1,5 +1,17 @@
 #!/bin/bash
 
+docker-install() {
+    # TODO: support for distros other than Ubuntu
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo apt-key fingerprint 0EBFCD88
+    echo only continue if fingerprint above matches "9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88"
+    sudo add-apt-repository \
+        "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+    sudo apt update
+    sudo apt install docker-ce
+}
+
 ed() { docker run -it \
     -v $(pwd):/home/spacemacs/src \
     -v $HOME/.ssh:/home/spacemacs/.ssh \
