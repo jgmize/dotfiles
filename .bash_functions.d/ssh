@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# adapted from https://github.com/GoodGuide/dockerfile-ssh-bastion/blob/master/entrypoint.sh#L54-L93
+ssh-key-import-from-github() {
+	local ghuser="$1"
+
+	echo "Adding user: ${ghuser}"
+
+	mkdir -p "/etc/ssh/per-user/${ghuser}/"
+
+	echo 'Got the following keys:'
+	curl -fsSL "https://github.com/${ghuser}.keys" | (
+		local i=0
+		while read pubkey; do
+			local fn="${ghuser}_key_${i}.pub"
+			local fp=$(echo "$pubkey" > "$fn" && ssh-keygen -E md5 -l -f "$fn"; rm -f "$fn")
+			((i++)) || true
+
+			local keylength=$(echo $fp | awk '{ print $1 }')
+			if [[ $keylength -ge 2048 ]]; then
+				echo "$pubkey" >> "/etc/ssh/per-user/${ghuser}/authorized_keys"
+				printf '  %s\n' "$fp"
+			else
+				printf '  %s [less than 2048 - IGNORED]\n' "$fp"
+			fi
+		done
+	)
+
+#	# iif we found any valid keys via github, make the system user and fix perms
+#	if [[ -f "/etc/ssh/per-user/${ghuser}/authorized_keys" ]]; then
+#		useradd \
+#			--gid ssh-users \
+#			--home-dir /tmp \
+#			--no-user-group \
+#			--no-create-home \
+#			--shell /usr/sbin/nologin \
+#			"${ghuser}"
+#		chown root:ssh-users "/etc/ssh/per-user/"
+#		chown -R ${ghuser}:ssh-users "/etc/ssh/per-user/${ghuser}/"
+#		chmod -R 0500 "/etc/ssh/per-user/${ghuser}/"
+#		chmod 0400 "/etc/ssh/per-user/${ghuser}/authorized_keys"
+#	fi
+}
+
+rsshtun() {
+    BASTION="${1:-usw}"
+    REMOTE_PORT="${2:-2222}"
+    ssh $BASTION "ps x | grep \"nc -zv localhost $REMOTE_PORT\" | awk '{print \$1}' | xargs kill;"
+    autossh -R $REMOTE_PORT:localhost:22 $BASTION "
+        while true;
+           sleep 2;
+           do nc -zv localhost $REMOTE_PORT;
+        done";
+}
+
+rsshtun-aspire() {
+    BASTION="${1:-usw}"
+    REMOTE_PORT="${2:-2223}"
+    rsshtun ${BASTION} ${REMOTE_PORT}
+}
+
+rsshtun-air() {
+    BASTION="${1:-usw}"
+    REMOTE_PORT="${2:-2224}"
+    #autossh installed on air does not supprt port forwarding
+    while true; do
+        ssh $BASTION "ps x | grep \"nc -zv localhost $REMOTE_PORT\" | awk '{print \$1}' | xargs kill;"
+        ssh -R $REMOTE_PORT:localhost:22 $BASTION "
+        while true;
+            sleep 2;
+            do nc -zv localhost $REMOTE_PORT;
+        done";
+    done;
+}
