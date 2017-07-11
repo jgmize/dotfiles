@@ -111,3 +111,7 @@ fi
 if [ -f "/google/devshell/bashrc.google" ]; then
     source "/google/devshell/bashrc.google"
 fi
+
+if [ "$(which kubectl 2> /dev/null)" ]; then
+    source <(kubectl completion bash)
+fi
