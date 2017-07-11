@@ -27,3 +27,5 @@
   required = true
 [pull]
   ff = only
+[include]
+	path = .gitconfig-private
