@@ -44,13 +44,18 @@ values."
       helm
       html
       ipython-notebook
-      ;; javascript ; requires manual install of tern
+      javascript ; requires manual install of tern: sudo npm install -g tern
       markdown
       nginx
       (org :variables
           org-enable-org-journal-support t
+          org-enable-github-support t
+          ;org-enable-bootstrap-support t
+          ;org-enable-reveal-js-support t
           org-journal-dir "~/org/journal/"
-          org-journal-file-format "%Y-%m-%d")
+          org-journal-file-format "%Y-%m-%d"
+          org-journal-date-format "%Y-%m-%d %a"
+          org-journal-time-format "")
       python
       (shell :variables shell-default-shell 'multi-term)
       syntax-checking
