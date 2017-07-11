@@ -12,3 +12,27 @@ e() {
     emacsclient --no-wait "$@" 2>/dev/null || edt && \
             emacsclient -s tty --no-wait "$@" 2>/dev/null;
 }
+
+de() {
+    : ${REGISTRY=quay.io/}
+    : ${IMAGE_PREFIX=jgmize}
+    : ${IMAGE_NAME=spacemacs-tmux}
+    : ${VERSION=master}
+    : ${IMAGE=${REGISTRY}${IMAGE_PREFIX}/${IMAGE_NAME}:${VERSION}}
+
+    if [[ -z "$SSH_AUTH_SOCK" ]]; then
+        docker run -itv $HOME:/home/spacemacs/home \
+               -v $HOME/dotfiles:/home/spacemacs/dotfiles \
+               -v $HOME/.gitconfig:/home/spacemacs/.gitconfig \
+               -v $HOME/.ssh:/home/spacemacs/.ssh \
+               ${IMAGE}
+    else
+        docker run -itv $HOME:/home/spacemacs/home \
+               -v $HOME/dotfiles:/home/spacemacs/dotfiles \
+               -v $HOME/.gitconfig:/home/spacemacs/.gitconfig \
+               -v $HOME/.ssh:/home/spacemacs/.ssh \
+               -v $SSH_AUTH_SOCK:/ssh-agent -e SSH_AUTH_SOCK=/ssh-agent \
+               ${IMAGE}
+    fi
+
+}
