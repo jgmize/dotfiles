@@ -115,3 +115,7 @@ fi
 if [ "$(which kubectl 2> /dev/null)" ]; then
     source <(kubectl completion bash)
 fi
+
+if [ "$(which aws_completer 2> /dev/null)" ]; then
+    complete -C $(which aws_completer) aws
+fi
