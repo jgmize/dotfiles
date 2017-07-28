@@ -1,5 +1,12 @@
 #!/bin/bash
 
+kubectl-install() {
+    # https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-binary-via-curl
+    cd ~/bin
+    curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    chmod +x ./kubectl
+}
+
 k8s-masters() {
     kubectl get nodes -l kubernetes.io/role=master $*;
 }
@@ -14,19 +21,23 @@ k8s-master-labels() {
 frankfurt() {
     export DEIS_PROFILE=frankfurt
     kubectl config use-context frankfurt
+    export AWS_DEFAULT_REGION=eu-central-1
 }
 
 virginia() {
     export DEIS_PROFILE=virginia
     kubectl config use-context virginia
+    export AWS_DEFAULT_REGION=us-east-1
 }
 
 tokyo() {
     export DEIS_PROFILE=tokyo
     kubectl config use-context tokyo
+    export AWS_DEFAULT_REGION=ap-northeast-1
 }
 
 portland() {
     export DEIS_PROFILE=portland
     kubectl config use-context portland
+    export AWS_DEFAULT_REGION=us-west-2
 }
