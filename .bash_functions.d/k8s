@@ -10,3 +10,23 @@ k8s-master-ips() {
 k8s-master-labels() {
     k8s-masters -o jsonpath='{.items[*].metadata.labels}';
 }
+
+frankfurt() {
+    export DEIS_PROFILE=frankfurt
+    kubectl config use-context frankfurt
+}
+
+virginia() {
+    export DEIS_PROFILE=virginia
+    kubectl config use-context virginia
+}
+
+tokyo() {
+    export DEIS_PROFILE=tokyo
+    kubectl config use-context tokyo
+}
+
+portland() {
+    export DEIS_PROFILE=portland
+    kubectl config use-context portland
+}
