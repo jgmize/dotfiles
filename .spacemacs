@@ -53,7 +53,10 @@ values."
           ;org-enable-bootstrap-support t
           ;org-enable-reveal-js-support t
           org-journal-dir "~/org/journal/"
-          org-journal-file-format "%Y-%m-%d"
+          ;; including the .org extension as above breaks the calendar search (see
+          ;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/%2Bemacs/org/README.org#org-journal-support
+          ;; but makes it usable from orgzly
+          org-journal-file-format "%Y-%m-%d.org"
           org-journal-date-format "%Y-%m-%d %a"
           org-journal-time-format "")
       python
