@@ -22,6 +22,10 @@ first-running-pod() {
     kubectl get pods -n $1 | awk '/Running/ {print $1; exit;}'
 }
 
+k8s-exec() {
+    kubectl -n $1 exec -i -t $(first-running-pod $1) $2
+}
+
 frankfurt() {
     export DEIS_PROFILE=frankfurt
     kubectl config use-context frankfurt
