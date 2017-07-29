@@ -18,6 +18,10 @@ k8s-master-labels() {
     k8s-masters -o jsonpath='{.items[*].metadata.labels}';
 }
 
+first-running-pod() {
+    kubectl get pods -n $1 | awk '/Running/ {print $1; exit;}'
+}
+
 frankfurt() {
     export DEIS_PROFILE=frankfurt
     kubectl config use-context frankfurt
