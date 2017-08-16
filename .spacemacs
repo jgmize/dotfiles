@@ -47,6 +47,7 @@ values."
       javascript ; requires manual install of tern: sudo npm install -g tern
       markdown
       nginx
+      ocaml
       (org :variables
           org-enable-org-journal-support t
           org-enable-github-support t
