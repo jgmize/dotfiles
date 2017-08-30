@@ -3,7 +3,7 @@
 kubectl-install() {
     # https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-binary-via-curl
     cd ~/bin
-    curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/$(uname -s | awk '{print tolower($0)}')/amd64/kubectl
     chmod +x ./kubectl
 }
 
