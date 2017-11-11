@@ -32,8 +32,10 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+      ansible
       better-defaults
       (clojure :variables clojure-enable-fancify-symbols t)
+      csv
       django
       docker
       emacs-lisp
