@@ -2,3 +2,7 @@
 digs() {
     dig +noquestion +nostats +nocomments +nocmd "$@";
 }
+
+myip() {
+    dig +short myip.opendns.com @resolver1.opendns.com
+}
