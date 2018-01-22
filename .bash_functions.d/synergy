@@ -6,6 +6,11 @@ synair() {
     synergys -a localhost:24801
     ssh -R 24801:localhost:24801 air.local 'killall synergyc; sleep 1; /usr/local/bin/synergyc -f localhost:24801'
 }
+
+synmbp() {
+    ssh -R 24800:localhost:24800 mbp13.local 'killall synergyc; sleep 1; /Applications/Synergy.app/Contents/MacOS/synergyc -f localhost'
+}
+
 synx1c() {
     ssh -R 24800:localhost:24800 x1c 'killall synergyc; sleep 1; synergyc -f localhost'
 }
