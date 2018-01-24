@@ -57,3 +57,9 @@ portland() {
     kubectl config use-context portland
     export AWS_DEFAULT_REGION=us-west-2
 }
+
+oregon-b() {
+    export DEIS_PROFILE=oregon-b
+    kubectl config use-context oregon-b
+    export AWS_DEFAULT_REGION=us-west-2
+}
