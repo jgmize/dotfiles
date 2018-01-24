@@ -40,12 +40,6 @@ frankfurt() {
     export AWS_DEFAULT_REGION=eu-central-1
 }
 
-virginia() {
-    export DEIS_PROFILE=virginia
-    kubectl config use-context virginia
-    export AWS_DEFAULT_REGION=us-east-1
-}
-
 tokyo() {
     export DEIS_PROFILE=tokyo
     kubectl config use-context tokyo
