@@ -351,7 +351,7 @@ you should place your code here."
           (dot . t)
           (js . t)
           (python . t)
-          (sh . t)
+          (shell . t)
           (clojure . t)
           (sqlite . t)
           ))

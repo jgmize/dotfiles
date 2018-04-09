@@ -45,3 +45,7 @@ fi
 if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
+
+if [ -d "/usr/local/opt/texinfo/bin" ] ; then
+    PATH="/usr/local/opt/texinfo/bin:$PATH"
+fi
