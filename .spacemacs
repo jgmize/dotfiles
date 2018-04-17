@@ -39,14 +39,15 @@ values."
       docker
       emacs-lisp
       evernote
+      fasd ; brew install fasd
       git
       github
       go
       helm
       html
       ipython-notebook
-      javascript ; requires manual install of tern: sudo npm install -g tern
-      markdown
+      javascript ; npm install -g tern
+      (markdown :variables markdown-live-preview-engine 'vmd) ; npm install -g vmd
       nginx
       ocaml
       (org :variables
