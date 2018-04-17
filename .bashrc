@@ -97,7 +97,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-export EDITOR="emacs -nw"
+export EDITOR="emacsclient"
 
 if [ -d $HOME/google-cloud-sdk ]; then
     source $HOME/google-cloud-sdk/path.bash.inc
@@ -119,3 +119,6 @@ fi
 if [ "$(which aws_completer 2> /dev/null)" ]; then
     complete -C $(which aws_completer) aws
 fi
+
+# dedupe path
+PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
