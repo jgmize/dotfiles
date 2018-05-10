@@ -49,7 +49,7 @@ values."
       javascript ; npm install -g tern
       (markdown :variables markdown-live-preview-engine 'vmd) ; npm install -g vmd
       nginx
-      ocaml
+      ocaml ; brew install opam && opam init
       (org :variables
           org-enable-org-journal-support t
           org-enable-github-support t
@@ -62,7 +62,9 @@ values."
           org-journal-file-format "%Y-%m-%d.org"
           org-journal-date-format "%Y-%m-%d %a"
           org-journal-time-format "")
+      pandoc ; brew install pandoc
       python
+      rust
       (shell :variables shell-default-shell 'multi-term)
       syntax-checking
       terraform
