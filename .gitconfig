@@ -30,3 +30,5 @@
   ff = only
 [include]
 	path = .gitconfig-private
+[github]
+	user = jgmize
