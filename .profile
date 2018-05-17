@@ -20,6 +20,10 @@ if [ -d "$HOME/anaconda/bin" ] ; then
     PATH="$HOME/anaconda/bin:$PATH"
 fi
 
+if [ -d "$HOME/Library/Python/3.6/bin" ]; then
+    PATH="$HOME/Library/Python/3.6/bin:$PATH"
+fi
+
 if [ -d $HOME/go ]; then
     export GOROOT=$HOME/go
 elif [ -d /usr/local/go ]; then
