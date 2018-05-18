@@ -63,3 +63,7 @@ oregon-b() {
     kubectl config use-context oregon-b
     export AWS_DEFAULT_REGION=us-west-2
 }
+
+iowa-a() {
+    kubectl config use-context iowa-a
+}
