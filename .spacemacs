@@ -52,7 +52,7 @@ This function should only modify configuration layer settings."
       javascript ; npm install -g tern
       (markdown :variables markdown-live-preview-engine 'vmd) ; npm install -g vmd
       nginx
-      ocaml ; brew install opam && opam init
+      ; ocaml ; brew install opam && opam init
       (org :variables
           org-enable-org-journal-support t
           org-enable-github-support t
@@ -547,14 +547,6 @@ you should place your code here."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (caml hcl-mode symon string-inflection spaceline-all-the-icons all-the-icons memoize powerline sayid pippel pipenv password-generator overseer org-category-capture org-mime org-journal web-server org-brain ob-ipython dash-functional nameless magithub magit-svn json-navigator hierarchy importmagic epc ctable concurrent impatient-mode parent-mode helm-xref helm-purpose window-purpose imenu-list haml-mode godoctor go-tag go-rename go-mode gitignore-mode fringe-helper git-gutter+ git-gutter gh marshal logito pcache ht pos-tip flycheck flx evil-org magit let-alist evil-lion iedit evil-cleverparens smartparens anzu skewer-mode request-deferred auto-complete websocket request deferred js2-mode simple-httpd editorconfig json-mode tablist docker-tramp json-snatcher json-reformat counsel-projectile projectile counsel swiper ivy clojure-cheatsheet inflections edn multiple-cursors paredit yasnippet peg eval-sexp-fu highlight cider seq spinner queue pkg-info clojure-mode epl centered-cursor-mode markdown-mode browse-at-remote packed pythonic f dash s helm avy helm-core popup org-plus-contrib hydra font-lock+ evil goto-chg undo-tree bind-map bind-key async ghub+ magit-popup git-commit ghub apiwrap with-editor pandoc-mode ox-pandoc toml-mode racer flycheck-rust cargo rust-mode tern vmd-mode fasd kubernetes-evil kubernetes yapfify yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen utop use-package unfill tuareg toc-org terraform-mode tagedit spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pony-mode pip-requirements persp-mode pcre2el paradox ox-rst ox-gfm orgit org-projectile org-present org-ehtml org-download org-bullets open-junk-file ocp-indent nginx-mode neotree mwim multi-term move-text mmm-mode merlin markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode js2-refactor js-doc jinja2-mode info+ indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-ag groovy-mode google-translate golden-ratio go-guru go-eldoc gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geeknote flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav ein dumb-jump dockerfile-mode docker diminish diff-hl define-word cython-mode csv-mode column-enforce-mode coffee-mode clj-refactor clean-aindent-mode cider-eval-sexp-fu auto-highlight-symbol auto-compile ansible-doc ansible anaconda-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
