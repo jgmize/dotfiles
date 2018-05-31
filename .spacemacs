@@ -196,7 +196,7 @@ values."
    ;; If non-nil, J and K move lines up and down when in visual mode.
    ;; (default nil)
    dotspacemacs-visual-line-move-text nil
-   ;; If non-nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
+   ;; If non nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
    ;; (default nil)
    dotspacemacs-ex-substitute-global nil
    ;; Name of the default layout (default "Default")
@@ -347,9 +347,13 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (add-to-list 'warning-suppress-types '(undo discard-info))
   (add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
-  (use-package magithub ; until https://github.com/syl20bnr/spacemacs/pull/9946 is merged
-    :after magit
-    :config (magithub-feature-autoinject t))
+  (add-hook 'yaml-mode-hook
+            (lambda ()
+              (outline-minor-mode)
+              (define-key yaml-mode-map (kbd "TAB") 'outline-toggle-children)
+              ;; this regex has some odd bugs. TODO: try yafold instead
+              (setq outline-regexp "^ *\\([A-Za-z0-9_-]*: *[>|]?$\\|-\\b\\)")
+              ))
   (eval-after-load 'org
     '(progn
        (org-babel-do-load-languages
