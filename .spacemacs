@@ -80,7 +80,8 @@ values."
                                       magithub ; until https://github.com/syl20bnr/spacemacs/pull/9946 is merged
                                       org-ehtml
                                       ox-rst
-                                      web-server)
+                                      web-server
+                                      yafolding)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -349,11 +350,8 @@ you should place your code here."
   (add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
   (add-hook 'yaml-mode-hook
             (lambda ()
-              (outline-minor-mode)
-              (define-key yaml-mode-map (kbd "TAB") 'outline-toggle-children)
-              ;; this regex has some odd bugs. TODO: try yafold instead
-              (setq outline-regexp "^ *\\([A-Za-z0-9_-]*: *[>|]?$\\|-\\b\\)")
-              ))
+              (yafolding-mode)
+              (define-key yafolding-mode-map (kbd "TAB") 'yafolding-toggle-element)))
   (eval-after-load 'org
     '(progn
        (org-babel-do-load-languages
@@ -394,7 +392,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magithub ghub+ magit-popup git-commit ghub apiwrap with-editor pandoc-mode ox-pandoc toml-mode racer flycheck-rust cargo rust-mode tern vmd-mode fasd kubernetes-evil kubernetes yapfify yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen utop use-package unfill tuareg toc-org terraform-mode tagedit spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pony-mode pip-requirements persp-mode pcre2el paradox ox-rst ox-gfm orgit org-projectile org-present org-ehtml org-download org-bullets open-junk-file ocp-indent nginx-mode neotree mwim multi-term move-text mmm-mode merlin markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode js2-refactor js-doc jinja2-mode info+ indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-ag groovy-mode google-translate golden-ratio go-guru go-eldoc gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geeknote flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav ein dumb-jump dockerfile-mode docker diminish diff-hl define-word cython-mode csv-mode column-enforce-mode coffee-mode clj-refactor clean-aindent-mode cider-eval-sexp-fu auto-highlight-symbol auto-compile ansible-doc ansible anaconda-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (yafolding magithub ghub+ magit-popup git-commit ghub apiwrap with-editor pandoc-mode ox-pandoc toml-mode racer flycheck-rust cargo rust-mode tern vmd-mode fasd kubernetes-evil kubernetes yapfify yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen utop use-package unfill tuareg toc-org terraform-mode tagedit spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pony-mode pip-requirements persp-mode pcre2el paradox ox-rst ox-gfm orgit org-projectile org-present org-ehtml org-download org-bullets open-junk-file ocp-indent nginx-mode neotree mwim multi-term move-text mmm-mode merlin markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode js2-refactor js-doc jinja2-mode info+ indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-ag groovy-mode google-translate golden-ratio go-guru go-eldoc gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geeknote flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav ein dumb-jump dockerfile-mode docker diminish diff-hl define-word cython-mode csv-mode column-enforce-mode coffee-mode clj-refactor clean-aindent-mode cider-eval-sexp-fu auto-highlight-symbol auto-compile ansible-doc ansible anaconda-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
