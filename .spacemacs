@@ -490,6 +490,9 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (add-to-list 'warning-suppress-types '(undo discard-info))
   (add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
+  (add-hook 'term-mode-hook
+            (lambda ()
+              (define-key evil-insert-state-local-map (kbd "C-a") 'term-send-raw)))
   (add-hook 'yaml-mode-hook
             (lambda ()
                 (outline-minor-mode)
