@@ -492,7 +492,8 @@ you should place your code here."
   (add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
   (add-hook 'term-mode-hook
             (lambda ()
-              (define-key evil-insert-state-local-map (kbd "C-a") 'term-send-raw)))
+              (define-key evil-insert-state-local-map (kbd "C-a") 'term-send-raw)
+              (define-key evil-insert-state-local-map (kbd "C-e") 'term-send-raw)))
   (add-hook 'yaml-mode-hook
             (lambda ()
                 (outline-minor-mode)
