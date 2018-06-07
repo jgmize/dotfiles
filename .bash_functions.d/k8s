@@ -23,7 +23,11 @@ ns() {
 }
 
 first-running-pod() {
-    kubectl get pods -n $1 | awk '/Running/ {print $1; exit;}'
+    if [[ -n "$2" ]]; then
+        kubectl get pods -n $1 | grep $2 | awk '/Running/ {print $1; exit;}'
+    else
+        kubectl get pods -n $1 | awk '/Running/ {print $1; exit;}'
+    fi
 }
 
 restart-pods() {
@@ -31,7 +35,15 @@ restart-pods() {
 }
 
 k8s-exec() {
-    kubectl -n $1 exec -i -t $(first-running-pod $1) $2
+    kubectl -n $1 exec -i -t $(first-running-pod $1 $2) $3
+}
+
+k8s-bash() {
+    k8s-exec $1 $2 bash
+}
+
+k8s-logs() {
+    kubectl -n $1 logs $(first-running-pod $1 $2)
 }
 
 frankfurt() {
