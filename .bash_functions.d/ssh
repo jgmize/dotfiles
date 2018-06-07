@@ -26,7 +26,7 @@ ssh-key-import-from-github() {
 		done
 	)
 
-#	# iif we found any valid keys via github, make the system user and fix perms
+## if we found any valid keys via github, make the system user and fix perms
 #	if [[ -f "/etc/ssh/per-user/${ghuser}/authorized_keys" ]]; then
 #		useradd \
 #			--gid ssh-users \
@@ -43,26 +43,8 @@ ssh-key-import-from-github() {
 }
 
 rsshtun() {
-    BASTION="${1:-usw}"
+    BASTION="${1:-ci.usw}"
     REMOTE_PORT="${2:-2222}"
-    ssh $BASTION "ps x | grep \"nc -zv localhost $REMOTE_PORT\" | awk '{print \$1}' | xargs kill;"
-    autossh -R $REMOTE_PORT:localhost:22 $BASTION "
-        while true;
-           sleep 2;
-           do nc -zv localhost $REMOTE_PORT;
-        done";
-}
-
-rsshtun-aspire() {
-    BASTION="${1:-usw}"
-    REMOTE_PORT="${2:-2223}"
-    rsshtun ${BASTION} ${REMOTE_PORT}
-}
-
-rsshtun-air() {
-    BASTION="${1:-usw}"
-    REMOTE_PORT="${2:-2224}"
-    #autossh installed on air does not supprt port forwarding
     while true; do
         ssh $BASTION "ps x | grep \"nc -zv localhost $REMOTE_PORT\" | awk '{print \$1}' | xargs kill;"
         ssh -R $REMOTE_PORT:localhost:22 $BASTION "
