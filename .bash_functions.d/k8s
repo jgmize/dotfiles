@@ -23,19 +23,31 @@ ns() {
 }
 
 first-running-pod() {
-    if [[ -n "$2" ]]; then
-        kubectl get pods -n $1 | grep $2 | awk '/Running/ {print $1; exit;}'
+    if [[ -n "$1" ]]; then
+        kubectl get pods | grep $1 | awk '/Running/ {print $1; exit;}'
     else
-        kubectl get pods -n $1 | awk '/Running/ {print $1; exit;}'
+        kubectl get pods | awk '/Running/ {print $1; exit;}'
+    fi
+}
+
+pod-names() {
+    if [[ -n "$1" ]]; then
+        kubectl get pods | awk "/$1/ {print \$1}"
+    else
+        kubectl get pods | awk '!/NAME/ {print $1}'
     fi
 }
 
 restart-pods() {
-    kubectl get pods -n $1 | awk '!/NAME/ {print $1}' | xargs kubectl delete pod -n $1
+    pod-names $1 | xargs kubectl delete pod
 }
 
 k8s-exec() {
-    kubectl -n $1 exec -i -t $(first-running-pod $1 $2) $3
+    if [[ -n "$2" ]]; then
+        kubectl exec -it $(first-running-pod $1) $2
+    else
+        kubectl exec -it $(first-running-pod) $1
+    fi
 }
 
 k8s-bash() {
@@ -43,39 +55,48 @@ k8s-bash() {
 }
 
 k8s-logs() {
-    kubectl -n $1 logs $(first-running-pod $1 $2)
+    if [[ -n "$2" ]]; then
+        kubectl logs $(first-running-pod $1) $2
+    else
+        kubectl logs $(first-running-pod) $1
+    fi
 }
 
 frankfurt() {
     export DEIS_PROFILE=frankfurt
-    kubectl config use-context frankfurt
     export AWS_DEFAULT_REGION=eu-central-1
+    export KUBECONFIG=$HOME/.kube/frankfurt.kubeconfig
 }
 
 tokyo() {
     export DEIS_PROFILE=tokyo
-    kubectl config use-context tokyo
     export AWS_DEFAULT_REGION=ap-northeast-1
+    export KUBECONFIG=$HOME/.kube/tokyo.kubeconfig
 }
 
 portland() {
     export DEIS_PROFILE=portland
-    kubectl config use-context portland
     export AWS_DEFAULT_REGION=us-west-2
+    export KUBECONFIG=$HOME/.kube/portland.kubeconfig
 }
 
 oregon-a() {
     export DEIS_PROFILE=oregon-b
-    kubectl config use-context oregon-a
     export AWS_DEFAULT_REGION=us-west-2
+    export KUBECONFIG=$HOME/.kube/oregon-a.kubeconfig
 }
 
 oregon-b() {
     export DEIS_PROFILE=oregon-b
-    kubectl config use-context oregon-b
     export AWS_DEFAULT_REGION=us-west-2
+    export KUBECONFIG=$HOME/.kube/oregon-b.kubeconfig
 }
 
 iowa-a() {
-    kubectl config use-context iowa-a
+    export KUBECONFIG=$HOME/.kube/iowa-a.kubeconfig
+}
+
+docker-for-desktop() {
+    export KUBECONFIG=$HOME/.kube/config
+    kubectl config use-context docker-for-desktop
 }
