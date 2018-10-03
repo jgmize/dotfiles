@@ -41,6 +41,7 @@ This function should only modify configuration layer settings."
       django
       docker
       emacs-lisp
+      ess
       evernote
       fasd ; brew install fasd
       git
