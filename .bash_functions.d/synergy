@@ -1,17 +1,13 @@
 #!/bin/bash
 
 synair() {
-    ssh -R 24800:localhost:24800 air.local 'killall synergyc; sleep 1; /Applications/syn.app/Contents/MacOS/synergyc -f -n air localhost'
+    ssh -R 24800:localhost:24800 ${1:-air.local} 'killall synergyc; sleep 1; /Applications/syn.app/Contents/MacOS/synergyc -f -n air localhost'
 }
 
 synmbp() {
-    ssh -R 24800:localhost:24800 mbp13.local 'killall synergyc; sleep 1; /Applications/Synergy.app/Contents/MacOS/synergyc -f localhost'
-}
-
-synx1c() {
-    ssh -R 24800:localhost:24800 x1c 'killall synergyc; sleep 1; synergyc -f localhost'
+    ssh -R 24800:localhost:24800 ${1:-mbp13.local} 'killall synergyc; sleep 1; /Applications/Synergy.app/Contents/MacOS/synergyc -f localhost'
 }
 
 synx250() {
-    ssh -R 24800:localhost:24800 x250 'killall synergyc; sleep 1; DISPLAY=:0 synergyc -f localhost'
+    ssh -R 24800:localhost:24800 ${1:-x250.local} 'killall synergyc; sleep 1; DISPLAY=:0 synergyc -f localhost'
 }
