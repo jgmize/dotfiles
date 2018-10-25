@@ -68,10 +68,10 @@ frankfurt() {
     export KUBECONFIG=$HOME/.kube/frankfurt.kubeconfig
 }
 
-tokyo() {
-    export DEIS_PROFILE=tokyo
-    export AWS_DEFAULT_REGION=ap-northeast-1
-    export KUBECONFIG=$HOME/.kube/tokyo.kubeconfig
+frankfurt-b() {
+    export DEIS_PROFILE=frankfurt-b
+    export AWS_DEFAULT_REGION=eu-central-1
+    export KUBECONFIG=$HOME/.kube/frankfurt-b.kubeconfig
 }
 
 portland() {
