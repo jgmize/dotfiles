@@ -100,6 +100,10 @@ iowa-b() {
     export KUBECONFIG=$HOME/.kube/iowa-b.kubeconfig
 }
 
+iowa-c() {
+    export KUBECONFIG=$HOME/.kube/iowa-c.kubeconfig
+}
+
 docker-for-desktop() {
     export KUBECONFIG=$HOME/.kube/config
     kubectl config use-context docker-for-desktop
