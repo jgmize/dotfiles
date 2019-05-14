@@ -4,8 +4,6 @@ cd $HOME
 for f in $dotfiles; do
     ln -sf dotfiles/$f;
 done;
-mkdir -p .config/terminator
-ln -sf $HOME/{dotfiles/,}.config/terminator/config
 
 if [ "$(which emacs)" ]; then
     if [ ! -e ~/.emacs.d ]; then
