@@ -54,6 +54,11 @@ k8s-bash() {
     k8s-exec $1 $2 bash
 }
 
+k8s-r00t() {
+    # https://mobile.twitter.com/mauilion/status/1129468485480751104
+    kubectl run r00t --restart=Never -ti --rm --image lol --overrides '{"spec":{"hostPID": true, "containers":[{"name":"1","image":"alpine","command":["nsenter","--mount=/proc/1/ns/mnt","--","/bin/bash"],"stdin": true,"tty":true,"securityContext":{"privileged":true}}]}}'
+}
+
 k8s-logs() {
     if [[ -n "$2" ]]; then
         kubectl logs $(first-running-pod $1) $2
@@ -66,6 +71,9 @@ frankfurt() {
     export DEIS_PROFILE=frankfurt
     export AWS_DEFAULT_REGION=eu-central-1
     export KUBECONFIG=$HOME/.kube/frankfurt.kubeconfig
+    if [[ -n "$1" ]]; then
+        export KUBECONFIG=$HOME/.kube/frankfurt.vpn.kubeconfig
+    fi
 }
 
 frankfurt-b() {
