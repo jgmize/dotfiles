@@ -120,5 +120,9 @@ if [ "$(which aws_completer 2> /dev/null)" ]; then
     complete -C $(which aws_completer) aws
 fi
 
+if [[ -e $HOME/Library/Python/3.7/bin ]]; then
+    PATH=$PATH:$HOME/Library/Python/3.7/bin
+fi
+
 # dedupe path
 PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
