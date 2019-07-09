@@ -124,5 +124,9 @@ if [[ -e $HOME/Library/Python/3.7/bin ]]; then
     PATH=$PATH:$HOME/Library/Python/3.7/bin
 fi
 
+if [[ -e /usr/local/opt/grep/libexec/gnubin ]]; then
+    PATH=/usr/local/opt/grep/libexec/gnubin:$PATH
+fi
+
 # dedupe path
 PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
