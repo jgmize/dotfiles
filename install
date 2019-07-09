@@ -8,6 +8,7 @@ done;
 if [ "$(which emacs)" ]; then
     if [ ! -e ~/.emacs.d ]; then
         git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
+        git co develop
     fi
     DIR=.emacs.d/.cache/eshell
     mkdir -p ~/$DIR
