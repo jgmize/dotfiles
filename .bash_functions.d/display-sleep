@@ -1,6 +1,7 @@
 if [[ "$(uname)" == "Darwin" ]]; then
   ds() { pmset displaysleepnow; }
   dsb() { ds; ssh -t x1c.local 'bash -ic ds'; }
+  ss() { open -a ScreenSaverEngine; }
 else
   ds() { export DISPLAY=:0.0; xset dpms force off; gnome-screensaver-command -l; }
   dsb() { ds; ssh -t air.local 'bash -ic ds'; }
