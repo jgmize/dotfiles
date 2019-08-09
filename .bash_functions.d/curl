@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# redirect location
+rl() {
+  curl -Is https://$1 | awk '/ocation/ {print $2}';
+}
