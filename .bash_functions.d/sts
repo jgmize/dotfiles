@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# copied from https://github.com/metadave/sts-helper#paste-this-function-into-your-bashrc
+function sts_assume() {
+     read -p "Helper profile: " prof
+     read -p "MFA token: " token
+     eval $(sts-helper assume-role --helper-profile $prof --token $token)
+}
