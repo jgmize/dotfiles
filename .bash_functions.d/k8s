@@ -88,28 +88,18 @@ portland() {
     export KUBECONFIG=$HOME/.kube/portland.kubeconfig
 }
 
-oregon-a() {
-    export DEIS_PROFILE=oregon-b
+kubeconf(){
+    export KUBECONFIG=$HOME/.kube/${1:-"oregon-a-vpn"}.kubeconfig
+}
+
+oregon() {
+    export DEIS_PROFILE=oregon${1:-"-b"}
     export AWS_DEFAULT_REGION=us-west-2
-    export KUBECONFIG=$HOME/.kube/oregon-a.kubeconfig
+    kubeconf oregon${1:-"-b"}
 }
 
-oregon-b() {
-    export DEIS_PROFILE=oregon-b
-    export AWS_DEFAULT_REGION=us-west-2
-    export KUBECONFIG=$HOME/.kube/oregon-b.kubeconfig
-}
-
-iowa-a() {
-    export KUBECONFIG=$HOME/.kube/iowa-a.kubeconfig
-}
-
-iowa-b() {
-    export KUBECONFIG=$HOME/.kube/iowa-b.kubeconfig
-}
-
-iowa-c() {
-    export KUBECONFIG=$HOME/.kube/iowa-c.kubeconfig
+iowa() {
+    kubeconf iowa${1:-"-a"}
 }
 
 docker-for-desktop() {
