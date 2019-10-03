@@ -2,9 +2,8 @@
 
 # copied from https://github.com/metadave/sts-helper#paste-this-function-into-your-bashrc
 function sts_assume() {
-    unset AWS_SESSION_TOKEN
-    unset AWS_SECRET_ACCESS_KEY
-    read -p "AWS_PROFILE: " AWS_PROFILE
+    echo set AWS_PROFILE
+    echo unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
     read -p "Helper profile: " prof
     read -p "MFA token: " token
     eval $(sts-helper assume-role --helper-profile $prof --token $token)
