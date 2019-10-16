@@ -67,6 +67,20 @@ k8s-logs() {
     fi
 }
 
+k8s-pending-drain(){
+    for node in $(kubectl get nodes | awk '/SchedulingDisabled/ {print $1}'); do
+        kubectl get pods --all-namespaces -o wide | grep $node;
+    done
+}
+
+k8s-non-running-pods(){
+    kubectl get pods --all-namespaces --field-selector=status.phase!=Running -o wide
+}
+
+k8s-non-ready-containers(){
+    kubectl get pods --all-namespaces -o wide | grep -Ev "([0-9]+)/\1"
+}
+
 frankfurt() {
     export DEIS_PROFILE=frankfurt
     export AWS_DEFAULT_REGION=eu-central-1
