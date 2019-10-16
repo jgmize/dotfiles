@@ -90,6 +90,12 @@ elif [ -f ~/dotfiles/.bash_aliases ]; then
     . ~/dotfiles/.bash_aliases
 fi
 
+if [ -d ~/dotfiles/.bash_functions.d ]; then
+    for f in ~/dotfiles/.bash_functions.d/*; do
+        source $f
+    done
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
