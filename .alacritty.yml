@@ -60,10 +60,9 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  #startup_mode: Maximized
-  # uncommenting the above with decorations: none results in crash
+  startup_mode: Maximized
   # https://github.com/jwilm/alacritty/issues/2877#issuecomment-558631007
-  # upstream fix: https://github.com/rust-windowing/winit/pull/1323
+  # https://github.com/jwilm/alacritty/pull/3133
 
   # Window title
   #title: Alacritty
