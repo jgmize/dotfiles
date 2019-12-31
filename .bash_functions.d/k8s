@@ -22,7 +22,7 @@ ns() {
     kubectl config set-context $(kubectl config current-context) --namespace=$1
 }
 
-first-running-pod() {
+k8s-pod() {
     if [[ -n "$1" ]]; then
         kubectl get pods | grep $1 | awk '/Running/ {print $1; exit;}'
     else
@@ -44,9 +44,9 @@ restart-pods() {
 
 k8s-exec() {
     if [[ -n "$2" ]]; then
-        kubectl exec -it $(first-running-pod $1) $2
+        kubectl exec -it $(k8s-pod $1) $2
     else
-        kubectl exec -it $(first-running-pod) $1
+        kubectl exec -it $(k8s-pod) $1
     fi
 }
 
@@ -61,9 +61,9 @@ k8s-r00t() {
 
 k8s-logs() {
     if [[ -n "$2" ]]; then
-        kubectl logs $(first-running-pod $1) $2
+        kubectl logs $(k8s-pod $1) $2
     else
-        kubectl logs $(first-running-pod) $1
+        kubectl logs $(k8s-pod) $1
     fi
 }
 
