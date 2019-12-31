@@ -60,11 +60,7 @@ k8s-r00t() {
 }
 
 k8s-logs() {
-    if [[ -n "$2" ]]; then
-        kubectl logs $(k8s-pod $1) $2
-    else
-        kubectl logs $(k8s-pod) $1
-    fi
+    kubectl logs $(k8s-pod $1) $2
 }
 
 k8s-pending-drain(){
