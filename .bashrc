@@ -136,3 +136,5 @@ fi
 
 # dedupe path
 PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
