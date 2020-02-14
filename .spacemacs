@@ -529,6 +529,16 @@ you should place your code here."
        (setq org-export-backends (quote (ascii beamer html icalendar latex md odt rst)))
        (setq org-hide-emphasis-markers t)
      ))
+
+  (defun insert-date()
+    (interactive)
+    (insert (format-time-string "%Y-%m-%d")))
+  (spacemacs/set-leader-keys "id" 'insert-date)
+
+  (defun insert-timestamp ()
+    (interactive)
+    (insert (format-time-string "%Y%m%d%H%M")))
+  (spacemacs/set-leader-keys "it" 'insert-timestamp)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
