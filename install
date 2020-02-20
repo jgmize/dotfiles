@@ -13,7 +13,7 @@ if [ "$(which vim)" ]; then
     mkdir -p ~/.vim/bundle
     cd ~/.vim/bundle
     if [ ! -e vundle ]; then
-        git clone https://github.com/gmarik/vundle.git
+        git clone --depth 1 https://github.com/gmarik/vundle.git
     fi
     #vim +BundleInstall +qall &>/dev/null
 fi
