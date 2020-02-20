@@ -5,14 +5,8 @@ for f in $dotfiles; do
     ln -sf dotfiles/$f;
 done;
 
-if [ "$(which emacs)" ]; then
-    if [ ! -e ~/.emacs.d ]; then
-        git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
-        git co develop
-    fi
-    DIR=.emacs.d/.cache/eshell
-    mkdir -p ~/$DIR
-    ln -sf ~/dotfiles/$DIR/alias ~/$DIR/alias
+if [[ "$(which emacs)" && ! -e ~/.emacs.d ]]; then
+    git clone -b develop --depth 1 --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
 fi
 
 if [ "$(which vim)" ]; then
