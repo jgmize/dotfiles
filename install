@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 dotfiles=".ackrc .bashrc .gitconfig .hgrc .profile .spacemacs .synergy.conf .tmux.conf .vimrc"
 cd $HOME
 for f in $dotfiles; do
