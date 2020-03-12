@@ -44,7 +44,6 @@ This function should only modify configuration layer settings."
       ess
       evernote
       git
-      github
       go
       helm
       html
