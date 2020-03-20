@@ -58,9 +58,9 @@ k8s-forward(){
     kubectl port-forward $(k8s-pod $1) $2
 }
 
-k8s-r00t() {
+k8s-root() {
     # https://mobile.twitter.com/mauilion/status/1129468485480751104
-    kubectl run r00t --restart=Never -ti --rm --image lol --overrides '{"spec":{"hostPID": true, "containers":[{"name":"1","image":"alpine","command":["nsenter","--mount=/proc/1/ns/mnt","--","/bin/bash"],"stdin": true,"tty":true,"securityContext":{"privileged":true}}]}}'
+    kubectl run root --restart=Never -ti --rm --image overridden --overrides '{"spec":{"hostPID": true, "containers":[{"name":"1","image":"alpine","command":["nsenter","--mount=/proc/1/ns/mnt","--","/bin/bash"],"stdin": true,"tty":true,"securityContext":{"privileged":true}}]}}'
 }
 
 k8s-logs() {
