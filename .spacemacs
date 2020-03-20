@@ -49,7 +49,9 @@ This function should only modify configuration layer settings."
       html
       ipython-notebook
       javascript ; npm install -g tern
-      (markdown :variables markdown-live-preview-engine 'vmd) ; npm install -g vmd
+      (markdown :variables
+                markdown-live-preview-engine 'vmd ; npm install -g vmd
+                markdown-fontify-code-blocks-natively t)
       nginx
       ; ocaml ; brew install opam && opam init
       (org :variables
