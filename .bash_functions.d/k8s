@@ -120,3 +120,8 @@ docker-for-desktop() {
     export KUBECONFIG=$HOME/.kube/config
     kubectl config use-context docker-for-desktop
 }
+
+k8s-decode-secret() {
+    # adapted from https://stackoverflow.com/a/58117444
+    kubectl get secret $1 -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+}
