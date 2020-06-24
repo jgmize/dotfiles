@@ -19,7 +19,7 @@ k8s-master-labels() {
 }
 
 ns() {
-    kubectl config set-context $(kubectl config current-context) --namespace=$1
+    kubectl config set-context --current-context --namespace=$1
 }
 
 k8s-pod() {
