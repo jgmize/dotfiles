@@ -1,0 +1,9 @@
+~=cd %userprofile%
+..=cd ..
+...=cd ..\..
+....=cd ..\..\..
+.....=cd ..\..\..\..
+......=cd ..\..\..\..\..
+ns=kubectl config set-context --current --namespace=$1
+e=code $*
+ls=ls --color $*
