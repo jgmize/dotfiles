@@ -97,6 +97,54 @@
       "command": "workbench.action.terminal.sendSequence",
       "args": { "text": "\u0001" }
     },
+    {
+      "key": "ctrl+a 1",
+      "command": "workbench.action.terminal.focusAtIndex1"
+    },
+    {
+      "key": "ctrl+a 2",
+      "command": "workbench.action.terminal.focusAtIndex2"
+    },
+    {
+      "key": "ctrl+a 3",
+      "command": "workbench.action.terminal.focusAtIndex3"
+    },
+    {
+      "key": "ctrl+a 4",
+      "command": "workbench.action.terminal.focusAtIndex4"
+    },
+    {
+      "key": "ctrl+a 5",
+      "command": "workbench.action.terminal.focusAtIndex5"
+    },
+    {
+      "key": "ctrl+a 6",
+      "command": "workbench.action.terminal.focusAtIndex6"
+    },
+    {
+      "key": "ctrl+a 7",
+      "command": "workbench.action.terminal.focusAtIndex7"
+    },
+    {
+      "key": "ctrl+a 8",
+      "command": "workbench.action.terminal.focusAtIndex8"
+    },
+    {
+      "key": "ctrl+a 9",
+      "command": "workbench.action.terminal.focusAtIndex9"
+    },
+    {
+      "key": "ctrl+a x",
+      "command": "workbench.action.terminal.kill"
+    },
+    {
+      "key": "ctrl+t ctrl+a",
+      "command": "workbench.action.toggleActivityBarVisibility"
+    },
+    {
+      "key": "ctrl+t ctrl+k",
+      "command": "workbench.view.extension.kubernetesView"
+    },
     // copied from edamagit vim support
     {
       "key": "tab",
@@ -151,53 +199,5 @@
     {
       "key": "ctrl+u x",
       "command": "-magit.reset-hard"
-    },
-    {
-      "key": "ctrl+a 1",
-      "command": "workbench.action.terminal.focusAtIndex1"
-    },
-    {
-      "key": "ctrl+a 2",
-      "command": "workbench.action.terminal.focusAtIndex2"
-    },
-    {
-      "key": "ctrl+a 3",
-      "command": "workbench.action.terminal.focusAtIndex3"
-    },
-    {
-      "key": "ctrl+a 4",
-      "command": "workbench.action.terminal.focusAtIndex4"
-    },
-    {
-      "key": "ctrl+a 5",
-      "command": "workbench.action.terminal.focusAtIndex5"
-    },
-    {
-      "key": "ctrl+a 6",
-      "command": "workbench.action.terminal.focusAtIndex6"
-    },
-    {
-      "key": "ctrl+a 7",
-      "command": "workbench.action.terminal.focusAtIndex7"
-    },
-    {
-      "key": "ctrl+a 8",
-      "command": "workbench.action.terminal.focusAtIndex8"
-    },
-    {
-      "key": "ctrl+a 9",
-      "command": "workbench.action.terminal.focusAtIndex9"
-    },
-    {
-      "key": "ctrl+a x",
-      "command": "workbench.action.terminal.kill"
-    },
-    {
-      "key": "ctrl+t ctrl+a",
-      "command": "workbench.action.toggleActivityBarVisibility"
-    },
-    {
-      "key": "ctrl+t ctrl+k",
-      "command": "workbench.view.extension.kubernetesView"
     }
 ]
