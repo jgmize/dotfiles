@@ -1,0 +1,203 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "ctrl+t ctrl+m",
+        "command": "workbench.action.toggleMaximizedPanel"
+    },
+    {
+        "key": "ctrl+t ctrl+s",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "editor.action.openLink",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+i ctrl+d",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus",
+        "args": {
+            "snippet": "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE"
+        }
+    },
+    {
+        "key": "ctrl+i ctrl+t",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus",
+        "args": {
+            "snippet": "$CURRENT_YEAR$CURRENT_MONTH$CURRENT_DATE$CURRENT_HOUR$CURRENT_MINUTE"
+        }
+    },
+    // this breaks normal ctrl+c behavior
+    // {
+    //     "key": "ctrl+c ctrl+c",
+    //     "command": "markdown-checkbox.markCheckbox",
+    //     "when": "editorTextFocus"
+    // },
+    // {
+    //     "key": "ctrl+c ctrl+c",
+    //     "command": "-markdown-checkbox.markCheckbox",
+    //     "when": "editorTextFocus"
+    // },
+    {
+        "key": "ctrl+t ctrl+t",
+        "command": "markdown-checkbox.markCheckbox",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+t ctrl+t",
+        "command": "-markdown-checkbox.markCheckbox",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "-extension.vim_ctrl+k",
+        "when": "editorTextFocus && vim.active && vim.use<C-k> && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+g ctrl+s",
+        "command": "git.revealInExplorer"
+    },
+    {
+        "key": "ctrl+t ctrl+shift+s",
+        "command": "workbench.action.toggleStatusbarVisibility"
+    },
+    // ported from tmux config
+    {
+        "key": "ctrl+a n",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+a p",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+a v",
+        "command": "workbench.action.terminal.split",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+5",
+        "command": "-workbench.action.terminal.split",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+a shift+a",
+        "command": "workbench.action.terminal.rename"
+    },
+    {
+        "key": "ctrl+a c",
+        "command": "workbench.action.terminal.new"
+    },
+    {
+      "key": "ctrl+a a",
+      "command": "workbench.action.terminal.sendSequence",
+      "args": { "text": "\u0001" }
+    },
+    // copied from edamagit vim support
+    {
+      "key": "tab",
+      "command": "extension.vim_tab",
+      "when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'"
+    },
+    {
+      "key": "tab",
+      "command": "-extension.vim_tab",
+      "when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'"
+    },
+    {
+      "key": "x",
+      "command": "magit.discard-at-point",
+      "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+    },
+    {
+      "key": "k",
+      "command": "-magit.discard-at-point"
+    },
+    {
+      "key": "-",
+      "command": "magit.reverse-at-point",
+      "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+    },
+    {
+      "key": "v",
+      "command": "-magit.reverse-at-point"
+    },
+    {
+      "key": "shift+-",
+      "command": "magit.reverting",
+      "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+    },
+    {
+      "key": "shift+v",
+      "command": "-magit.reverting"
+    },
+    {
+      "key": "shift+o",
+      "command": "magit.resetting",
+      "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+    },
+    {
+      "key": "shift+x",
+      "command": "-magit.resetting"
+    },
+    {
+      "key": "x",
+      "command": "-magit.reset-mixed"
+    },
+    {
+      "key": "ctrl+u x",
+      "command": "-magit.reset-hard"
+    },
+    {
+      "key": "ctrl+a 1",
+      "command": "workbench.action.terminal.focusAtIndex1"
+    },
+    {
+      "key": "ctrl+a 2",
+      "command": "workbench.action.terminal.focusAtIndex2"
+    },
+    {
+      "key": "ctrl+a 3",
+      "command": "workbench.action.terminal.focusAtIndex3"
+    },
+    {
+      "key": "ctrl+a 4",
+      "command": "workbench.action.terminal.focusAtIndex4"
+    },
+    {
+      "key": "ctrl+a 5",
+      "command": "workbench.action.terminal.focusAtIndex5"
+    },
+    {
+      "key": "ctrl+a 6",
+      "command": "workbench.action.terminal.focusAtIndex6"
+    },
+    {
+      "key": "ctrl+a 7",
+      "command": "workbench.action.terminal.focusAtIndex7"
+    },
+    {
+      "key": "ctrl+a 8",
+      "command": "workbench.action.terminal.focusAtIndex8"
+    },
+    {
+      "key": "ctrl+a 9",
+      "command": "workbench.action.terminal.focusAtIndex9"
+    },
+    {
+      "key": "ctrl+a x",
+      "command": "workbench.action.terminal.kill"
+    },
+    {
+      "key": "ctrl+t ctrl+a",
+      "command": "workbench.action.toggleActivityBarVisibility"
+    },
+    {
+      "key": "ctrl+t ctrl+k",
+      "command": "workbench.view.extension.kubernetesView"
+    }
+]
