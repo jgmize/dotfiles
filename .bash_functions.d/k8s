@@ -43,11 +43,11 @@ restart-pods() {
 }
 
 k8s-exec() {
-    if [[ -n "$2" ]]; then
-        kubectl exec -it $(k8s-pod $1) $2
-    else
-        kubectl exec -it $(k8s-pod) $1
-    fi
+    kubectl exec -it $(k8s-pod $1) -- ${@:2:99}
+}
+
+k8s-az() {
+    kubectl exec -it -n provisioning $(kubectl get pods -n provisioning | awk '/az-cli/ {print $1}') -- az $*
 }
 
 k8s-bash() {
@@ -55,7 +55,7 @@ k8s-bash() {
 }
 
 k8s-forward(){
-    kubectl port-forward $(k8s-pod $1) $2
+    kubectl port-forward $(k8s-pod $1) ${@:2:99}
 }
 
 k8s-root() {
