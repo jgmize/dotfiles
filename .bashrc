@@ -103,7 +103,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-export EDITOR="emacsclient"
+export EDITOR="emacsclient -s tty"
 
 if [ -d $HOME/google-cloud-sdk ]; then
     source $HOME/google-cloud-sdk/path.bash.inc

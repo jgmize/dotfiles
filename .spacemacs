@@ -70,10 +70,12 @@ This function should only modify configuration layer settings."
       python
       rust
       (shell :variables shell-default-shell 'multi-term)
+      sql
       syntax-checking
       terraform
       (version-control :variables
                        version-control-global-margin nil)
+      windows-scripts
       yaml)
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these

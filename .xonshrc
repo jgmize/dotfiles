@@ -1,0 +1,16 @@
+aliases['..'] = 'cd ..'
+# '...' is already used by xonsh
+aliases['....'] = 'cd ../..'
+aliases['.....'] = 'cd ../../..'
+aliases['......'] = 'cd ../../../..'
+
+
+def edt():
+    if not !(emacsclient -s tty --eval "t" 2>&1 > /dev/null):
+        return !(emacs --daemon=tty)
+
+def e(args, **kwargs):
+    if not !(emacsclient --no-wait "@(args.split())" 2>/dev/null):
+        edt() and emacsclient -s tty --no-wait "$@" 2>/dev/null
+
+aliases['e'] = e

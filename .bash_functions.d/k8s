@@ -59,7 +59,7 @@ k8s-forward(){
 }
 
 k8s-root() {
-    # https://mobile.twitter.com/mauilion/status/1129468485480751104
+    # ported from  https://mobile.twitter.com/mauilion/status/1129468485480751104
     kubectl run root --restart=Never -ti --rm --image overridden --overrides '{"spec":{"hostPID": true, "containers":[{"name":"1","image":"alpine","command":["nsenter","--mount=/proc/1/ns/mnt","--","/bin/bash"],"stdin": true,"tty":true,"securityContext":{"privileged":true}}]}}'
 }
 
