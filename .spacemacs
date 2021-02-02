@@ -73,6 +73,7 @@ This function should only modify configuration layer settings."
       sql
       syntax-checking
       terraform
+      typescript
       (version-control :variables
                        version-control-global-margin nil)
       windows-scripts
@@ -497,6 +498,7 @@ you should place your code here."
     (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
   (add-to-list 'warning-suppress-types '(undo discard-info))
   (add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
   (add-hook 'term-mode-hook
             (lambda ()
               (define-key evil-insert-state-local-map (kbd "C-a") 'term-send-raw)
