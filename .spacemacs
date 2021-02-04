@@ -49,6 +49,9 @@ This function should only modify configuration layer settings."
       html
       ipython-notebook
       javascript ; npm install -g tern
+      (lsp :variables
+           lsp-rust-server 'rust-analyzer
+           lsp-rust-analyzer-server-display-inlay-hints t)
       (markdown :variables
                 markdown-live-preview-engine 'vmd ; npm install -g vmd
                 markdown-fontify-code-blocks-natively t)
@@ -68,7 +71,8 @@ This function should only modify configuration layer settings."
           org-journal-time-format "")
       pandoc ; brew install pandoc
       python
-      rust
+      (rust :variables
+            rust-format-on-save t)
       (shell :variables shell-default-shell 'multi-term)
       sql
       syntax-checking
