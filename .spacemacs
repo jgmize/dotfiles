@@ -501,8 +501,13 @@ you should place your code here."
     (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
     (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
   (add-to-list 'warning-suppress-types '(undo discard-info))
+
   (add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+  (add-to-list 'auto-mode-alist '("\\.aws/credentials\\'" . conf-mode))
+  ;; TODO: look into better way of managing auto-mode-alist
+  ;; especially updating existing regex for conf-mode
+
   (add-hook 'term-mode-hook
             (lambda ()
               (define-key evil-insert-state-local-map (kbd "C-a") 'term-send-raw)
