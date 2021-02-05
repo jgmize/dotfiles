@@ -70,18 +70,7 @@ This function should only modify configuration layer settings."
           org-export-with-sub-superscripts nil
           org-export-babel-evaluate nil
           org-export-backends (quote (ascii beamer html icalendar latex md odt rst))
-          org-hide-emphasis-markers t
-          ;org-enable-bootstrap-support t
-          ;org-enable-reveal-js-support t
-          ;org-enable-org-journal-support t
-          ;org-journal-dir "~/org/journal/"
-          ;; including the .org extension as above breaks the calendar search (see
-          ;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/%2Bemacs/org/README.org#org-journal-support
-          ;; but makes it usable from orgzly
-          ;org-journal-file-format "%Y-%m-%d.org"
-          ;org-journal-date-format "%Y-%m-%d %a"
-          ;org-journal-time-format ""
-          )
+          org-hide-emphasis-markers t)
       pandoc ; brew install pandoc
       python
       (rust :variables
