@@ -59,17 +59,29 @@ This function should only modify configuration layer settings."
       nginx
       ; ocaml ; brew install opam && opam init
       (org :variables
-          org-enable-org-journal-support t
           org-enable-github-support t
+          org-src-fontify-natively t
+          ;; Use current window when switch to source block
+          org-src-window-setup 'current-window
+          ;; Disable prompting to evaluate babel blocks
+          org-confirm-babel-evaluate nil
+          org-export-with-drawers t
+          org-export-with-section-numbers nil
+          org-export-with-sub-superscripts nil
+          org-export-babel-evaluate nil
+          org-export-backends (quote (ascii beamer html icalendar latex md odt rst))
+          org-hide-emphasis-markers t
           ;org-enable-bootstrap-support t
           ;org-enable-reveal-js-support t
-          org-journal-dir "~/org/journal/"
+          ;org-enable-org-journal-support t
+          ;org-journal-dir "~/org/journal/"
           ;; including the .org extension as above breaks the calendar search (see
           ;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/%2Bemacs/org/README.org#org-journal-support
           ;; but makes it usable from orgzly
-          org-journal-file-format "%Y-%m-%d.org"
-          org-journal-date-format "%Y-%m-%d %a"
-          org-journal-time-format "")
+          ;org-journal-file-format "%Y-%m-%d.org"
+          ;org-journal-date-format "%Y-%m-%d %a"
+          ;org-journal-time-format ""
+          )
       pandoc ; brew install pandoc
       python
       (rust :variables
@@ -585,18 +597,6 @@ you should place your code here."
           ))
        (add-to-list 'org-structure-template-alist
                     '("S" "#+BEGIN_SRC sh :exports both :results output org\n?\n#+END_SRC"))
-       ;; fontify source code
-       (setq org-src-fontify-natively t)
-       ;; Use current window when switch to source block
-       (setq org-src-window-setup 'current-window)
-       ;; Disable prompting to evaluate babel blocks
-       (setq org-confirm-babel-evaluate nil)
-       (setq org-export-with-drawers t)
-       (setq org-export-with-section-numbers nil)
-       (setq org-export-with-sub-superscripts nil)
-       (setq org-export-babel-evaluate nil)
-       (setq org-export-backends (quote (ascii beamer html icalendar latex md odt rst)))
-       (setq org-hide-emphasis-markers t)
      ))
 
   (defun insert-date()
