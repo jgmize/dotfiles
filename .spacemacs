@@ -58,18 +58,19 @@ This function should only modify configuration layer settings."
      nginx
      ; ocaml ; brew install opam && opam init
      (org :variables
-         org-enable-github-support t
-         org-src-fontify-natively t
-         ;; Use current window when switch to source block
-         org-src-window-setup 'current-window
-         ;; Disable prompting to evaluate babel blocks
          org-confirm-babel-evaluate nil
+         org-enable-github-support t
          org-export-with-drawers t
          org-export-with-section-numbers nil
          org-export-with-sub-superscripts nil
          org-export-babel-evaluate nil
          org-export-backends (quote (ascii beamer html icalendar latex md odt rst))
-         org-hide-emphasis-markers t)
+         org-hide-emphasis-markers t
+         org-src-fontify-natively t
+         ;; Use current window when switch to source block
+         org-src-window-setup 'current-window
+         ;; Disable prompting to evaluate babel blocks
+         org-superstar-leading-fallback ?\s)
      pandoc ; brew install pandoc
      python
      (rust :variables
