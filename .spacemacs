@@ -33,58 +33,57 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
-      ansible
-      better-defaults
-      (clojure :variables clojure-enable-fancify-symbols t)
-      csv
-      django
-      docker
-      emacs-lisp
-      ess
-      evernote
-      git
-      go
-      helm
-      html
-      ipython-notebook
-      javascript ; npm install -g tern
-      (lsp :variables
-           lsp-rust-server 'rust-analyzer
-           lsp-rust-analyzer-server-display-inlay-hints t)
-      (markdown :variables
-                markdown-live-preview-engine 'vmd ; npm install -g vmd
-                markdown-fontify-code-blocks-natively t)
-      multiple-cursors
-      nginx
-      ; ocaml ; brew install opam && opam init
-      (org :variables
-          org-enable-github-support t
-          org-src-fontify-natively t
-          ;; Use current window when switch to source block
-          org-src-window-setup 'current-window
-          ;; Disable prompting to evaluate babel blocks
-          org-confirm-babel-evaluate nil
-          org-export-with-drawers t
-          org-export-with-section-numbers nil
-          org-export-with-sub-superscripts nil
-          org-export-babel-evaluate nil
-          org-export-backends (quote (ascii beamer html icalendar latex md odt rst))
-          org-hide-emphasis-markers t)
-      pandoc ; brew install pandoc
-      python
-      (rust :variables
-            rust-format-on-save t)
-      (shell :variables shell-default-shell 'multi-term)
-      sql
-      syntax-checking
-      terraform
-      treemacs
-      typescript
-      (version-control :variables
-                       version-control-global-margin nil)
-      windows-scripts
-      yaml)
+   '(ansible
+     better-defaults
+     (clojure :variables clojure-enable-fancify-symbols t)
+     csv
+     django
+     docker
+     emacs-lisp
+     ess
+     evernote
+     git
+     go
+     helm
+     html
+     ipython-notebook
+     javascript ; npm install -g tern
+     (lsp :variables
+          lsp-rust-server 'rust-analyzer
+          lsp-rust-analyzer-server-display-inlay-hints t)
+     (markdown :variables
+               markdown-live-preview-engine 'vmd ; npm install -g vmd
+               markdown-fontify-code-blocks-natively t)
+     multiple-cursors
+     nginx
+     ; ocaml ; brew install opam && opam init
+     (org :variables
+         org-enable-github-support t
+         org-src-fontify-natively t
+         ;; Use current window when switch to source block
+         org-src-window-setup 'current-window
+         ;; Disable prompting to evaluate babel blocks
+         org-confirm-babel-evaluate nil
+         org-export-with-drawers t
+         org-export-with-section-numbers nil
+         org-export-with-sub-superscripts nil
+         org-export-babel-evaluate nil
+         org-export-backends (quote (ascii beamer html icalendar latex md odt rst))
+         org-hide-emphasis-markers t)
+     pandoc ; brew install pandoc
+     python
+     (rust :variables
+           rust-format-on-save t)
+     (shell :variables shell-default-shell 'multi-term)
+     sql
+     syntax-checking
+     terraform
+     treemacs
+     typescript
+     (version-control :variables
+                      version-control-global-margin nil)
+     windows-scripts
+     yaml)
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
