@@ -96,19 +96,8 @@ if [ -d ~/dotfiles/.bash_functions.d ]; then
     done
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
+export EDITOR="emacsclient"
 
-export EDITOR="emacsclient -s tty"
-
-if [ -d $HOME/google-cloud-sdk ]; then
-    source $HOME/google-cloud-sdk/path.bash.inc
-    source $HOME/google-cloud-sdk/completion.bash.inc
-fi
 
 if [ "$(which pyenv 2> /dev/null)" ]; then
     eval "$(pyenv init -)"
@@ -118,16 +107,29 @@ if [ -f "/google/devshell/bashrc.google" ]; then
     source "/google/devshell/bashrc.google"
 fi
 
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+# several of these files have errors
+if [ -d /usr/local/etc/bash_completion.d ]; then
+    for f in /usr/local/etc/bash_completion.d/*; do
+        source $f
+    done
+fi
+
+if [ -d $HOME/google-cloud-sdk ]; then
+    source $HOME/google-cloud-sdk/path.bash.inc
+    source $HOME/google-cloud-sdk/completion.bash.inc
+fi
 if [ "$(which kubectl 2> /dev/null)" ]; then
     source <(kubectl completion bash)
 fi
 
 if [ "$(which aws_completer 2> /dev/null)" ]; then
     complete -C $(which aws_completer) aws
-fi
-
-if [[ -e $HOME/Library/Python/3.7/bin ]]; then
-    PATH=$PATH:$HOME/Library/Python/3.7/bin
 fi
 
 if [[ -e /usr/local/opt/grep/libexec/gnubin ]]; then
