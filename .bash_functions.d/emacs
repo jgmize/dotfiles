@@ -1,28 +1,12 @@
 #!/bin/bash
 
-edt() {
-    if ! (emacsclient -s tty --eval "t" 2>&1 > /dev/null); then
-        emacs --daemon=tty;
-    fi;
-}
-redt() {
-    if ! (remacsclient -s tty --eval "t" 2>&1 > /dev/null); then
-        remacs --daemon=tty;
-    fi;
-}
+et() { emacsclient -t "$@"; }
 
-et() { edt && TERM=xterm-256color emacsclient -t -s tty "$@"; }
-ret() { redt && remacsclient -t -s tty "$@"; }
-
-etk() { emacsclient -t -s tty --eval "(save-buffers-kill-emacs)"; }
-retk() { remacsclient -t -s tty --eval "(save-buffers-kill-emacs)"; }
+etk() { emacsclient -t --eval "(save-buffers-kill-emacs)"; }
 
 e() {
-    emacsclient --no-wait "$@" 2>/dev/null || edt && \
-            emacsclient -s tty --no-wait "$@" 2>/dev/null;
-}
-re() {
-    remacsclient -s tty --no-wait "$@" 2>/dev/null || ret "$@";
+    emacsclient --no-wait "$@" 2>/dev/null || \
+    emacs "$@";
 }
 
 de() {

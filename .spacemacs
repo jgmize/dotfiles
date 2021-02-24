@@ -89,9 +89,11 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(groovy-mode
+   dotspacemacs-additional-packages '(cypher-mode
+                                      groovy-mode
                                       kubernetes
                                       kubernetes-evil
+                                      ob-cypher
                                       org-ehtml
                                       ox-rst
                                       web-server)
@@ -576,16 +578,18 @@ you should place your code here."
     '(progn
        (org-babel-do-load-languages
         'org-babel-load-languages
-        '((emacs-lisp . t)
+        '((clojure . t)
+          (cypher . t)
           (dot . t)
+          (emacs-lisp . t)
           (js . t)
           (python . t)
           (shell . t)
-          (clojure . t)
           (sqlite . t)
           ))
-       (add-to-list 'org-structure-template-alist
-                    '("S" "#+BEGIN_SRC sh :exports both :results output org\n?\n#+END_SRC"))
+       ;; TODO: update for changes to format in Org 9.2
+       ;; (add-to-list 'org-structure-template-alist
+       ;;              '("S" "#+BEGIN_SRC sh :exports both :results output org\n?\n#+END_SRC"))
      ))
 
   (defun insert-date()
