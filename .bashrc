@@ -123,6 +123,9 @@ fi
 if [ -d $HOME/google-cloud-sdk ]; then
     source $HOME/google-cloud-sdk/path.bash.inc
     source $HOME/google-cloud-sdk/completion.bash.inc
+elif [ -d /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]; then
+    source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
+    source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
 fi
 if [ "$(which kubectl 2> /dev/null)" ]; then
     source <(kubectl completion bash)
@@ -134,6 +137,11 @@ fi
 
 if [[ -e /usr/local/opt/grep/libexec/gnubin ]]; then
     PATH=/usr/local/opt/grep/libexec/gnubin:$PATH
+fi
+
+if [[ -e /tmp/docker.sock ]]; then
+    # created by gcloud-shell in ~/dotfiles/.bash_functions.d/gcloud
+    export DOCKER_HOST=unix:///tmp/docker.sock
 fi
 
 # dedupe path
