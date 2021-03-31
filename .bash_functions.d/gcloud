@@ -1,6 +1,6 @@
 #!/bin/bash
 
 gcloud-shell() {
-  gcloud alpha cloud-shell ssh --authorize-session --  -L /tmp/docker.sock:/var/run/docker.sock;
+  gcloud alpha cloud-shell ssh --authorize-session --  -L /tmp/docker.sock:/var/run/docker.sock $*;
   rm /tmp/docker.sock;
 }
