@@ -58,6 +58,7 @@ This function should only modify configuration layer settings."
      nginx
      ; ocaml ; brew install opam && opam init
      (org :variables
+         org-adapt-indentation nil
          org-confirm-babel-evaluate nil
          org-enable-github-support t
          org-export-with-drawers t
