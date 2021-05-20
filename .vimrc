@@ -28,6 +28,9 @@ Bundle 'slimv.vim'
 Bundle 'hylang/vim-hy'
 Bundle 'ivanov/vim-ipython'
 Bundle 'vim-scripts/vim-less'
+Bundle 'tpope/vim-speeddating'
+Bundle 'jceb/vim-orgmode'
+Bundle 'utl.vim'
 
 filetype plugin on
 
