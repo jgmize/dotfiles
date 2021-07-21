@@ -1,0 +1,3 @@
+#!/bin/bash
+
+win11() { open ~/Parallels/Windows\ 11.pvm; }
