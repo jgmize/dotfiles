@@ -1,0 +1,105 @@
+exit
+git
+git clone https://github.com/jgmize/dotfiles
+dotfiles/install 
+exit
+ta
+sudo ls
+aws
+sudo apt update
+sudo apt upgrade
+apt search mosquitto
+sudo apt install mosquitto-clients
+sudo apt install tmux
+ta
+ssh -p 2222 jgmize@localhost
+ssh -p 2222 jgmize@localhost
+ta
+emacs
+sudo snap install emacs
+sudo snap install emacs --classic
+dotfiles/install 
+history -w ~/dotfiles/.histories/$(date '+%Y%m%d%H%M').3
+cd src/sfp/infrastructure/mqtt/prod
+ls
+cp mqtt_{s,p}ub.sh 
+vim
+vim mqtt_pub.sh 
+sh mqtt_pub.sh 
+vim mqtt_pub.sh 
+sh mqtt_pub.sh 
+history -w ~/dotfiles/.histories/.0
+history -w ~/dotfiles/.histories/$(date '+%Y%m%d%H%M').0
+cd src
+mkdir src
+cd src/
+ls
+mkdir -p sfp/infrastructure
+cd sfp/infrastructure/
+ls
+cd mqtt/prod/
+ls
+sh mqtt_sub.sh 
+history
+history -w ~/dotfiles/.histories/$(date '+%Y%m%d%H%M').0.0
+cd dotfiles/.histories/
+ls
+history -w .1
+cat .w
+cat .1
+history -w ~/dotfiles/.histories/$(date '+%Y%m%d%H%M').1.1
+ps aux | grep gitlab-runner
+echo ${arch}
+export arch=amd64
+curl -LJO "https://gitlab-runner-downloads.s3.amazonaws.com/latest/deb/gitlab-runner_${arch}.deb"
+sudo dpkg -i gitlab-runner_${arch}.deb
+sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list 
+sudo apt-get update -y
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+sudo apt-get update -y
+cd /etc/apt/sources.list.d/
+ls
+sudo rm docker.list 
+echo   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
+sudo apt update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+history
+history --help
+ls ~/.bash_history
+cat ~/.bash_history 
+cd dotfiles
+history -w ~/dotfiles/.histories/$(date '+%Y%m%d%H%M').1.0
+history
+cd dotfiles/
+ls
+ls -a
+cargo
+rustup
+sudo snap install rustup
+apt search rustup
+sudo snap install rustup --classic
+ls .histories
+mkdir .histories
+history -w ~/dotfiles/.histories/.2
+ls
+cat .histories/1
+cat .histories/.1
+cat .histories/.2
+cat .histories/.3
+cat .histories/.0
+date
+date --help
+date %Y
+date '%Y'
+date '+%Y'
+date '+%Y%m%d'
+date '+%Y%m%d%H%M'
+history -w ~/dotfiles/.histories/$(date '+%Y%m%d%H%M').2
+ls .histories
+cd dotfiles/.histories/
+ls
+h

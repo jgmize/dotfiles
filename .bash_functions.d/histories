@@ -1,0 +1,7 @@
+h() {
+    timestamp=$(date '+%Y%m%d%H%M')
+    window_colon=$(tmux list-windows | awk '/\*/ {print $1}')
+    # %? strips the last character from a bash var, ':' in this case
+    window=${window_colon%?}
+    history -w ~/dotfiles/.histories/${timestamp}.${window};
+}
