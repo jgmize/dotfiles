@@ -6,7 +6,7 @@ tmux() {
     TMUX=$(which tmux)
     if [[ -z "${TMUX}" ]]; then
         #TODO: push this image
-        docker exec -it $default_image $*;
+        docker exec -it $default_image -- tmux $*;
     else
         ${TMUX} $*;
     fi
