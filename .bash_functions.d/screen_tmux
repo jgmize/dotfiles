@@ -6,7 +6,7 @@ default_image=jgmize/spacek8s:bullseye
 tmux() {
     TMUX=$(which tmux)
     if [[ -z "${TMUX}" ]]; then
-        docker run -it $default_image -v /:/mnt/host tmux $*;
+        docker run -v /:/mnt/host -it $default_image tmux $*;
     else
         ${TMUX} $*;
     fi
