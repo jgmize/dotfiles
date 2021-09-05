@@ -23,7 +23,13 @@ ns() {
 }
 
 k8s-ctx() {
-    kubectl config use-context $1
+    if [[ -n "$2" ]]; then
+        kubectl config rename-context $1 $2 ;
+    elif [[ -n "$1" ]]; then
+        kubectl config use-context $1 ;
+    else
+        kubectl config get-contexts ;
+    fi
 }
 
 k8s-pod() {
