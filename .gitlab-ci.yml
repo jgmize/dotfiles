@@ -14,14 +14,3 @@ build:
   only:
     refs:
       - build
-
-deploy:
-  stage: deploy
-  image: $CI_REGISTRY_IMAGE
-  variables:
-    ns: dotfiles
-  script:
-    - kubectl create ns ${ns}
-  only:
-    refs:
-      - create-ns
