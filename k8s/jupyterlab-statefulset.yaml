@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    application: jupyterlab
+  name: jupyterlab
+  namespace: dotfiles
+spec:
+  podManagementPolicy: OrderedReady
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      application: jupyterlab
+  serviceName: ""
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        application: jupyterlab
+      name: jupyterlab
+    spec:
+      containers:
+      - name: jupyterlab
+        # env:
+        #   - name: CUSTOM_DISPLAY_URL
+        #     value: https://TODO
+        image: registry.gitlab.com/jgmize/dotfiles
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8888
+          name: http
+          protocol: TCP
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /home/jovyan/work
+          name: work
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: jupyterlab
+      serviceAccountName: jupyterlab
+      terminationGracePeriodSeconds: 30
+  updateStrategy:
+    rollingUpdate:
+      partition: 0
+    type: RollingUpdate
+  volumeClaimTemplates:
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: work
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+      volumeMode: Filesystem
