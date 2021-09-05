@@ -17,6 +17,7 @@ build:
 
 deploy:
   stage: deploy
+  image: $CI_REGISTRY_IMAGE
   variables:
     ns: dotfiles
   script:
