@@ -45,3 +45,6 @@ aws-instances() {
     done) | column -t;
 }
 
+aws-azure-login() {
+    docker run --rm -it -v ~/.aws:/root/.aws sportradar/aws-azure-login "$@"
+}
