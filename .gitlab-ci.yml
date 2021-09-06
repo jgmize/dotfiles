@@ -8,7 +8,7 @@ build-jupyterlab:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
   script:
-    - bash .kaniko-build.sh
+    - sh .kaniko-build.sh
   only:
     refs:
       - build
@@ -19,7 +19,7 @@ build-gitpod:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
   script:
-    - bash .kaniko-build.sh .gitpod.Dockerfile ${CI_REGISTRY_IMAGE}/gitpod
+    - sh .kaniko-build.sh .gitpod.Dockerfile ${CI_REGISTRY_IMAGE}/gitpod
   only:
     refs:
       - build
