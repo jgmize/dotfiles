@@ -2,4 +2,4 @@ gitops:
   manifest_projects:
   - id: jgmize/dotfiles
     paths:
-    - glob: /k8s/*.yaml
+    - glob: /.k8s/*.yaml
