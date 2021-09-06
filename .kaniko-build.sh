@@ -1,8 +1,8 @@
 #!/bin/bash -ex
 
-: ${dockerfile:=${1:=Dockerfile}}
+: ${dockerfile:=${1:-Dockerfile}}
 : ${contextdir:=${CI_PROJECT_DIR:=.}}
-: ${image:=${CI_REGISTRY_IMAGE:=${2:=jgmize/dotfiles}}
+: ${image:=${CI_REGISTRY_IMAGE:=${2:-jgmize/dotfiles}}
 : ${tag:=${CI_COMMIT_TAG:=${3:-latest}}}}
 
 mkdir -p /kaniko/.docker
