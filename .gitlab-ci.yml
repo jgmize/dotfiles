@@ -37,3 +37,15 @@ build theia:
     refs:
       - build
       - build-theia
+
+build focal:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - sh .kaniko-build.sh .focal.Dockerfile ${CI_REGISTRY_IMAGE}/focal
+  only:
+    refs:
+      - build
+      - build-focal
