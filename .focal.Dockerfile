@@ -6,6 +6,7 @@ RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -
     mv ./kubectl /usr/local/bin/kubectl && \
     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 && \
     chmod +x get_helm.sh && ./get_helm.sh
+WORKDIR /root
 COPY . ./dotfiles
 RUN dotfiles/install
 # repeat emacs runs to handle packages that failed to install the first run
