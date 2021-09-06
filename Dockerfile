@@ -1,7 +1,7 @@
 FROM jupyter/minimal-notebook
 
 USER root
-RUN apt-get update && apt-get install -y --no-install-recommends curl emacs-nox tmux
+RUN apt-get update && apt-get install -y --no-install-recommends curl emacs-nox htop tmux
 RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" && \
     chmod +x ./kubectl && \
     mv ./kubectl /usr/local/bin/kubectl && \

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+yat() {
+    bat --language=yaml --style=plain "$@" ;
+}

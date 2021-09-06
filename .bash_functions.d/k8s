@@ -19,7 +19,11 @@ k8s-master-labels() {
 }
 
 ns() {
-    kubectl config set-context --current --namespace=$1
+    if [[ -n "$1" ]]; then
+        kubectl config set-context --current --namespace=$1
+    else
+        kubectl get ns
+    fi
 }
 
 k8s-ctx() {
