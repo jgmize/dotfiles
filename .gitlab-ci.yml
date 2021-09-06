@@ -25,3 +25,15 @@ build gitpod:
     refs:
       - build
       - build-gitpod
+
+build theia:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - sh .kaniko-build.sh .theia.Dockerfile ${CI_REGISTRY_IMAGE}/theia
+  only:
+    refs:
+      - build
+      - build-theia
