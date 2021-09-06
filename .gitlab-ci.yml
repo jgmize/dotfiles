@@ -2,18 +2,19 @@ stages:
   - build
   - deploy
 
-build-jupyterlab:
+build jupyterlab:
   stage: build
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
   script:
-    - sh .kaniko-build.sh
+    - sh .kaniko-build.sh .jupyterlab.Dockerfile ${CI_REGISTRY_IMAGE}/jupyterlab
   only:
     refs:
       - build
+      - build-jupyterlab
 
-build-gitpod:
+build gitpod:
   stage: build
   image:
     name: gcr.io/kaniko-project/executor:debug
@@ -23,3 +24,4 @@ build-gitpod:
   only:
     refs:
       - build
+      - build-gitpod
