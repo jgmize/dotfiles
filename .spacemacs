@@ -595,12 +595,12 @@ you should place your code here."
 
   (defun insert-date()
     (interactive)
-    (insert (format-time-string "%Y-%m-%d")))
+    (insert "* " (format-time-string "%Y-%m-%d")))
   (spacemacs/set-leader-keys "id" 'insert-date)
 
   (defun insert-timestamp ()
     (interactive)
-    (insert (format-time-string "%Y%m%d%H%M")))
+    (insert "** " (format-time-string "%Y%m%d%H%M")))
   (spacemacs/set-leader-keys "it" 'insert-timestamp)
 
   (transient-append-suffix 'magit-push "-u"
