@@ -602,6 +602,17 @@ you should place your code here."
     (interactive)
     (insert (format-time-string "%Y%m%d%H%M")))
   (spacemacs/set-leader-keys "it" 'insert-timestamp)
+
+  (transient-append-suffix 'magit-push "-u"
+    '(1 "-s" "Skip gitlab pipeline" "--push-option=ci.skip"))
+  (transient-append-suffix 'magit-push "-s"
+    '(1 "-v" "Set CI variable" "--push-option=ci.variable="))  ;; Will prompt, can only set one extra variable
+  (transient-append-suffix 'magit-push "-v"
+    '(1 "-o" "Set push option" "--push-option="))  ;; Will prompt, can only set one extra push option
+  (transient-append-suffix 'magit-push "-o"
+    '(1 "-m" "Create merge request" "--push-option=merge_request.create"))
+  (transient-append-suffix 'magit-push "-m"
+    '(1 "-M" "Merge when pipeline succeeds" "--push-option=merge_request.merge_when_pipeline_succeeds"))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
