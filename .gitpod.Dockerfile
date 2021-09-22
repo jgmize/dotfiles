@@ -2,8 +2,8 @@ FROM registry.gitlab.com/jgmize/dotfiles/focal:36f5f15e
 
 # https://github.com/gitpod-io/workspace-images/blob/master/full/Dockerfile
 # https://docs.docker.com/engine/install/ubuntu/
-RUN curl -o /var/lib/apt/dazzle-marks/docker.gpg -fsSL https://download.docker.com/linux/ubuntu/gpg \
-    && apt-key add /var/lib/apt/dazzle-marks/docker.gpg \
+RUN curl -o /var/lib/apt/docker.gpg -fsSL https://download.docker.com/linux/ubuntu/gpg \
+    && apt-key add /var/lib/apt/docker.gpg \
     && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
     && install-packages docker-ce=5:19.03.15~3-0~ubuntu-focal docker-ce-cli=5:19.03.15~3-0~ubuntu-focal containerd.io
 
