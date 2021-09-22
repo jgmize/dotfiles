@@ -1,13 +1,14 @@
-FROM gitpod/workspace-full
+FROM registry.gitlab.com/jgmize/dotfiles/focal:36f5f15e
 
-USER root
-RUN apt-get update && apt-get install -y --no-install-recommends curl emacs-nox htop tmux
-RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" && \
-    chmod +x ./kubectl && \
-    mv ./kubectl /usr/local/bin/kubectl && \
-    curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 && \
-    chmod +x get_helm.sh && ./get_helm.sh
-USER gitpod
-COPY . ./dotfiles
-RUN dotfiles/install
-RUN emacs -nw -batch -u "${UNAME}" -q -kill
+# https://github.com/gitpod-io/workspace-images/blob/master/full/Dockerfile
+# https://docs.docker.com/engine/install/ubuntu/
+RUN curl -o /var/lib/apt/dazzle-marks/docker.gpg -fsSL https://download.docker.com/linux/ubuntu/gpg \
+    && apt-key add /var/lib/apt/dazzle-marks/docker.gpg \
+    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+    && install-packages docker-ce=5:19.03.15~3-0~ubuntu-focal docker-ce-cli=5:19.03.15~3-0~ubuntu-focal containerd.io
+
+RUN curl -o /usr/bin/slirp4netns -fsSL https://github.com/rootless-containers/slirp4netns/releases/download/v1.1.11/slirp4netns-$(uname -m) \
+    && chmod +x /usr/bin/slirp4netns
+
+RUN curl -o /usr/local/bin/docker-compose -fsSL https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64 \
+    && chmod +x /usr/local/bin/docker-compose
