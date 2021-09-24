@@ -8,7 +8,7 @@ RUN curl -o /var/lib/apt/docker.gpg -fsSL https://download.docker.com/linux/ubun
     && apt-get update \
     && apt-get install -y --no-install-recommends \
        docker-ce=5:19.03.15~3-0~ubuntu-focal docker-ce-cli=5:19.03.15~3-0~ubuntu-focal containerd.io \
-    && apt-get clean -y
+    && apt-get clean -y \
     && rm -rf /var/cache/debconf/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN curl -o /usr/bin/slirp4netns -fsSL https://github.com/rootless-containers/slirp4netns/releases/download/v1.1.11/slirp4netns-$(uname -m) \
