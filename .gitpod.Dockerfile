@@ -1,4 +1,4 @@
-FROM registry.gitlab.com/jgmize/dotfiles/focal:b10b18d3
+FROM registry.gitlab.com/jgmize/dotfiles/focal:8dd081be
 
 # https://github.com/gitpod-io/workspace-images/blob/master/full/Dockerfile
 # https://docs.docker.com/engine/install/ubuntu/
