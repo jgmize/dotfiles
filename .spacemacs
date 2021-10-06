@@ -84,6 +84,7 @@ This function should only modify configuration layer settings."
      typescript
      (version-control :variables
                       version-control-global-margin nil)
+     vimscript
      windows-scripts
      yaml)
    ;; List of additional packages that will be installed wihout being
