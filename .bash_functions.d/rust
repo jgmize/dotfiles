@@ -1,0 +1,36 @@
+#!/bin/bash
+
+apt-update () {
+    if [[ $(which apt-get) && -z "$apt_updated" ]]; then
+        export apt_updated=$(sudo apt-get update)
+    fi
+}
+
+install-cargo () {
+    which cargo || \
+    if $(which apt-get); then
+        apt-update && sudo apt-get install -y cargo;
+    elif $(which curl); then
+        curl https://sh.rustup.rs -sSf | sh;
+    else
+        install-curl && install-cargo
+    fi
+}
+
+install-bat() {
+    which bat || \
+    apt-update && sudo apt-get install -y bat || \
+    install-cargo && cargo install bat;
+}
+
+yat() {
+    bat --language=yaml --style=plain "$@" || \
+        install-bat && \
+    bat --language=yaml --style=plain "$@" ;
+}
+
+install-rg() {
+    whigh rg || \
+    apt-update && sudo apt-get install -y ripgrep || \
+    install-cargo && cargo install ripgrep;
+}
