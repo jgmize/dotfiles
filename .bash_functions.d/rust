@@ -1,36 +1,55 @@
 #!/bin/bash
 
 apt-update () {
-    if [[ $(which apt-get) && -z "$apt_updated" ]]; then
+    if [[ -z "$apt_updated" && $(which apt-get) ]]; then
         export apt_updated=$(sudo apt-get update)
     fi
 }
 
 install-cargo () {
-    which cargo || \
-    if $(which apt-get); then
-        apt-update && sudo apt-get install -y cargo;
-    elif $(which curl); then
-        curl https://sh.rustup.rs -sSf | sh;
-    else
-        install-curl && install-cargo
+    which cargo
+    if [[ $? != 0 ]]; then
+        if $(which apt-get); then
+            apt-update && sudo apt-get install -y cargo;
+        elif $(which curl); then
+            curl https://sh.rustup.rs -sSf | sh;
+        else
+            install-curl && install-cargo
+        fi
     fi
 }
 
 install-bat() {
-    which bat || \
-    apt-update && sudo apt-get install -y bat || \
-    install-cargo && cargo install bat;
+    which bat
+    if [[ $? != 0 ]]; then
+        apt-update
+        if [[ $? != 0 ]]; then
+            brew install bat
+            if [[ $? != 0 ]]; then
+                install-cargo && cargo install bat;
+            fi
+        else
+            sudo apt-get install -y bat
+        fi
+    fi
 }
 
 yat() {
-    bat --language=yaml --style=plain "$@" || \
-        install-bat && \
-    bat --language=yaml --style=plain "$@" ;
+    bat --language=yaml --style=plain "$@"
+    if [[ $? != 0 ]]; then
+        install-bat && bat --language=yaml --style=plain "$@"
+    fi
 }
 
 install-rg() {
-    whigh rg || \
-    apt-update && sudo apt-get install -y ripgrep || \
-    install-cargo && cargo install ripgrep;
+    which rg
+    if [[ $? != 0 ]]; then
+        apt-update && sudo apt-get install -y ripgrep
+        if [[ $? != 0 ]]; then
+            brew install ripgrep
+            if [[ $? != 0 ]]; then
+                install-cargo && cargo install ripgrep;
+            fi
+        fi
+    fi
 }
