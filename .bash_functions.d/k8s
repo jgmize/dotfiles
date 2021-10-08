@@ -4,10 +4,11 @@ install-kubectl() {
     # https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-binary-via-curl
     set -e
     : ${release:=https://storage.googleapis.com/kubernetes-release/release}
-    : ${v:=${1:-$(curl -s ${release}/stable.txt)}}
-    : ${platform:=$(uname -s | awk '{print tolower($0)}')}
+    : ${version:=${1:-$(curl -s ${release}/stable.txt)}}
+    : ${kernel:=$(uname -s | awk '{print tolower($0)}')}
     : ${out:=${2:-/usr/local/bin/kubectl}}
-    curl -L ${release}/${v}/bin/${platform}/amd64/kubectl -o ${out}
+    : ${processor:=${3:-amd64}}
+    curl -L ${release}/${version}/bin/${kernel}/${processor}/kubectl -o ${out}
     chmod +x ${out}
 }
 
