@@ -1,10 +1,13 @@
 #!/bin/bash
 
-kubectl-install() {
+install-kubectl() {
     # https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-binary-via-curl
-    cd ~/bin
-    curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/$(uname -s | awk '{print tolower($0)}')/amd64/kubectl
-    chmod +x ./kubectl
+    curl -L https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/$(uname -s | awk '{print tolower($0)}')/amd64/kubectl -o /usr/local/bin/kubectl
+    chmod +x /usr/local/bin/kubectl
+}
+
+install-eksctl() {
+    curl -sL "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /usr/local/bin
 }
 
 k8s-masters() {
