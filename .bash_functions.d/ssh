@@ -54,3 +54,9 @@ rsshtun() {
         done";
     done;
 }
+
+ssh-auth-sock() {
+    if [[ -z "$SSH_AUTH_SOCK" ]]; then
+        export SSH_AUTH_SOCK=$(ls /private/tmp/com.apple.launchd.*/Listeners)
+    fi
+}

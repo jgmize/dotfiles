@@ -95,6 +95,7 @@ if [ -d ~/dotfiles/.bash_functions.d ]; then
         source $f
     done
 fi
+ssh-auth-sock
 
 export EDITOR="emacsclient"
 
