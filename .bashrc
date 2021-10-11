@@ -10,7 +10,7 @@ if [[ $- != *i* ]] ; then
 fi
 
 if [ -f /etc/bashrc ]; then
-        . /etc/bashrc
+    . /etc/bashrc
 fi
 
 # don't put duplicate lines or lines starting with space in the history.
