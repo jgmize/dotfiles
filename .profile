@@ -42,6 +42,13 @@ if [ -d "/usr/local/opt/texinfo/bin" ] ; then
     PATH="/usr/local/opt/texinfo/bin:$PATH"
 fi
 
+if [[ -e  /opt/homebrew/bin/brew ]]; then
+   eval "$(/opt/homebrew/bin/brew shellenv)"
+   if [[ -e /opt/homebrew/opt/python@3.10/bin ]]; then
+     PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
+   fi
+fi
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
