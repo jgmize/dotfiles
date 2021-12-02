@@ -51,6 +51,7 @@ This function should only modify configuration layer settings."
      (lsp :variables
           lsp-rust-server 'rust-analyzer
           lsp-rust-analyzer-server-display-inlay-hints t)
+     lua
      (markdown :variables
                markdown-live-preview-engine 'vmd ; npm install -g vmd
                markdown-fontify-code-blocks-natively t)
