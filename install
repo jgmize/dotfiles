@@ -6,6 +6,11 @@ for f in $dotfiles; do
 done;
 ln -sf dotfiles/.tmux.conf .tmate.conf
 
+if [[ "$(uname)" == "Darwin" ]]; then
+    mkdir -p ~/.hammerspoon
+    ln -sf ../dotfiles/.hammerspoon/init.lua ~/.hammerspoon/init.lua
+fi
+
 if [[ "$(which emacs)" && ! -e ~/.emacs.d ]]; then
     git clone -b develop --depth 1 --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
 fi
