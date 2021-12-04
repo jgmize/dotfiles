@@ -114,12 +114,13 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# several of these files have errors
-if [ -d /usr/local/etc/bash_completion.d ]; then
-    for f in /usr/local/etc/bash_completion.d/*; do
-        source $f
-    done
-fi
+for compd in {/usr/local,/opt/homebrew}/etc/bash_completion.d; do
+    if [ -d ${compd} ]; then
+        for f in ${compd}/*; do
+            source $f
+        done
+    fi
+done
 
 if [ -d $HOME/google-cloud-sdk ]; then
     source $HOME/google-cloud-sdk/path.bash.inc
