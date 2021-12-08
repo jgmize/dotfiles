@@ -17,7 +17,7 @@ units = {
   maximum       = { x = 0.00, y = 0.00, w = 1.00, h = 1.00 }
 }
 
-mash = { 'shift', 'ctrl', 'cmd' }
+mash = { 'ctrl', 'option', 'cmd' }
 -- hs.hotkey.bind(mash, 'l', function() hs.window.focusedWindow():move(units.right30,    nil, true) end)
 -- hs.hotkey.bind(mash, 'h', function() hs.window.focusedWindow():move(units.left70,     nil, true) end)
 hs.hotkey.bind(mash, 'l', function() hs.window.focusedWindow():move(units.right50,    nil, true) end)
