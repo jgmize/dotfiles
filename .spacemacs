@@ -40,6 +40,7 @@ This function should only modify configuration layer settings."
      django
      docker
      emacs-lisp
+     epub
      ess
      evernote
      git
