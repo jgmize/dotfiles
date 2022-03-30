@@ -49,3 +49,15 @@ build focal:
     refs:
       - build
       - build-focal
+
+build bullseye:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - sh .kaniko-build.sh .bullseye.Dockerfile ${CI_REGISTRY_IMAGE}/bullseye
+  only:
+    refs:
+      - build
+      - build-bullseye
