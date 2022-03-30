@@ -33,13 +33,15 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(ansible
+   '(graphviz
+     ansible
      better-defaults
      (clojure :variables clojure-enable-fancify-symbols t)
      csv
      django
      docker
      emacs-lisp
+     epub
      ess
      evernote
      git
@@ -98,6 +100,7 @@ This function should only modify configuration layer settings."
                                       kubernetes-evil
                                       ob-cypher
                                       org-ehtml
+                                      org-jira
                                       ox-rst
                                       web-server)
    ;; A list of packages that cannot be updated.
@@ -609,6 +612,37 @@ you should place your code here."
     (insert "** " (format-time-string "%Y%m%d%H%M")))
   (spacemacs/set-leader-keys "it" 'insert-timestamp)
 
+  (defvar sql-connection-alist nil)
+
+  (defmacro sql-specify-connections (&rest connections)
+    "Set the sql-connection-alist from CONNECTIONS.
+Generates respective interactive functions to establish each
+connection."
+    `(progn
+       ,@(mapcar (lambda (conn)
+		               `(add-to-list 'sql-connection-alist ',conn))
+	               connections)
+       ,@(mapcar (lambda (conn)
+		               (let* ((varname (car conn))
+			                    (fn-name (intern (format "sql-connect-to-%s" varname)))
+			                    (buf-name (format "*%s*" varname)))
+		                 `(defun ,fn-name ,'()
+		                    (interactive)
+		                    (sql-connect ',varname ,buf-name))))
+		             connections)))
+
+  (sql-specify-connections
+   (postgres (sql-product 'postgres)
+      ;; (sql-port 5432)
+      (sql-server "localhost")
+      (sql-user "jgmize")
+      ;; (sql-password "password")
+      (sql-database "postgres"))
+    (jgmize (sql-product 'postgres)
+          (sql-server "localhost")
+          (sql-user "jgmize")
+          (sql-database "jgmize")))
+
   (transient-append-suffix 'magit-push "-u"
     '(1 "-s" "Skip gitlab pipeline" "--push-option=ci.skip"))
   (transient-append-suffix 'magit-push "-s"
@@ -619,7 +653,28 @@ you should place your code here."
     '(1 "-m" "Create merge request" "--push-option=merge_request.create"))
   (transient-append-suffix 'magit-push "-m"
     '(1 "-M" "Merge when pipeline succeeds" "--push-option=merge_request.merge_when_pipeline_succeeds"))
+  (setq jiralib-url "https://digitial-product-engineering.atlassian.net")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
+ '(package-selected-packages
+   '(org-jira graphviz-dot-mode yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify vterm volatile-highlights vmd-mode vimrc-mode vi-tilde-fringe uuidgen use-package unfill undo-tree treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toml-mode toc-org tide terminal-here tagedit symon symbol-overlay string-inflection string-edit sql-indent sphinx-doc spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode ron-mode restart-emacs rainbow-delimiters racer quickrun pytest pyenv-mode pydoc py-isort pug-mode prettier-js powershell popwin pony-mode poetry pippel pipenv pip-requirements pcre2el password-generator paradox pandoc-mode ox-rst ox-pandoc ox-gfm overseer orgit-forge org-superstar org-rich-yank org-projectile org-present org-mime org-ehtml org-download org-contrib org-cliplink open-junk-file ob-cypher npm-mode nov nose nodejs-repl nginx-mode nameless mwim multi-term multi-line mmm-mode markdown-toc macrostep lsp-ui lsp-treemacs lsp-python-ms lsp-pyright lsp-origami lorem-ipsum livid-mode live-py-mode link-hint kubernetes-evil json-reformat json-navigator js2-refactor js-doc jinja2-mode inspector info+ indent-guide importmagic impatient-mode hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-cider helm-c-yasnippet helm-ag groovy-mode google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates git-timemachine git-modes git-messenger git-link git-gutter-fringe gh-md geeknote fuzzy font-lock+ flycheck-rust flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu ess-R-data-view eshell-z eshell-prompt-extras esh-help emr emmet-mode elisp-slime-nav ein editorconfig dumb-jump drag-stuff dotenv-mode dockerfile-mode docker dired-quick-sort diminish define-word dactyl-mode cython-mode csv-mode company-web company-terraform company-lua company-go company-ansible company-anaconda column-enforce-mode clojure-snippets clean-aindent-mode cider-eval-sexp-fu centered-cursor-mode cargo browse-at-remote bmx-mode blacken auto-yasnippet auto-highlight-symbol auto-compile ansible-doc ansible aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
