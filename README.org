@@ -1,0 +1,15 @@
+* dotfiles
+
+** Installation
+
+#+begin_src sh
+  cd
+  git clone https://gitlab.com/jgmize/dotfiles.git
+  dotfiles/install
+#+end_src
+
+** Inspiration
+
+- https://dotfiles.github.io/inspiration/
+- https://github.com/search?q=dotfiles
+- https://gitlab.com/search?search=dotfiles
