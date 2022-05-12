@@ -48,3 +48,19 @@ aws-instances() {
 aws-azure-login() {
     docker run --rm -it -v ~/.aws:/root/.aws sportradar/aws-azure-login "$@"
 }
+
+aws-route53-create-hosted-zone() {
+    : ${name:=${1:-jgmize.org}}
+    aws route53 create-hosted-zone --name ${name} \
+        --caller-reference "$(date)"
+}
+
+aws-route53-create-private-hosted-zone() {
+    : ${name:=${1:-jgmize.org}}
+    : ${VPCId:=${2:-vpc-0358adb3b095239f1}}
+    : ${VPCRegion:=${3:-us-east-2}}
+
+    aws route53 create-hosted-zone --name ${name} \
+        --vpc VPCRegion=${VPCRegion},VPCId=${VPCId} \
+        --caller-reference "$(date)"
+}
