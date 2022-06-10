@@ -57,7 +57,7 @@ k8s-pod() {
     fi
 }
 
-pod-names() {
+k8s-pods() {
     if [[ -n "$1" ]]; then
         kubectl get pods | awk "/$1/ {print \$1}"
     else
@@ -65,8 +65,8 @@ pod-names() {
     fi
 }
 
-restart-pods() {
-    pod-names $1 | xargs kubectl delete pod
+k8s-pods-delete() {
+    k8s-pods $1 | xargs kubectl delete pod
 }
 
 k8s-exec() {
