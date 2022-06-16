@@ -2,7 +2,7 @@ FROM debian:bullseye-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential ca-certificates curl emacs-nox git gpg gpg-agent htop \
+    build-essential ca-certificates curl emacs-nox git gpg gpg-agent htop jq \
     pandoc python3-epc python3-importmagic ripgrep software-properties-common \
     sudo tmate tmux \
     && apt-get clean -y \
