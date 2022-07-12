@@ -5,7 +5,6 @@ svpn() {
   : ${vpn_url:=https://grasv2-global.syngenta.com/VITE}
   : ${dpd:=30}
   : ${reconnect_timeout:=35}
-  : ${openconnect_args:="--force-dpd=20"}
 
   if [[ -n "${syngenta_passwd}" ]]; then
     echo ${syngenta_passwd} | sudo openconnect -v -u ${syngenta_username} \
