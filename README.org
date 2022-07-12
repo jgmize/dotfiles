@@ -11,5 +11,6 @@
 ** Inspiration
 
 - https://dotfiles.github.io/inspiration/
-- https://github.com/search?q=dotfiles
+- [[https://github.com/search?o=desc&q=dotfiles&s=stars&type=Repositories][dotfiles repos ranked by github stars]]
 - https://gitlab.com/search?search=dotfiles
+  - https://gitlab.com/gitlab-com/support/toolbox/dotfiles
