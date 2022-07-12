@@ -1,0 +1,18 @@
+#!/bin/bash
+
+svpn() {
+  : ${syngenta_username:="joshua.mize@syngenta.com"}
+  : ${vpn_url:=https://grasv2-global.syngenta.com/VITE}
+  : ${dpd:=30}
+  : ${reconnect_timeout:=35}
+  : ${openconnect_args:="--force-dpd=20"}
+
+  if [[ -n "${syngenta_passwd}" ]]; then
+    echo ${syngenta_passwd} | sudo openconnect -v -u ${syngenta_username} \
+        ${vpn_url} --force-dpd=${dpd} --reconnect-timeout=${reconnect_timeout} \
+        --no-dtls --passwd-on-stdin ;
+  else
+      sudo openconnect -v -u ${syngenta_username} --force-dpd=${dpd} \
+           --reconnect-timeout=${reconnect_timeout} --no-dtls ${vpn_url} ;
+  fi
+}
