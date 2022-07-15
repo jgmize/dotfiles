@@ -1,0 +1,20 @@
+* lima
+
+** install
+
+[[../.brew/.org::install][install brew]]
+
+#+begin_src sh
+  brew install lima
+#+end_src
+
+** clone
+
+- [[https://github.com/lima-vm/lima][github.com/lima-vm/lima]]
+  
+#+begin_src sh
+  cd ~/src
+  git clone https://github.com/lima-vm/lima
+#+end_src
+  
+- [[~/src/lima]]

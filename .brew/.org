@@ -1,0 +1,12 @@
+* brew
+
+** install
+
+#+begin_src sh
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#+end_src
+
+** brew install
+
+- [[file:~/dotfiles/.lima/.org::*lima][lima]]
+- [[file:~/dotfiles/.civo/.org::*civo][civo]]

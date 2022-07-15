@@ -1,0 +1,42 @@
+* civo
+
+** install
+
+[[../.brew/.org::install][install brew]]
+
+#+begin_src sh
+  brew tap civo/tools
+  brew install civo
+#+end_src
+
+** add API key
+
+https://www.civo.com/api
+
+#+begin_src sh
+  civo apikey add default ${apikey}
+  civo apikey current default
+#+end_src
+
+** set region
+
+#+begin_src sh
+  civo region ls
+#+end_src
++------+-------------+----------------+---------+
+| Code | Name        | Country        | Current |
++------+-------------+----------------+---------+
+| NYC1 | New York 1  | United States  |         |
+| FRA1 | Frankfurt 1 | Germany        |         |
+| LON1 | London 1    | United Kingdom | <=====  |
++------+-------------+----------------+---------+
+#+begin_src sh
+  civo region current NYC1
+#+end_src
+
+** launch k3s cluster
+
+Launch a cluster named "nyc" with 1 node and the [[https://github.com/cilium/cilium][cilium]] [[https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/][CNI]] plugin:
+#+begin_src sh
+  civo kubernetes create -p cilium -n 1 -w nyc
+#+end_src

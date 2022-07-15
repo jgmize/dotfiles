@@ -1,0 +1,19 @@
+* k3s
+
+** install
+
+*** linux
+
+#+begin_src sh
+curl -sfL https://get.k3s.io | sh -
+k3s kubectl get node
+#+end_src
+
+*** lima
+
+[[../.lima/.org::install][install lima]]
+[[../.lima/.org::clone][clone lima]] to [[~/src/lima]]
+
+#+begin_src sh
+    
+#+end_src
