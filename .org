@@ -14,3 +14,11 @@
 - [[https://github.com/search?o=desc&q=dotfiles&s=stars&type=Repositories][dotfiles repos ranked by github stars]]
 - https://gitlab.com/search?search=dotfiles
   - https://gitlab.com/gitlab-com/support/toolbox/dotfiles
+
+** Merge Requests
+
+- [[https://gitlab.com/jgmize/dotfiles/-/merge_requests?scope=all&state=all][Gitlab merge requests]]
+  - [X] [[https://gitlab.com/jgmize/dotfiles/-/merge_requests/1][!1]]: Build bullseye
+  - [X] [[https://gitlab.com/jgmize/dotfiles/-/merge_requests/2][!2]]: Main rebase
+  - [X] [[https://gitlab.com/jgmize/dotfiles/-/merge_requests/3][!3]]: add svpn
+  - [ ] !4: Update [[./.gitpod.yml][.gitpod.yml]] to match journal
