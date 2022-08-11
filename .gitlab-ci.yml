@@ -43,6 +43,16 @@ build focal:
       - build-all
       - build-focal
 
+build jammy:
+  extends: .kaniko build
+  variables:
+    dockerfile: .jammy.Dockerfile
+    image: ${CI_REGISTRY_IMAGE}/jammy
+  only:
+    refs:
+      - build-all
+      - build-jammy
+
 build bullseye:
   extends: .kaniko build
   variables:
