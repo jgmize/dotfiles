@@ -56,7 +56,9 @@ rsshtun() {
 }
 
 ssh-auth-sock() {
-    echo export SSH_AUTH_SOCK=$(ls /private/tmp/com.apple.launchd.*/Listeners)
+    if [[ "$(uname)" == "Darwin" ]]; then
+        echo export SSH_AUTH_SOCK=$(ls /private/tmp/com.apple.launchd.*/Listeners)
+    fi
 }
 # usage:
 # $(ssh-auth-sock)
