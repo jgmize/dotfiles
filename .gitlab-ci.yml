@@ -1,63 +1,54 @@
+include: .gitlab/ci-job-templates.yml
+
 stages:
   - build
-  - deploy
 
 build jupyterlab:
-  stage: build
-  image:
-    name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [""]
-  script:
-    - sh .kaniko-build.sh .jupyterlab.Dockerfile ${CI_REGISTRY_IMAGE}/jupyterlab
+  extends: .kaniko build
+  variables:
+    dockerfile: .jupyterlab.Dockerfile
+    image: ${CI_REGISTRY_IMAGE}/jupyterlab
   only:
     refs:
-      - build
+      - build-all
       - build-jupyterlab
 
 build gitpod:
-  stage: build
-  image:
-    name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [""]
-  script:
-    - sh .kaniko-build.sh .gitpod.Dockerfile ${CI_REGISTRY_IMAGE}/gitpod
+  extends: .kaniko build
+  variables:
+    dockerfile: .gitpod.Dockerfile
+    image: ${CI_REGISTRY_IMAGE}/gitpod
   only:
     refs:
-      - build
+      - build-all
       - build-gitpod
 
 build theia:
-  stage: build
-  image:
-    name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [""]
-  script:
-    - sh .kaniko-build.sh .theia.Dockerfile ${CI_REGISTRY_IMAGE}/theia
+  extends: .kaniko build
+  variables:
+    dockerfile: .theia.Dockerfile
+    image: ${CI_REGISTRY_IMAGE}/theia
   only:
     refs:
-      - build
+      - build-all
       - build-theia
 
 build focal:
-  stage: build
-  image:
-    name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [""]
-  script:
-    - sh .kaniko-build.sh .focal.Dockerfile ${CI_REGISTRY_IMAGE}/focal
+  extends: .kaniko build
+  variables:
+    dockerfile: .focal.Dockerfile
+    image: ${CI_REGISTRY_IMAGE}/focal
   only:
     refs:
-      - build
+      - build-all
       - build-focal
 
 build bullseye:
-  stage: build
-  image:
-    name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [""]
-  script:
-    - sh .kaniko-build.sh .bullseye.Dockerfile ${CI_REGISTRY_IMAGE}/bullseye
+  extends: .kaniko build
+  variables:
+    dockerfile: .bullseye.Dockerfile
+    image: ${CI_REGISTRY_IMAGE}/bullseye
   only:
     refs:
-      - build
+      - build-all
       - build-bullseye
