@@ -56,7 +56,10 @@ rsshtun() {
 }
 
 ssh-auth-sock() {
-    echo export SSH_AUTH_SOCK=$(ls /private/tmp/com.apple.launchd.*/Listeners)
+    # called by .bashrc after sourcing this file via:
+    # $(ssh-auth-sock)
+    echo export SSH_AUTH_SOCK=$( \
+        ls /var/folders/*/*/T//ssh-*/agent.* \
+           /private/tmp/com.apple.launchd.*/Listeners \
+        | head -n 1)
 }
-# usage:
-# $(ssh-auth-sock)
