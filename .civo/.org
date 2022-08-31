@@ -2,11 +2,27 @@
 
 ** install
 
+*** brew
+
 [[../.brew/.org::install][install brew]]
 
 #+begin_src sh
   brew tap civo/tools
   brew install civo
+#+end_src
+
+*** curl
+
+#+begin_src sh
+  curl -sL https://civo.com/get | sh
+#+end_src
+# https://raw.githubusercontent.com/civo/cli/master/install.sh
+
+*** git
+
+#+begin_src sh :dir ~/src/civo
+  git clone https://github.com/civo/cli
+  cli/install.sh
 #+end_src
 
 ** add API key
