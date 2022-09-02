@@ -1,5 +1,4 @@
-FROM registry.gitlab.com/jgmize/dotfiles/focal:6c0c06da
-
+FROM registry.gitlab.com/jgmize/dotfiles/jammy:ee19a71e
 # https://github.com/gitpod-io/workspace-images/blob/master/full/Dockerfile
 # https://docs.docker.com/engine/install/ubuntu/
 RUN curl -o /var/lib/apt/docker.gpg -fsSL https://download.docker.com/linux/ubuntu/gpg \
