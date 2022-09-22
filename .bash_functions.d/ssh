@@ -61,5 +61,5 @@ ssh-auth-sock() {
     echo export SSH_AUTH_SOCK=$( \
         ls /var/folders/*/*/T//ssh-*/agent.* \
            /private/tmp/com.apple.launchd.*/Listeners \
-        | head -n 1)
+           2>/dev/null | head -n 1)
 }
