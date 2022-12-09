@@ -14,7 +14,9 @@ RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/${KUBECT
     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 && \
     chmod +x get_helm.sh && ./get_helm.sh && \
     curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/v4.0.5/kustomize_4.0.5_linux_amd64 -o /usr/local/bin/kustomize && chmod a+x /usr/local/bin/kustomize
-
+RUN curl -sLO https://github.com/argoproj/argo-workflows/releases/download/v3.3.10/argo-linux-amd64.gz && \
+    gunzip argo-linux-amd64.gz && chmod +x argo-linux-amd64 && \
+    mv ./argo-linux-amd64 /usr/local/bin/argo
 WORKDIR /root
 COPY . ./dotfiles
 RUN dotfiles/install
