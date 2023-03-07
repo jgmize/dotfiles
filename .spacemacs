@@ -94,6 +94,7 @@ This function should only modify configuration layer settings."
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(cypher-mode
+                                      eat
                                       groovy-mode
                                       kubernetes
                                       kubernetes-evil
@@ -642,17 +643,18 @@ connection."
           (sql-user "jgmize")
           (sql-database "jgmize")))
 
-  (transient-append-suffix 'magit-push "-u"
-    '(1 "-s" "Skip gitlab pipeline" "--push-option=ci.skip"))
-  (transient-append-suffix 'magit-push "-s"
-    '(1 "-v" "Set CI variable" "--push-option=ci.variable="))  ;; Will prompt, can only set one extra variable
-  (transient-append-suffix 'magit-push "-v"
-    '(1 "-o" "Set push option" "--push-option="))  ;; Will prompt, can only set one extra push option
-  (transient-append-suffix 'magit-push "-o"
-    '(1 "-m" "Create merge request" "--push-option=merge_request.create"))
-  (transient-append-suffix 'magit-push "-m"
-    '(1 "-M" "Merge when pipeline succeeds" "--push-option=merge_request.merge_when_pipeline_succeeds"))
+  ;; (transient-append-suffix 'magit-push "-u"
+  ;;   '(1 "-s" "Skip gitlab pipeline" "--push-option=ci.skip"))
+  ;; (transient-append-suffix 'magit-push "-s"
+  ;;   '(1 "-v" "Set CI variable" "--push-option=ci.variable="))  ;; Will prompt, can only set one extra variable
+  ;; (transient-append-suffix 'magit-push "-v"
+  ;;   '(1 "-o" "Set push option" "--push-option="))  ;; Will prompt, can only set one extra push option
+  ;; (transient-append-suffix 'magit-push "-o"
+  ;;   '(1 "-m" "Create merge request" "--push-option=merge_request.create"))
+  ;; (transient-append-suffix 'magit-push "-m"
+  ;;   '(1 "-M" "Merge when pipeline succeeds" "--push-option=merge_request.merge_when_pipeline_succeeds"))
   (setq jiralib-url "https://digitial-product-engineering.atlassian.net")
+  (setq eat-term-name "screen-256color")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -669,7 +671,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
-   '(org-jira graphviz-dot-mode yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify vterm volatile-highlights vmd-mode vimrc-mode vi-tilde-fringe uuidgen use-package unfill undo-tree treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toml-mode toc-org tide terminal-here tagedit symon symbol-overlay string-inflection string-edit sql-indent sphinx-doc spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode ron-mode restart-emacs rainbow-delimiters racer quickrun pytest pyenv-mode pydoc py-isort pug-mode prettier-js powershell popwin pony-mode poetry pippel pipenv pip-requirements pcre2el password-generator paradox pandoc-mode ox-rst ox-pandoc ox-gfm overseer orgit-forge org-superstar org-rich-yank org-projectile org-present org-mime org-ehtml org-download org-contrib org-cliplink open-junk-file ob-cypher npm-mode nov nose nodejs-repl nginx-mode nameless mwim multi-term multi-line mmm-mode markdown-toc macrostep lsp-ui lsp-treemacs lsp-python-ms lsp-pyright lsp-origami lorem-ipsum livid-mode live-py-mode link-hint kubernetes-evil json-reformat json-navigator js2-refactor js-doc jinja2-mode inspector info+ indent-guide importmagic impatient-mode hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-cider helm-c-yasnippet helm-ag groovy-mode google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates git-timemachine git-modes git-messenger git-link git-gutter-fringe gh-md geeknote fuzzy font-lock+ flycheck-rust flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu ess-R-data-view eshell-z eshell-prompt-extras esh-help emr emmet-mode elisp-slime-nav ein editorconfig dumb-jump drag-stuff dotenv-mode dockerfile-mode docker dired-quick-sort diminish define-word dactyl-mode cython-mode csv-mode company-web company-terraform company-lua company-go company-ansible company-anaconda column-enforce-mode clojure-snippets clean-aindent-mode cider-eval-sexp-fu centered-cursor-mode cargo browse-at-remote bmx-mode blacken auto-yasnippet auto-highlight-symbol auto-compile ansible-doc ansible aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
+   '(tern eat org-jira graphviz-dot-mode yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify vterm volatile-highlights vmd-mode vimrc-mode vi-tilde-fringe uuidgen use-package unfill undo-tree treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toml-mode toc-org tide terminal-here tagedit symon symbol-overlay string-inflection string-edit sql-indent sphinx-doc spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode ron-mode restart-emacs rainbow-delimiters racer quickrun pytest pyenv-mode pydoc py-isort pug-mode prettier-js powershell popwin pony-mode poetry pippel pipenv pip-requirements pcre2el password-generator paradox pandoc-mode ox-rst ox-pandoc ox-gfm overseer orgit-forge org-superstar org-rich-yank org-projectile org-present org-mime org-ehtml org-download org-contrib org-cliplink open-junk-file ob-cypher npm-mode nov nose nodejs-repl nginx-mode nameless mwim multi-term multi-line mmm-mode markdown-toc macrostep lsp-ui lsp-treemacs lsp-python-ms lsp-pyright lsp-origami lorem-ipsum livid-mode live-py-mode link-hint kubernetes-evil json-reformat json-navigator js2-refactor js-doc jinja2-mode inspector info+ indent-guide importmagic impatient-mode hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-cider helm-c-yasnippet helm-ag groovy-mode google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates git-timemachine git-modes git-messenger git-link git-gutter-fringe gh-md geeknote fuzzy font-lock+ flycheck-rust flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu ess-R-data-view eshell-z eshell-prompt-extras esh-help emr emmet-mode elisp-slime-nav ein editorconfig dumb-jump drag-stuff dotenv-mode dockerfile-mode docker dired-quick-sort diminish define-word dactyl-mode cython-mode csv-mode company-web company-terraform company-lua company-go company-ansible company-anaconda column-enforce-mode clojure-snippets clean-aindent-mode cider-eval-sexp-fu centered-cursor-mode cargo browse-at-remote bmx-mode blacken auto-yasnippet auto-highlight-symbol auto-compile ansible-doc ansible aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
