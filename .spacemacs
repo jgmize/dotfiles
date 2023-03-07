@@ -78,7 +78,7 @@ This function should only modify configuration layer settings."
      python
      (rust :variables
            rust-format-on-save t)
-     (shell :variables shell-default-shell 'multi-term)
+     (shell :variables shell-default-shell 'eshell)
      sql
      ;; syntax-checking
      terraform
@@ -655,6 +655,7 @@ connection."
   ;;   '(1 "-M" "Merge when pipeline succeeds" "--push-option=merge_request.merge_when_pipeline_succeeds"))
   (setq jiralib-url "https://digitial-product-engineering.atlassian.net")
   (setq eat-term-name "screen-256color")
+  (add-hook 'eshell-load-hook #'eat-eshell-mode)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
