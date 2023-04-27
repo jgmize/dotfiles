@@ -14,6 +14,9 @@ RUN curl -LO "https://dl.k8s.io/release/v1.23.0/bin/linux/amd64/kubectl" && \
     chmod +x get_helm.sh && ./get_helm.sh && \
     curl -LO https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v4.4.1/kustomize_v4.4.1_linux_amd64.tar.gz && \
     tar xzf kustomize_v4.4.1_linux_amd64.tar.gz -C /usr/local/bin
+RUN curl -sLO https://github.com/argoproj/argo-workflows/releases/download/v3.3.10/argo-linux-amd64.gz && \
+    gunzip argo-linux-amd64.gz && chmod +x argo-linux-amd64 && \
+    mv ./argo-linux-amd64 /usr/local/bin/argo
 WORKDIR /root
 COPY . ./dotfiles
 RUN dotfiles/install
