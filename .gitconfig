@@ -17,6 +17,8 @@
   subup = !git submodule sync && git submodule update --init --recursive
   sha = rev-parse HEAD
   to = push
+	mr = push -o merge_request.create
+	automerge = push -o merge_request.create -o merge_request.merge_when_pipeline_succeeds
 
 [core]
   excludesfile = /home/jgmize/.gitignore_global
