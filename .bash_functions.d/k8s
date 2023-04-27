@@ -152,3 +152,11 @@ k8s-decode-secret() {
     # adapted from https://stackoverflow.com/a/58117444
     kubectl get secret $1 -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
 }
+
+k8s-envfrom-secret() {
+    kubectl get secret $1 -o go-template='{{range $k,$v := .data}}{{printf "export %s=" $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+}
+
+k8s-envfrom-configmap() {
+    kubectl get configmap $1 -o go-template='{{range $k,$v := .data}}{{printf "export %s=" $k}}{{$v}}{{"\n"}}{{end}}'
+}
