@@ -17,6 +17,13 @@ RUN curl -LO "https://dl.k8s.io/release/v1.23.0/bin/linux/amd64/kubectl" && \
 RUN curl -sLO https://github.com/argoproj/argo-workflows/releases/download/v3.3.10/argo-linux-amd64.gz && \
     gunzip argo-linux-amd64.gz && chmod +x argo-linux-amd64 && \
     mv ./argo-linux-amd64 /usr/local/bin/argo
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN unzip awscliv2.zip \
+    && ./aws/install \
+    && rm -rf awscliv2.zip aws
+RUN curl -L "https://github.com/mozilla/sops/releases/download/v3.7.3/sops-v3.7.3.linux.amd64" -o "sops" \
+    && chmod +x sops \
+    && mv sops /usr/local/bin/
 WORKDIR /root
 COPY . ./dotfiles
 RUN dotfiles/install
