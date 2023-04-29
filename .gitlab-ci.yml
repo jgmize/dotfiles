@@ -62,3 +62,13 @@ build bullseye:
     refs:
       - build-all
       - build-bullseye
+
+build bookworm:
+  extends: .kaniko build
+  variables:
+    dockerfile: .bookworm.Dockerfile
+    image: ${CI_REGISTRY_IMAGE}/bookworm
+  only:
+    refs:
+      - build-all
+      - build-bookworm
