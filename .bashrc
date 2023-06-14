@@ -95,7 +95,10 @@ if [ -d ~/dotfiles/.bash_functions.d ]; then
         source $f
     done
 fi
-$(ssh-auth-sock)
+
+if [ -z "${SSH_AUTH_SOCK}" ]; then
+    $(ssh-auth-sock)
+fi
 
 export EDITOR="emacsclient"
 
@@ -108,21 +111,10 @@ if [ -f "/google/devshell/bashrc.google" ]; then
     source "/google/devshell/bashrc.google"
 fi
 
-if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
-    . "/usr/local/etc/profile.d/bash_completion.sh"
-elif [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]]; then
-    . "/opt/homebrew/etc/profile.d/bash_completion.sh"
-fi
-
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
-for compd in {/usr/local,/opt/homebrew}/etc/bash_completion.d; do
-    if [ -d ${compd} ]; then
-        for f in ${compd}/*; do
-            source $f
-        done
+for bash_completion in {/opt/homebrew,}/etc/bash_completion; do
+    if [ -f ${bash_completion} ] && ! shopt -oq posix; then
+        . ${bash_completion}
+        break
     fi
 done
 
