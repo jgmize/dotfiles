@@ -1,11 +1,12 @@
 FROM debian:bookworm-slim
 
+ARG USERNAME=jgmize
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential ca-certificates curl emacs-nox git gpg gpg-agent htop jq \
-    pandoc python3-epc python3-importmagic ripgrep software-properties-common \
-    sudo tmate tmux tree unzip\
-    && apt-get clean -y \
+    microsocks openssh-server pandoc postgresql-client python3-epc \
+    python3-importmagic ripgrep software-properties-common sudo tmate tmux tree \
+    tzdata unzip && apt-get clean -y \
     && rm -rf /var/cache/debconf/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN curl -LO "https://dl.k8s.io/release/v1.23.0/bin/linux/amd64/kubectl" && \
     chmod +x ./kubectl && \
@@ -24,7 +25,11 @@ RUN unzip awscliv2.zip \
 RUN curl -L "https://github.com/mozilla/sops/releases/download/v3.7.3/sops-v3.7.3.linux.amd64" -o "sops" \
     && chmod +x sops \
     && mv sops /usr/local/bin/
-WORKDIR /root
+RUN curl -L https://github.com/mikefarah/yq/releases/download/v4.34.1/yq_linux_amd64 \
+    -o /usr/local/bin/yq && chmod +x /usr/local/bin/yq
+RUN useradd -m -s /usr/bin/bash -G sudo ${USERNAME}
+WORKDIR /home/${USERNAME}
+USER ${USERNAME}
 COPY . ./dotfiles
 RUN dotfiles/install
 # repeat emacs runs to handle packages that intermittently fail to install the first run
