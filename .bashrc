@@ -142,6 +142,16 @@ if [[ -e /tmp/docker.sock ]]; then
     export DOCKER_HOST=unix:///tmp/docker.sock
 fi
 
+if [[ -d ~/.vscode-server/bin ]]; then
+    for d in $(ls -t ~/.vscode-server/bin); do
+        remote_cli=${HOME}/.vscode-server/bin/${d}/bin/remote-cli
+        if [[ -e ${remote_cli}/code ]]; then
+            PATH=${PATH}:${remote_cli}
+            break
+        fi
+    done
+fi
+
 # dedupe path
 PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
 
