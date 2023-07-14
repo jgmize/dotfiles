@@ -4,7 +4,7 @@ ARG USERNAME=jgmize
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential ca-certificates curl emacs-nox git gpg gpg-agent htop jq \
-    microsocks openssh-server pandoc postgresql-client python3-epc \
+    libsqlite3-0 microsocks openssh-server pandoc postgresql-client python3-epc \
     python3-importmagic ripgrep software-properties-common sudo tmate tmux tree \
     tzdata unzip && apt-get clean -y \
     && rm -rf /var/cache/debconf/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
