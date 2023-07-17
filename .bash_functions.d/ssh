@@ -64,3 +64,18 @@ ssh-auth-sock() {
            /tmp/vscode-ssh-auth-* \
            2>/dev/null | head -n 1)
 }
+
+ssh-data() {
+    if [[ -d /data/.ssh ]]; then
+        if [[ -d ${HOME}/.ssh ]]; then
+            mv ${HOME}/.ssh{,-old}
+        fi
+        ln -s /{data,${HOME}}/.ssh
+    fi
+}
+
+sshd-start() {
+    ssh-data
+    sudo mkdir -p /run/sshd
+    sudo /usr/sbin/sshd
+}
