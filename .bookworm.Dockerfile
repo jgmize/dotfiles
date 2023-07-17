@@ -27,6 +27,8 @@ RUN curl -L "https://github.com/mozilla/sops/releases/download/v3.7.3/sops-v3.7.
     && mv sops /usr/local/bin/
 RUN curl -L https://github.com/mikefarah/yq/releases/download/v4.34.1/yq_linux_amd64 \
     -o /usr/local/bin/yq && chmod +x /usr/local/bin/yq
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+RUN /home/linuxbrew/.linuxbrew/bin/brew install glab
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN useradd -m -s /usr/bin/bash -G sudo ${USERNAME}
 WORKDIR /home/${USERNAME}
