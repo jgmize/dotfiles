@@ -3,11 +3,17 @@ FROM debian:bookworm-slim
 ARG USERNAME=jgmize
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential ca-certificates curl emacs-nox git gpg gpg-agent htop jq \
+     build-essential ca-certificates curl emacs-nox git gpg gpg-agent htop jq \
     libsqlite3-0 microsocks openssh-server pandoc postgresql-client python3-epc \
     python3-importmagic ripgrep software-properties-common sudo tmate tmux tree \
     tzdata unzip && apt-get clean -y \
     && rm -rf /var/cache/debconf/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN mkdir -p /etc/apt/trusted.gpg.d/ && \
+    curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor \
+    > /etc/apt/trusted.gpg.d/microsoft.gpg && \
+    echo "deb [arch=`dpkg --print-architecture` signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/azure-cli/ bookworm main" \
+    > /etc/apt/sources.list.d/azure-cli.list && \
+    apt-get update && apt-get install -y --no-install-recommends azure-cli
 RUN curl -LO "https://dl.k8s.io/release/v1.23.0/bin/linux/amd64/kubectl" && \
     chmod +x ./kubectl && \
     mv ./kubectl /usr/local/bin/kubectl && \
