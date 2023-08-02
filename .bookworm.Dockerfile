@@ -3,11 +3,14 @@ FROM debian:bookworm-slim
 ARG USERNAME=jgmize
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential ca-certificates curl emacs-nox git gpg gpg-agent htop jq \
+     build-essential ca-certificates curl emacs-nox git gpg gpg-agent htop jq \
     libsqlite3-0 microsocks openssh-server pandoc postgresql-client python3-epc \
     python3-importmagic ripgrep software-properties-common sudo tmate tmux tree \
     tzdata unzip && apt-get clean -y \
     && rm -rf /var/cache/debconf/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
+    apt-get clean -y && \
+    rm -rf /var/cache/debconf/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN curl -LO "https://dl.k8s.io/release/v1.23.0/bin/linux/amd64/kubectl" && \
     chmod +x ./kubectl && \
     mv ./kubectl /usr/local/bin/kubectl && \
