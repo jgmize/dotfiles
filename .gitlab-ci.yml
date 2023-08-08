@@ -72,3 +72,13 @@ build bookworm:
     refs:
       - build-all
       - build-bookworm
+
+build sid:
+  extends: .kaniko build
+  variables:
+    dockerfile: .sid.Dockerfile
+    image: ${CI_REGISTRY_IMAGE}/sid
+  only:
+    refs:
+      - build-all
+      - build-sid
