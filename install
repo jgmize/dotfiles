@@ -15,11 +15,17 @@ if [[ "$(which emacs)" && ! -e ~/.emacs.d ]]; then
     git clone -b develop --depth 1 --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
 fi
 
-if [ "$(which vim)" ]; then
+nvim=$(which nvim)
+if [[ -n "${nvim?=$(which vim)}" ]]; then
     mkdir -p ~/.vim/bundle
     cd ~/.vim/bundle
     if [ ! -e vundle ]; then
         git clone --depth 1 https://github.com/gmarik/vundle.git
     fi
     #vim +BundleInstall +qall &>/dev/null
+    if [[ -n "${nvim}" ]]; then
+        mkdir -p ~/.config/nvim
+        ln -sf ~/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
+        ${nvim} --headless +BundleInstall +qall
+    fi
 fi

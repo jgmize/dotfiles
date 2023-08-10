@@ -55,8 +55,10 @@ set clipboard=unnamedplus
 "set hlsearch
 "incremental search
 set incsearch
-set mouse=a
-set ttymouse=xterm2
+if !has('nvim')
+    set mouse=a
+    set ttymouse=xterm2
+endif
 
 " Enable rainbow parentheses for all buffers
 augroup rainbow_parentheses
