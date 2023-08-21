@@ -8,8 +8,16 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+if [[ -e /usr/local/opt/grep/libexec/gnubin ]]; then
+    PATH=/usr/local/opt/grep/libexec/gnubin:$PATH
+fi
+
 if [ -d "$HOME/anaconda/bin" ] ; then
     PATH="$HOME/anaconda/bin:$PATH"
+fi
+
+if [[ -e ~/Library/Python/3.11/bin ]]; then
+    PATH=~/Library/Python/3.11/bin:$PATH
 fi
 
 if [ -d $HOME/go ]; then

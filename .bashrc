@@ -133,10 +133,6 @@ if [ "$(which aws_completer 2> /dev/null)" ]; then
     complete -C $(which aws_completer) aws
 fi
 
-if [[ -e /usr/local/opt/grep/libexec/gnubin ]]; then
-    PATH=/usr/local/opt/grep/libexec/gnubin:$PATH
-fi
-
 if [[ -e /tmp/docker.sock ]]; then
     # created by gcloud-shell in ~/dotfiles/.bash_functions.d/gcloud
     export DOCKER_HOST=unix:///tmp/docker.sock
