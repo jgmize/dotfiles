@@ -8,8 +8,16 @@ ln -sf dotfiles/.tmux.conf .tmate.conf
 
 if [[ "$(uname)" == "Darwin" ]]; then
     mkdir -p ~/.hammerspoon
-    ln -sf ../dotfiles/.hammerspoon/init.lua ~/.hammerspoon/init.lua
+    ln -sf ~/dotfiles/.hammerspoon/init.lua ~/.hammerspoon/init.lua
+    nushell_dir="${HOME}/Library/Application Support/nushell"
+else
+    nushell_dir="${HOME}/.config/nushell"
 fi
+
+for f in {config,env}.nu; do
+    mkdir -p "${nushell_dir}"
+    ln -sf ~/dotfiles/.config/nushell/$f "${nushell_dir}/$f"
+done
 
 if [[ "$(which emacs)" && ! -e ~/.emacs.d ]]; then
     git clone -b develop --depth 1 --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
