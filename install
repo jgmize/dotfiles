@@ -14,8 +14,8 @@ else
     nushell_dir="${HOME}/.config/nushell"
 fi
 
+mkdir -p "${nushell_dir}"
 for f in {config,env}.nu; do
-    mkdir -p "${nushell_dir}"
     ln -sf ~/dotfiles/.config/nushell/$f "${nushell_dir}/$f"
 done
 
