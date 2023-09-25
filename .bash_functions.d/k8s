@@ -20,8 +20,12 @@ install-helm() {
     curl -sSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 }
 
+k() {
+    kubectl $*
+}
+
 k8s-masters() {
-    kubectl get nodes -l kubernetes.io/role=master $*;
+    k get nodes -l kubernetes.io/role=master $*;
 }
 k8s-master-ips() {
     k8s-masters -o jsonpath='{.items[*].status.addresses[?(@.type=="ExternalIP")].address}';
@@ -33,35 +37,35 @@ k8s-master-labels() {
 
 ns() {
     if [[ -n "$1" ]]; then
-        kubectl config set-context --current --namespace=$1
+        k config set-context --current --namespace=$1
     else
-        kubectl get ns
+        k get ns
     fi
 }
 
 k8s-ctx() {
     if [[ -n "$2" ]]; then
-        kubectl config rename-context $1 $2 ;
+        k config rename-context $1 $2 ;
     elif [[ -n "$1" ]]; then
-        kubectl config use-context $1 ;
+        k config use-context $1 ;
     else
-        kubectl config get-contexts ;
+        k config get-contexts ;
     fi
 }
 
 k8s-pod() {
     if [[ -n "$1" ]]; then
-        kubectl get pods | grep $1 | awk '/Running/ {print $1; exit;}'
+        k get pods | grep $1 | awk '/Running/ {print $1; exit;}'
     else
-        kubectl get pods | awk '/Running/ {print $1; exit;}'
+        k get pods | awk '/Running/ {print $1; exit;}'
     fi
 }
 
 k8s-pods() {
     if [[ -n "$1" ]]; then
-        kubectl get pods | awk "/$1/ {print \$1}"
+        k get pods | awk "/$1/ {print \$1}"
     else
-        kubectl get pods | awk '!/NAME/ {print $1}'
+        k get pods | awk '!/NAME/ {print $1}'
     fi
 }
 
@@ -70,11 +74,11 @@ k8s-pods-delete() {
 }
 
 k8s-exec() {
-    kubectl exec -it $(k8s-pod $1) -- ${@:2:99}
+    k exec -it $(k8s-pod $1) -- ${@:2:99}
 }
 
 k8s-az() {
-    kubectl exec -it -n provisioning $(kubectl get pods -n provisioning | awk '/az-cli/ {print $1}') -- az $*
+    k exec -it -n provisioning $(kubectl get pods -n provisioning | awk '/az-cli/ {print $1}') -- az $*
 }
 
 k8s-bash() {
@@ -82,81 +86,41 @@ k8s-bash() {
 }
 
 k8s-forward(){
-    kubectl port-forward $(k8s-pod $1) ${@:2:99}
+    k port-forward $(k8s-pod $1) ${@:2:99}
 }
 
 k8s-root() {
     # ported from  https://mobile.twitter.com/mauilion/status/1129468485480751104
-    kubectl run root --restart=Never -ti --rm --image overridden --overrides '{"spec":{"hostPID": true, "containers":[{"name":"1","image":"alpine","command":["nsenter","--mount=/proc/1/ns/mnt","--","/bin/bash"],"stdin": true,"tty":true,"securityContext":{"privileged":true}}]}}'
+    k run root --restart=Never -ti --rm --image overridden --overrides '{"spec":{"hostPID": true, "containers":[{"name":"1","image":"alpine","command":["nsenter","--mount=/proc/1/ns/mnt","--","/bin/bash"],"stdin": true,"tty":true,"securityContext":{"privileged":true}}]}}'
 }
 
 k8s-logs() {
-    kubectl logs $(k8s-pod $1) $2
+    k logs $(k8s-pod $1) $2
 }
 
 k8s-pending-drain(){
-    for node in $(kubectl get nodes | awk '/SchedulingDisabled/ {print $1}'); do
-        kubectl get pods --all-namespaces -o wide | grep $node;
+    for node in $(k get nodes | awk '/SchedulingDisabled/ {print $1}'); do
+        k get pods --all-namespaces -o wide | grep $node;
     done
 }
 
 k8s-non-running-pods(){
-    kubectl get pods --all-namespaces --field-selector=status.phase!=Running -o wide
+    k get pods --all-namespaces --field-selector=status.phase!=Running -o wide
 }
 
 k8s-non-ready-containers(){
-    kubectl get pods --all-namespaces -o wide | grep -Ev "([0-9]+)/\1"
-}
-
-frankfurt() {
-    export DEIS_PROFILE=frankfurt
-    export AWS_DEFAULT_REGION=eu-central-1
-    export KUBECONFIG=$HOME/.kube/frankfurt.kubeconfig
-    if [[ -n "$1" ]]; then
-        export KUBECONFIG=$HOME/.kube/frankfurt.vpn.kubeconfig
-    fi
-}
-
-frankfurt-b() {
-    export DEIS_PROFILE=frankfurt-b
-    export AWS_DEFAULT_REGION=eu-central-1
-    export KUBECONFIG=$HOME/.kube/frankfurt-b.kubeconfig
-}
-
-portland() {
-    export DEIS_PROFILE=portland
-    export AWS_DEFAULT_REGION=us-west-2
-    export KUBECONFIG=$HOME/.kube/portland.kubeconfig
-}
-
-kubeconf(){
-    export KUBECONFIG=$HOME/.kube/${1:-"oregon-a-vpn"}.kubeconfig
-}
-
-oregon() {
-    export DEIS_PROFILE=oregon${1:-"-b"}
-    export AWS_DEFAULT_REGION=us-west-2
-    kubeconf oregon${1:-"-b"}
-}
-
-iowa() {
-    kubeconf iowa${1:-"-a"}
-}
-
-docker-for-desktop() {
-    export KUBECONFIG=$HOME/.kube/config
-    kubectl config use-context docker-for-desktop
+    k get pods --all-namespaces -o wide | grep -Ev "([0-9]+)/\1"
 }
 
 k8s-decode-secret() {
     # adapted from https://stackoverflow.com/a/58117444
-    kubectl get secret $1 -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+    k get secret $1 -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
 }
 
 k8s-envfrom-secret() {
-    kubectl get secret $1 -o go-template='{{range $k,$v := .data}}{{printf "export %s=" $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+    k get secret $1 -o go-template='{{range $k,$v := .data}}{{printf "export %s=" $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
 }
 
 k8s-envfrom-configmap() {
-    kubectl get configmap $1 -o go-template='{{range $k,$v := .data}}{{printf "export %s=" $k}}{{$v}}{{"\n"}}{{end}}'
+    k get configmap $1 -o go-template='{{range $k,$v := .data}}{{printf "export %s=" $k}}{{$v}}{{"\n"}}{{end}}'
 }
