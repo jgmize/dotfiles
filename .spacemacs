@@ -98,6 +98,7 @@ This function should only modify configuration layer settings."
                                       groovy-mode
                                       kubernetes
                                       kubernetes-evil
+                                      mastodon
                                       nushell-mode
                                       ob-cypher
                                       org-ehtml
@@ -657,6 +658,10 @@ connection."
   (setq jiralib-url "https://digitial-product-engineering.atlassian.net")
   (setq eat-term-name "screen-256color")
   (add-hook 'eshell-load-hook #'eat-eshell-mode)
+
+  (setq mastodon-instance-url "https://hachyderm.io"
+        mastodon-active-user "jgmize"
+        mastodon-tl--display-media-p nil)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
