@@ -83,3 +83,9 @@ elif [ "$TMUX" ]; then
         tmux split-window "vim --servername `tmux display-message -p '#W'` $1"
     }
 fi
+
+tmux-kill-other-sessions() {
+    for s in $(tmux list-sessions | awk -F: '{print $1}' | tail +2); do
+        tmux kill-session -t $s
+    done
+}
