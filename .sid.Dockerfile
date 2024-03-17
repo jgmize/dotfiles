@@ -10,8 +10,8 @@ ARG YQ_VERSION="v4.40.5"
 RUN apt-get update && apt-get install -y --no-install-recommends \
     black build-essential ca-certificates curl emacs-nox git gpg gpg-agent htop \
     jq libsqlite3-0 microsocks neovim openssh-server pandoc postgresql-client \
-    pre-commit python3-epc python3-importmagic ripgrep software-properties-common \
-    sudo tmux tree tzdata unzip && apt-get clean -y \
+    pre-commit python3-epc python3-importmagic ripgrep sbcl \
+    software-properties-common sudo tmux tree tzdata unzip && apt-get clean -y \
     && rm -rf /var/cache/debconf/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
     apt-get clean -y && \
