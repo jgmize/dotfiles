@@ -57,6 +57,10 @@ for brew in {/opt/homebrew,/home/linuxbrew/.linuxbrew}/bin/brew; do
     fi
 done
 
+if [[ -d /opt/homebrew/opt/gnu-sed/libexec/gnubin ]]; then
+    PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+fi
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
