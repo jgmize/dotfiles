@@ -97,6 +97,8 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages '(cypher-mode
                                       eat
                                       groovy-mode
+                                      habitica
+                                      hyperbole
                                       kubernetes
                                       kubernetes-evil
                                       mastodon
