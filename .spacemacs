@@ -99,6 +99,7 @@ This function should only modify configuration layer settings."
                                       groovy-mode
                                       habitica
                                       hyperbole
+                                      ink-mode
                                       kubernetes
                                       kubernetes-evil
                                       mastodon
@@ -112,7 +113,8 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(evil-terminal-cursor-changer
+   dotspacemacs-excluded-packages '(electric-indent-mode
+                                    evil-terminal-cursor-changer
                                     flyspell
                                     org-pomodoro)
    ;; Defines the behaviour of Spacemacs when installing packages.
