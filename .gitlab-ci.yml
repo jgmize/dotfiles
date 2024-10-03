@@ -3,11 +3,12 @@ include: .gitlab/ci-job-templates.yml
 stages:
   - build
 
-build jupyterlab:
+kaniko build:
   extends: .kaniko build
   variables:
-    dockerfile: .docker/llamastack-local-cpu
-    image: ${CI_REGISTRY_IMAGE}/llamastack-local-cpu
+    name: llamastack-local-gpu
+    dockerfile: .docker/${name}
+    image: ${CI_REGISTRY_IMAGE}/${name}
   only:
     refs:
       - dockerfiles
