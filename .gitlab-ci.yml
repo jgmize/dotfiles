@@ -6,79 +6,8 @@ stages:
 build jupyterlab:
   extends: .kaniko build
   variables:
-    dockerfile: .jupyterlab.Dockerfile
-    image: ${CI_REGISTRY_IMAGE}/jupyterlab
+    dockerfile: .docker/llamastack-local-cpu
+    image: ${CI_REGISTRY_IMAGE}/llamastack-local-cpu
   only:
     refs:
-      - build-all
-      - build-jupyterlab
-
-build gitpod:
-  extends: .kaniko build
-  variables:
-    dockerfile: .gitpod.Dockerfile
-    image: ${CI_REGISTRY_IMAGE}/gitpod
-  only:
-    refs:
-      - build-all
-      - build-gitpod
-
-build theia:
-  extends: .kaniko build
-  variables:
-    dockerfile: .theia.Dockerfile
-    image: ${CI_REGISTRY_IMAGE}/theia
-  only:
-    refs:
-      - build-all
-      - build-theia
-
-build focal:
-  extends: .kaniko build
-  variables:
-    dockerfile: .focal.Dockerfile
-    image: ${CI_REGISTRY_IMAGE}/focal
-  only:
-    refs:
-      - build-all
-      - build-focal
-
-build jammy:
-  extends: .kaniko build
-  variables:
-    dockerfile: .jammy.Dockerfile
-    image: ${CI_REGISTRY_IMAGE}/jammy
-  only:
-    refs:
-      - build-all
-      - build-jammy
-
-build bullseye:
-  extends: .kaniko build
-  variables:
-    dockerfile: .bullseye.Dockerfile
-    image: ${CI_REGISTRY_IMAGE}/bullseye
-  only:
-    refs:
-      - build-all
-      - build-bullseye
-
-build bookworm:
-  extends: .kaniko build
-  variables:
-    dockerfile: .bookworm.Dockerfile
-    image: ${CI_REGISTRY_IMAGE}/bookworm
-  only:
-    refs:
-      - build-all
-      - build-bookworm
-
-build sid:
-  extends: .kaniko build
-  variables:
-    dockerfile: .sid.Dockerfile
-    image: ${CI_REGISTRY_IMAGE}/sid
-  only:
-    refs:
-      - build-all
-      - build-sid
+      - dockerfiles
