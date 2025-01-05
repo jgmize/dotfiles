@@ -37,3 +37,6 @@ if [[ -n "${nvim?=$(which vim)}" ]]; then
         ${nvim} --headless +BundleInstall +qall
     fi
 fi
+
+mkdir -p ~/.config/ghostty
+ln -sf ~/dotfiles/.config/ghostty/config ~/.config/ghostty/config
