@@ -33,12 +33,11 @@ RUN curl -L "https://github.com/getsops/sops/releases/download/${SOPS_VERSION}/s
     -o /usr/local/bin/sops && chmod +x /usr/local/bin/sops
 RUN curl -L https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64 \
     -o /usr/local/bin/yq && chmod +x /usr/local/bin/yq
-RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN useradd -m -s /usr/bin/bash -G sudo ${USERNAME}
-RUN chown -R ${USERNAME} /home/linuxbrew/.linuxbrew
 WORKDIR /home/${USERNAME}
 USER ${USERNAME}
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 RUN /home/linuxbrew/.linuxbrew/bin/brew install glab nushell
 COPY . ./dotfiles
 RUN dotfiles/install
