@@ -33,7 +33,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(graphviz
+   '(react
+     graphviz
      ansible
      better-defaults
      (clojure :variables clojure-enable-fancify-symbols t)
