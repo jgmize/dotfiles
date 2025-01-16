@@ -148,6 +148,10 @@ if [[ -d ~/.vscode-server/bin ]]; then
     done
 fi
 
+if [[ -d ~/.local/bin ]]; then
+    PATH=${HOME}/.local/bin:${PATH}
+fi
+
 # dedupe path
 PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
 

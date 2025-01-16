@@ -68,7 +68,3 @@ if [ -n "$BASH_VERSION" ]; then
 	      . "$HOME/.bashrc"
     fi
 fi
-
-if [ -e ~/.local/bin/env ]; then
-    . ~/.local/bin/env
-fi
