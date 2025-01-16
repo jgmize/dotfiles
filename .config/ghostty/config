@@ -1,3 +1,4 @@
 macos-non-native-fullscreen = true
 background-opacity = 0.8
 keybind = global:cmd+ctrl+t=toggle_quick_terminal
+term = xterm-256color
