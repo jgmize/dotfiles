@@ -69,4 +69,6 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-. "$HOME/.local/bin/env"
+if [ -e ~/.local/bin/env ]; then
+    . ~/.local/bin/env
+fi
