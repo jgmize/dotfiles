@@ -592,6 +592,7 @@ you should place your code here."
                 (outline-minor-mode)
                 (define-key yaml-mode-map (kbd "TAB") 'outline-toggle-children)
                 (setq outline-regexp "^ *")))
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   (eval-after-load 'org
     '(progn
        (org-babel-do-load-languages
