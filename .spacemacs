@@ -573,7 +573,9 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (unless window-system
     (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
-    (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
+    (global-set-key (kbd "<wheel-up>") 'scroll-down-line)
+    (global-set-key (kbd "<mouse-5>") 'scroll-up-line)
+    (global-set-key (kbd "<wheel-down>") 'scroll-up-line))
   (add-to-list 'warning-suppress-types '(undo discard-info))
 
   (add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
