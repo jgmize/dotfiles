@@ -101,6 +101,7 @@ This function should only modify configuration layer settings."
                                       habitica
                                       hyperbole
                                       ink-mode
+                                      jupyter
                                       kubernetes
                                       kubernetes-evil
                                       mastodon
