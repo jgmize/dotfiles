@@ -125,8 +125,12 @@ elif [ -d /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]; then
     source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
     source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
 fi
+
 if [ "$(which kubectl 2> /dev/null)" ]; then
     source <(kubectl completion bash)
+    if [[ -d ~/.krew/bin ]]; then
+        PATH=${PATH}:${HOME}/.krew/bin
+    fi
 fi
 
 if [ "$(which aws_completer 2> /dev/null)" ]; then
