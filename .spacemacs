@@ -97,11 +97,12 @@ This function should only modify configuration layer settings."
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(cypher-mode
                                       eat
+                                      emamux
                                       groovy-mode
                                       habitica
                                       hyperbole
                                       ink-mode
-                                      jupyter
+                                      jupyter ; requires emacs-zmq
                                       kubernetes
                                       kubernetes-evil
                                       mastodon
@@ -623,6 +624,7 @@ you should place your code here."
     (interactive)
     (insert "** " (format-time-string "%Y%m%d%H%M")))
   (spacemacs/set-leader-keys "it" 'insert-timestamp)
+  (spacemacs/set-leader-keys "'" 'emamux:split-window)
 
   (defvar sql-connection-alist nil)
 
