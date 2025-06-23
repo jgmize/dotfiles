@@ -1,5 +1,5 @@
 #!/bin/bash
-dotfiles=".ackrc .bashrc .gitconfig .hgrc .histories .profile .spacemacs .synergy.conf .tmux.conf .vimrc .xonshrc"
+dotfiles=".ackrc .bashrc .gitconfig .hgrc .histories .profile .spacemacs .synergy.conf .tmux.conf .vimrc .wezterm.lua .xonshrc"
 cd $HOME
 for f in $dotfiles; do
     ln -sf dotfiles/$f;
