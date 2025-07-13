@@ -6,9 +6,9 @@ stages:
 kaniko build:
   extends: .kaniko build
   variables:
-    name: llamastack-local-gpu
+    name: gcloud-slim
     dockerfile: .docker/${name}
     image: ${CI_REGISTRY_IMAGE}/${name}
   only:
     refs:
-      - dockerfiles
+      - gcloud-slim
