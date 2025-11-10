@@ -2,3 +2,4 @@
 .win/.vscode/plugins
 .aws/config
 .aws/creds
+.aider*

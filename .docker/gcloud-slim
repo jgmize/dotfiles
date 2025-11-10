@@ -1,0 +1,28 @@
+FROM gcr.io/google.com/cloudsdktool/google-cloud-cli:slim
+ENV DEBIAN_FRONTEND=noninteractive
+ARG SOPS_VERSION="v3.8.1"
+ARG SUPABASE_VERSION="2.26.8"
+ARG USERNAME=jgmize
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
+    apt-get install -y --no-install-recommends \
+    build-essential ca-certificates curl emacs-nox git gpg gpg-agent htop jq \
+    kubectl libsqlite3-0 microsocks openssh-server pandoc postgresql-client python3-epc \
+    python3-importmagic ripgrep software-properties-common sudo tmate tmux tree \
+    tzdata unzip && apt-get clean -y && \
+    rm -rf /var/cache/debconf/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN curl -LO https://github.com/supabase/cli/releases/download/v${SUPABASE_VERSION}/supabase_${SUPABASE_VERSION}_linux_amd64.deb && \
+    dpkg -i supabase_${SUPABASE_VERSION}_linux_amd64.deb
+RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 && \
+    chmod +x get_helm.sh && ./get_helm.sh
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && ./aws/install && rm -rf awscliv2.zip aws
+RUN curl -L "https://github.com/getsops/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux.amd64" \
+    -o /usr/local/bin/sops && chmod +x /usr/local/bin/sops
+RUN curl -L https://github.com/mikefarah/yq/releases/download/v4.34.1/yq_linux_amd64 \
+    -o /usr/local/bin/yq && chmod +x /usr/local/bin/yq
+RUN curl -s https://yamlscript.org/install | BIN=1 bash
+RUN useradd -m -s /usr/bin/bash -G sudo ${USERNAME}
+WORKDIR /home/${USERNAME}
+USER ${USERNAME}
+COPY . ./dotfiles
+RUN dotfiles/install

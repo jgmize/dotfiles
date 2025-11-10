@@ -15,10 +15,28 @@
 - https://gitlab.com/search?search=dotfiles
   - https://gitlab.com/gitlab-com/support/toolbox/dotfiles
 
-** Merge Requests
+** Merge & Pull Requests
 
 - [[https://gitlab.com/jgmize/dotfiles/-/merge_requests?scope=all&state=all][Gitlab merge requests]]
-  - [X] [[https://gitlab.com/jgmize/dotfiles/-/merge_requests/1][!1]]: Build bullseye
-  - [X] [[https://gitlab.com/jgmize/dotfiles/-/merge_requests/2][!2]]: Main rebase
-  - [X] [[https://gitlab.com/jgmize/dotfiles/-/merge_requests/3][!3]]: add svpn
-  - [ ] !4: Update [[./.gitpod.yml][.gitpod.yml]] to match journal
+- [[https://github.com/jgmize/dotfiles/pulls?q=][Github pull requests]]
+
+** TODO
+
+- [X] add cloud CLIs
+  - [X] aws
+  - [X] az
+  - [X] gcloud
+  - [[https://github.com/jgmize/dotfiles/pkgs/container/dotfiles][Package dotfiles]]
+    #+begin_src sh
+      docker pull ghcr.io/jgmize/dotfiles:gcloud-slim
+    #+end_src
+- [ ] add ys
+  - [[https://yamlscript.org/doc/install/][Installing YS - YS — YAML Done Wisely]]
+- [ ] add sts
+#+begin_src yaml
+  image: ghcr.io/jgmize/dotfiles:gcloud-slim
+  command:
+    - sleep
+    - infinity
+  volumeMounts: TODO
+#+end_src

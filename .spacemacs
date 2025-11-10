@@ -33,7 +33,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(react
+   '(php
+     react
      graphviz
      ansible
      better-defaults
@@ -43,6 +44,7 @@ This function should only modify configuration layer settings."
      django
      docker
      emacs-lisp
+     epub
      ess
      evernote
      git
@@ -60,22 +62,22 @@ This function should only modify configuration layer settings."
                markdown-fontify-code-blocks-natively t)
      multiple-cursors
      nginx
-     ; ocaml ; brew install opam && opam init
+                                        ; ocaml ; brew install opam && opam init
      (org :variables
-         org-adapt-indentation nil
-         org-confirm-babel-evaluate nil
-         org-enable-github-support t
-         org-export-with-drawers t
-         org-export-with-section-numbers nil
-         org-export-with-sub-superscripts nil
-         org-export-babel-evaluate nil
-         org-export-backends (quote (ascii beamer html icalendar latex md odt rst))
-         org-hide-emphasis-markers t
-         org-src-fontify-natively t
-         ;; Use current window when switch to source block
-         org-src-window-setup 'current-window
-         ;; Disable prompting to evaluate babel blocks
-         org-superstar-leading-fallback ?\s)
+          org-adapt-indentation nil
+          org-confirm-babel-evaluate nil
+          org-enable-github-support t
+          org-export-with-drawers t
+          org-export-with-section-numbers nil
+          org-export-with-sub-superscripts nil
+          org-export-babel-evaluate nil
+          org-export-backends (quote (ascii beamer html icalendar latex md odt rst))
+          org-hide-emphasis-markers t
+          org-src-fontify-natively t
+          ;; Use current window when switch to source block
+          org-src-window-setup 'current-window
+          ;; Disable prompting to evaluate babel blocks
+          org-superstar-leading-fallback ?\s)
      pandoc ; brew install pandoc
      python
      (rust :variables
@@ -593,9 +595,9 @@ you should place your code here."
               (define-key evil-insert-state-local-map (kbd "C-e") 'term-send-raw)))
   (add-hook 'yaml-mode-hook
             (lambda ()
-                (outline-minor-mode)
-                (define-key yaml-mode-map (kbd "TAB") 'outline-toggle-children)
-                (setq outline-regexp "^ *")))
+              (outline-minor-mode)
+              (define-key yaml-mode-map (kbd "TAB") 'outline-toggle-children)
+              (setq outline-regexp "^ *")))
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   (eval-after-load 'org
     '(progn
@@ -613,7 +615,7 @@ you should place your code here."
        ;; TODO: update for changes to format in Org 9.2
        ;; (add-to-list 'org-structure-template-alist
        ;;              '("S" "#+BEGIN_SRC sh :exports both :results output org\n?\n#+END_SRC"))
-     ))
+       ))
 
   (defun insert-date()
     (interactive)
@@ -634,28 +636,28 @@ Generates respective interactive functions to establish each
 connection."
     `(progn
        ,@(mapcar (lambda (conn)
-		               `(add-to-list 'sql-connection-alist ',conn))
-	               connections)
+                   `(add-to-list 'sql-connection-alist ',conn))
+                 connections)
        ,@(mapcar (lambda (conn)
-		               (let* ((varname (car conn))
-			                    (fn-name (intern (format "sql-connect-to-%s" varname)))
-			                    (buf-name (format "*%s*" varname)))
-		                 `(defun ,fn-name ,'()
-		                    (interactive)
-		                    (sql-connect ',varname ,buf-name))))
-		             connections)))
+                   (let* ((varname (car conn))
+                          (fn-name (intern (format "sql-connect-to-%s" varname)))
+                          (buf-name (format "*%s*" varname)))
+                     `(defun ,fn-name ,'()
+                        (interactive)
+                        (sql-connect ',varname ,buf-name))))
+                 connections)))
 
   (sql-specify-connections
    (postgres (sql-product 'postgres)
-      ;; (sql-port 5432)
-      (sql-server "localhost")
-      (sql-user "jgmize")
-      ;; (sql-password "password")
-      (sql-database "postgres"))
-    (jgmize (sql-product 'postgres)
-          (sql-server "localhost")
-          (sql-user "jgmize")
-          (sql-database "jgmize")))
+             ;; (sql-port 5432)
+             (sql-server "localhost")
+             (sql-user "jgmize")
+             ;; (sql-password "password")
+             (sql-database "postgres"))
+   (jgmize (sql-product 'postgres)
+           (sql-server "localhost")
+           (sql-user "jgmize")
+           (sql-database "jgmize")))
 
   ;; (transient-append-suffix 'magit-push "-u"
   ;;   '(1 "-s" "Skip gitlab pipeline" "--push-option=ci.skip"))
