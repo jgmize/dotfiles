@@ -22,8 +22,21 @@
 
 ** TODO
 
-- [-] add cloud CLIs
+- [X] add cloud CLIs
   - [X] aws
   - [X] az
-  - [ ] gcloud
+  - [X] gcloud
+  - [[https://github.com/jgmize/dotfiles/pkgs/container/dotfiles][Package dotfiles]]
+    #+begin_src sh
+      docker pull ghcr.io/jgmize/dotfiles:gcloud-slim
+    #+end_src
 - [ ] add ys
+  - [[https://yamlscript.org/doc/install/][Installing YS - YS — YAML Done Wisely]]
+- [ ] add sts
+#+begin_src yaml
+  image: ghcr.io/jgmize/dotfiles:gcloud-slim
+  command:
+    - sleep
+    - infinity
+  volumeMounts: TODO
+#+end_src
