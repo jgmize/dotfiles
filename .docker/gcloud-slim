@@ -6,13 +6,12 @@ ARG USERNAME=jgmize
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
     apt-get install -y --no-install-recommends \
     build-essential ca-certificates curl emacs-nox git gpg gpg-agent htop jq \
-    libsqlite3-0 microsocks openssh-server pandoc postgresql-client python3-epc \
+    kubectl libsqlite3-0 microsocks openssh-server pandoc postgresql-client python3-epc \
     python3-importmagic ripgrep software-properties-common sudo tmate tmux tree \
     tzdata unzip && apt-get clean -y && \
     rm -rf /var/cache/debconf/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN curl -LO https://github.com/supabase/cli/releases/download/v${SUPABASE_VERSION}/supabase_${SUPABASE_VERSION}_linux_amd64.deb && \
     dpkg -i supabase_${SUPABASE_VERSION}_linux_amd64.deb
-RUN gcloud components install kubectl --quiet
 RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 && \
     chmod +x get_helm.sh && ./get_helm.sh && \
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
