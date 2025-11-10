@@ -13,7 +13,7 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
 RUN curl -LO https://github.com/supabase/cli/releases/download/v${SUPABASE_VERSION}/supabase_${SUPABASE_VERSION}_linux_amd64.deb && \
     dpkg -i supabase_${SUPABASE_VERSION}_linux_amd64.deb
 RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 && \
-    chmod +x get_helm.sh && ./get_helm.sh && \
+    chmod +x get_helm.sh && ./get_helm.sh
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
     unzip awscliv2.zip && ./aws/install && rm -rf awscliv2.zip aws
 RUN curl -L "https://github.com/getsops/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux.amd64" \
