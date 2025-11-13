@@ -160,3 +160,7 @@ fi
 PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+if [[ -e /Applications/Tailscale.app/Contents/MacOS/Tailscale ]]; then
+   alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+fi
