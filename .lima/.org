@@ -11,10 +11,23 @@
 ** clone
 
 - [[https://github.com/lima-vm/lima][github.com/lima-vm/lima]]
-  
+
 #+begin_src sh
   cd ~/src
   git clone https://github.com/lima-vm/lima
 #+end_src
-  
+
 - [[~/src/lima]]
+
+** template
+
+- [ ] [[file+emacs:~/dotfiles/.lima/template.ys][template.ys]]
+
+  #+begin_src bash
+    ys -J template.ys | yq -Poy > k8s.yaml
+    limactl start ./k8s.yaml
+  #+end_src
+  - initial version is a minor refactor of the k8s template from
+    [[~/src/lima/templates/k8s.yaml]] based on debian-13 instead of ubuntu
+    with the inline shell scripts refactored into separate files
+  - [ ] multi-node version with bridge mode, calico, & wireguard

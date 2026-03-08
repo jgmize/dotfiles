@@ -1,5 +1,5 @@
 macos-non-native-fullscreen = true
 # background-opacity = 0.8
 unfocused-split-opacity = 1
-keybind = global:cmd+ctrl+t=toggle_quick_terminal
 term = xterm-256color
+keybind = global:cmd+ctrl+t=toggle_quick_terminal
