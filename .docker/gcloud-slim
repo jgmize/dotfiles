@@ -1,8 +1,8 @@
 FROM gcr.io/google.com/cloudsdktool/google-cloud-cli:slim
 ENV DEBIAN_FRONTEND=noninteractive
-ARG SOPS_VERSION="v3.8.1"
-ARG SUPABASE_VERSION="2.26.8"
-ARG USERNAME=jgmize
+ARG SOPS_VERSION="v3.13.1"
+# ARG SUPABASE_VERSION="2.26.8"
+ARG USERNAME=git
 ARG TARGETARCH
 SHELL ["/bin/bash", "-c"]
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
@@ -12,8 +12,8 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
     python3-importmagic ripgrep software-properties-common sudo tmate tmux tree \
     tzdata unzip && apt-get clean -y && \
     rm -rf /var/cache/debconf/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN curl -LO https://github.com/supabase/cli/releases/download/v${SUPABASE_VERSION}/supabase_${SUPABASE_VERSION}_linux_${TARGETARCH}.deb && \
-    dpkg -i supabase_${SUPABASE_VERSION}_linux_${TARGETARCH}.deb
+# RUN curl -LO https://github.com/supabase/cli/releases/download/v${SUPABASE_VERSION}/supabase_${SUPABASE_VERSION}_linux_${TARGETARCH}.deb && \
+#     dpkg -i supabase_${SUPABASE_VERSION}_linux_${TARGETARCH}.deb
 RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 && \
     chmod +x get_helm.sh && ./get_helm.sh
 RUN declare -A arch=(["amd64"]="x86_64" ["arm64"]="aarch64") && \
