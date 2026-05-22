@@ -5,6 +5,7 @@ on:
       - main
       - dev
       - gcloud-slim
+      - azure-cli
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
