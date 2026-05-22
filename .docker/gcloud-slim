@@ -6,7 +6,7 @@ ARG USERNAME=git
 ARG TARGETARCH
 SHELL ["/bin/bash", "-c"]
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    azure-cli build-essential ca-certificates curl emacs-nox git gpg gpg-agent htop jq \
+    build-essential ca-certificates curl emacs-nox git gpg gpg-agent htop jq \
     kubectl libsqlite3-0 microsocks openssh-server pandoc postgresql-client python3-epc \
     python3-importmagic ripgrep software-properties-common sudo tmate tmux tree \
     tzdata unzip && apt-get clean -y && \
