@@ -57,7 +57,7 @@
   - [ ] An error occurred while installing ink-mode (error: (error Package ?emacs-29.1? is unavailable))
   - [ ] An error occurred while installing forge (error: (error Package ?emacs-29.1? is unavailable))
   - [ ] An error occurred while installing code-review (error: (error Package ?emacs-29.1? is unavailable))
-- [ ] gcloud-slim bookworm -> trixie
+- [X] gcloud-slim bookworm -> trixie
   - [[https://github.com/jgmize/dotfiles/actions/runs/26256029545/job/77278797362][build-push job]] failed installing az cli:
     #6 5.263 Preparing to unpack .../azure-cli_2.86.0-1~bookworm_amd64.deb ...
     #6 5.286 Unpacking azure-cli (2.86.0-1~bookworm) ...
@@ -70,5 +70,6 @@
     - the workaround documented in the issue above (hardcoding to bookworm) appears to no longer be sufficient
     - azure-cli appears to be in trixie main
       - [[https://debian.pkgs.org/13/debian-main-amd64/azure-cli_2.74.0-1_all.deb.html][azure-cli_2.74.0-1_all.deb Debian 13 Download]]
-      - [ ] add package name to apt install instead of https://aka.ms/InstallAzureCLIDeb
-- [ ] git username image
+      - [X] add package name to apt install instead of https://aka.ms/InstallAzureCLIDeb
+- [X] git username image
+  - image: ghcr.io/jgmize/dotfiles:main
