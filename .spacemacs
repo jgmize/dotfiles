@@ -97,7 +97,8 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(cypher-mode
+   dotspacemacs-additional-packages '(bicep-ts-mode
+                                      cypher-mode
                                       eat
                                       emamux
                                       groovy-mode
@@ -559,6 +560,13 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; suppress warnings while testing emacs-ng
   (setq warning-suppress-log-types '((use-package) (comp) (undo discard-info)))
   (setq warning-suppress-types '((use-package) (comp) (undo discard-info)))
+
+  (add-to-list 'auto-mode-alist '("\\.bicep\\'" . bicep-ts-mode))
+  (add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+  (add-to-list 'auto-mode-alist '("\\.pac\\'" . js-mode)) ;; https://findproxyforurl.com/pac-functions/
+  (add-to-list 'auto-mode-alist '("\\.aws/credentials\\'" . conf-mode))
+  (add-to-list 'auto-mode-alist '("\\.spacemacs\\'" . emacs-lisp-mode))
   )
 
 (defun dotspacemacs/user-load ()
@@ -582,12 +590,11 @@ you should place your code here."
     (global-set-key (kbd "<wheel-down>") 'scroll-up-line))
   (add-to-list 'warning-suppress-types '(undo discard-info))
 
-  (add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
-  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
-  (add-to-list 'auto-mode-alist '("\\.pac\\'" . js-mode)) ;; https://findproxyforurl.com/pac-functions/
-  (add-to-list 'auto-mode-alist '("\\.aws/credentials\\'" . conf-mode))
-  ;; TODO: look into better way of managing auto-mode-alist
-  ;; especially updating existing regex for conf-mode
+  (when (and (require 'treesit nil t) (treesit-available-p))
+    (add-to-list 'treesit-language-source-alist
+                 '(bicep "https://github.com/tree-sitter-grammars/tree-sitter-bicep"))
+    (unless (treesit-language-available-p 'bicep)
+      (ignore-errors (treesit-install-language-grammar 'bicep))))
 
   (add-hook 'term-mode-hook
             (lambda ()
@@ -676,7 +683,7 @@ connection."
   (setq mastodon-instance-url "https://hachyderm.io"
         mastodon-active-user "jgmize"
         mastodon-tl--display-media-p nil)
-)
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
