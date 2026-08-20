@@ -72,3 +72,7 @@
   - [ ] An error occurred while installing ink-mode (error: (error Package ?emacs-29.1? is unavailable))
   - [ ] An error occurred while installing forge (error: (error Package ?emacs-29.1? is unavailable))
   - [ ] An error occurred while installing code-review (error: (error Package ?emacs-29.1? is unavailable))
+- [ ] self-hosted forgejo CI
+  - [ ] automatic mirroring
+    - [ ] github
+    - [ ] gitlab
