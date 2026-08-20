@@ -35,28 +35,9 @@
 - [X] add multiplatform image
   image: jgmize/dotfiles
   tags: multiplatform, latest
-
-** TODO
-
-- [ ] add sts
-#+begin_src yaml
-  #image: ghcr.io/jgmize/dotfiles:gcloud-slim
-  image: jgmize/dotfiles
-  command:
-    - sleep
-    - infinity
-  volumeMounts: TODO
-#+end_src
 - [X] fix sudo in gcloud-slim dockerfile
   - [[https://github.com/jgmize/dotfiles/actions/runs/22811883515/job/66170177841?pr=7#main-content][gcloud-slim build-push action]]
   - image: ghcr.io/jgmize/dotfiles:gcloud-slim
-- [ ] fix errors in .spacemacs with latest spacmacs dev branch:
-  - [ ] An error occurred while installing orgit-forge (error: (error Package ?emacs-29.1? is unavailable))
-  - [ ] An error occurred while installing mastodon (error: (error Package ?emacs-29.1? is unavailable))
-  - [ ] An error occurred while installing kubernetes-evil (error: (error Package ?kubernetes-0.18.0? is unavailable))
-  - [ ] An error occurred while installing ink-mode (error: (error Package ?emacs-29.1? is unavailable))
-  - [ ] An error occurred while installing forge (error: (error Package ?emacs-29.1? is unavailable))
-  - [ ] An error occurred while installing code-review (error: (error Package ?emacs-29.1? is unavailable))
 - [X] gcloud-slim bookworm -> trixie
   - [[https://github.com/jgmize/dotfiles/actions/runs/26256029545/job/77278797362][build-push job]] failed installing az cli:
     #6 5.263 Preparing to unpack .../azure-cli_2.86.0-1~bookworm_amd64.deb ...
@@ -73,3 +54,21 @@
       - [X] add package name to apt install instead of https://aka.ms/InstallAzureCLIDeb
 - [X] git username image
   - image: ghcr.io/jgmize/dotfiles:main
+
+** TODO
+
+- [ ] add sts
+#+begin_src yaml
+  image: ghcr.io/jgmize/dotfiles:main
+  command:
+    - sleep
+    - infinity
+  volumeMounts: TODO
+#+end_src
+- [ ] fix errors in .spacemacs with latest spacmacs dev branch:
+  - [ ] An error occurred while installing orgit-forge (error: (error Package ?emacs-29.1? is unavailable))
+  - [ ] An error occurred while installing mastodon (error: (error Package ?emacs-29.1? is unavailable))
+  - [ ] An error occurred while installing kubernetes-evil (error: (error Package ?kubernetes-0.18.0? is unavailable))
+  - [ ] An error occurred while installing ink-mode (error: (error Package ?emacs-29.1? is unavailable))
+  - [ ] An error occurred while installing forge (error: (error Package ?emacs-29.1? is unavailable))
+  - [ ] An error occurred while installing code-review (error: (error Package ?emacs-29.1? is unavailable))
