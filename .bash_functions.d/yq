@@ -1,0 +1,22 @@
+#!/bin/bash
+
+install-yq() {
+    if which yq &>/dev/null; then
+        return 0
+    fi
+
+    if which brew &>/dev/null; then
+        brew install yq
+    elif which curl &>/dev/null; then
+        local bin="yq_$(uname -s)_$(uname -m)"
+        if [[ "$(uname -m)" == "x86_64" ]]; then
+            bin="yq_$(uname -s)_amd64"
+        fi
+        curl -fsSL "https://github.com/mikefarah/yq/releases/latest/download/${bin}" \
+            -o /usr/local/bin/yq
+        chmod +x /usr/local/bin/yq
+    else
+        echo "yq: could not find brew or curl to install yq" >&2
+        return 1
+    fi
+}
